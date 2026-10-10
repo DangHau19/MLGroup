@@ -1,0 +1,2 @@
+Mô hình,Tham số tốt nhất,CV score,Train acc,Test acc,Precision,Recall,F1,ROC AUC
+Naive Bayes,{'alpha': 0.1},0.9978,0.9583,0.9582,0.9877,0.9246,0.9551,0.9976

@@ -1,0 +1,2 @@
+Mô hình,Tham số tốt nhất,CV score,Train acc,Test acc,Precision,Recall,F1,ROC AUC
+SVM,"{'C': 1, 'gamma': 0.01, 'kernel': 'rbf'}",0.8432,0.785,0.7078,0.6098,0.463,0.5263,0.8052
