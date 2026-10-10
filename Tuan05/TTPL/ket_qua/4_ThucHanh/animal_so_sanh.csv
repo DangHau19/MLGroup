@@ -1,2 +1,2 @@
 Mô hình,Tham số tốt nhất,CV score,Train acc,Test acc,Precision,Recall,F1,ROC AUC
-SVM,"{'C': 10, 'gamma': 0.01, 'kernel': 'poly'}",0.6281,0.9772,0.9773,0.9773,1.0,0.9885,0.468
+SVM,"{'C': 10, 'gamma': 'scale', 'kernel': 'poly'}",0.9287,1.0,1.0,1.0,1.0,1.0,1.0
