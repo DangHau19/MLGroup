@@ -19,13 +19,16 @@ Bài toán: phân lớp đa lớp `Target ∈ {Dropout, Enrolled, Graduate}` tr�
 ## Cài đặt
 
 ```bash
+winget install Python.Python.3.12 (Cài python phiên bản 3.12 để xài chung)
+
 cd DoAn_MayHoc
 git clone <URL repo chính>
 cd Nhom01-student-dropout
-python -m venv .venv
+python -3.12 -m venv .venv
 .venv\Scripts\activate
+python --version (no hien python 3.12.10 là oke)
 pip install -r requirements.txt
-python scripts/download_data.py  # tải dữ liệu vào data/raw/data.csv
+python scripts/download_data.py  (tải dữ liệu vào data/raw/data.csv)
 ```
 
 Nếu không tải được tự động, tải thủ công từ link UCI ở trên và đặt vào `data/raw/data.csv`.
