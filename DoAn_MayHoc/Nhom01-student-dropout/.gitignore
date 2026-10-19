@@ -1,0 +1,15 @@
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.venv/
+venv/
+.env
+.DS_Store
+.idea/
+.vscode/
+# Dữ liệu thô (tải bằng scripts/download_data.py) - bỏ comment dòng dưới nếu nhóm KHÔNG muốn commit data
+# data/raw/*.csv
+# Kết quả chạy tạm
+reports/cv_results.csv
+reports/test_results.csv
+# Model .joblib vẫn được commit (yêu cầu nộp bài); bỏ file quá nặng nếu >100MB
