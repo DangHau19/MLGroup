@@ -19,10 +19,11 @@ Bài toán: phân lớp đa lớp `Target ∈ {Dropout, Enrolled, Graduate}` tr�
 ## Cài đặt
 
 ```bash
+cd DoAn_MayHoc
 git clone <URL repo chính>
 cd Nhom01-student-dropout
 python -m venv .venv
-source .venv/bin/activate        # Windows: .venv\Scripts\activate
+.venv\Scripts\activate
 pip install -r requirements.txt
 python scripts/download_data.py  # tải dữ liệu vào data/raw/data.csv
 ```
