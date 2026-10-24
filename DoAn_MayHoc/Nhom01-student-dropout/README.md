@@ -98,6 +98,49 @@ Kiểm tra nhanh file vừa tải:
 Nếu không tải được tự động, tải thủ công từ link UCI ở trên và đặt vào `data/raw/data.csv`.
 Giữ dữ liệu gốc trong `data/raw/`; các bản đã xử lý đặt trong `data/processed/`.
 
+#### Kết quả xác minh dữ liệu - SV2 (Tuần 01)
+**Người thực hiện:** Phan Lê Minh Huy (SV2)
+
+**Thông tin bộ dữ liệu:**
+- Tên: Predict Students' Dropout and Academic Success
+- Nguồn: UCI Machine Learning Repository
+- UCI Dataset ID: 697
+- Giấy phép: CC BY 4.0
+- Đường dẫn lưu: `data/raw/data.csv`
+- Định dạng: CSV, phân cách bằng dấu `;`
+
+**Kết quả kiểm tra:**
+
+| Nội dung | Kết quả |
+|---|---|
+| Tổng số mẫu | 4.424 |
+| Số đặc trưng | 36 |
+| Số cột nhãn | 1 (Target) |
+| Tổng số cột | 37 |
+| Số lớp phân loại | 3 |
+
+**Phân bố nhãn Target:**
+
+| Nhãn | Số lượng | Tỷ lệ |
+|---|---:|---:|
+| Graduate | 2.209 | 49,93% |
+| Dropout | 1.421 | 32,12% |
+| Enrolled | 794 | 17,95% |
+| Tổng | 4.424 | 100% |
+
+**Kết luận xác minh:**
+
+Bộ dữ liệu đã được tải thành công bằng
+`scripts/download_data.py` và lưu đúng đường dẫn
+`data/raw/data.csv`.
+
+Kết quả kiểm tra bằng pandas xác nhận dữ liệu
+có 4.424 mẫu, 36 đặc trưng đầu vào và một biến
+mục tiêu Target gồm ba lớp.
+
+Dữ liệu gốc được giữ nguyên để phục vụ các bước
+EDA, tiền xử lý và xây dựng mô hình tiếp theo.
+
 ### 5. Mở notebook
 
 ```powershell
