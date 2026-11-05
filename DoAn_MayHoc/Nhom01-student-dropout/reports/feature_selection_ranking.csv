@@ -1,0 +1,124 @@
+,MI,L1_max_abs_coef,RF_importance
+Pass rate 2nd sem,0.3473,0.6876,0.1092
+Curricular units 2nd sem (approved),0.3114,1.8045,0.0786
+Pass rate 1st sem,0.272,0.0944,0.0745
+Curricular units 2nd sem (grade),0.2417,0.0336,0.0636
+Curricular units 1st sem (approved),0.2404,0.9474,0.0475
+Curricular units 1st sem (grade),0.1931,0.0,0.0446
+Grade change 2nd vs 1st,0.1235,0.1165,0.0322
+Tuition fees up to date,0.1059,1.7014,0.0305
+Curricular units 1st sem (evaluations),0.0901,0.2718,0.0265
+Curricular units 2nd sem (evaluations),0.0816,0.3373,0.0267
+Curricular units 1st sem (enrolled),0.065,0.1253,0.0144
+Age at enrollment,0.0497,0.2712,0.0297
+Scholarship holder,0.0468,0.5337,0.0128
+Application mode_39,0.0399,0.0,0.005
+Curricular units 2nd sem (enrolled),0.0367,0.8509,0.0166
+Admission grade,0.0367,0.1018,0.0312
+Previous qualification (grade),0.0353,0.0196,0.0287
+Course_9670,0.03,0.0,0.0024
+Mother's occupation_4,0.0261,0.0,0.005
+Course_9119,0.0258,0.0,0.0043
+Curricular units 2nd sem (without evaluations),0.024,0.0,0.0031
+Mother's occupation_5,0.0229,0.0,0.0038
+Course_9500,0.022,0.0,0.0034
+Debtor,0.0216,0.2919,0.0094
+Application mode_1,0.0195,0.0222,0.0079
+Father's occupation_3,0.0194,0.0,0.0036
+Previous qualification_19,0.0185,0.0,0.0013
+Gender,0.0183,0.0924,0.0088
+Displaced,0.0182,0.0,0.0063
+Mother's qualification_19,0.0182,0.0,0.0051
+Mother's occupation_0,0.0177,0.0597,0.0021
+Mother's occupation_2,0.0162,0.0,0.0032
+Father's occupation_4,0.0159,0.0,0.0039
+Course_9003,0.0157,0.0,0.0015
+Application order,0.0146,0.0611,0.0112
+Application mode_18,0.0145,0.0,0.0014
+Father's occupation_10,0.0138,0.0,0.0032
+International,0.0134,0.0,0.0009
+Mother's occupation_6,0.0134,0.0,0.0014
+Father's occupation_infrequent_sklearn,0.0129,0.0,0.0027
+Previous qualification_39,0.0128,0.0,0.0016
+Previous qualification_3,0.0128,0.0,0.0007
+Curricular units 1st sem (without evaluations),0.0123,0.0265,0.0038
+Course_9070,0.0121,0.0,0.0021
+Course_9130,0.0119,0.0,0.0024
+Father's qualification_12,0.0116,0.0,0.0008
+Course_9147,0.0115,0.0,0.0028
+Father's occupation_1,0.0114,0.0,0.0015
+Course_infrequent_sklearn,0.0105,0.0,0.0002
+Previous qualification_2,0.01,0.0,0.0004
+Mother's occupation_90,0.01,0.0,0.0005
+Curricular units 1st sem (credited),0.0099,0.0498,0.0054
+Course_9853,0.0092,0.2927,0.0044
+GDP,0.0092,0.0149,0.0182
+Father's qualification_37,0.0091,0.0,0.0052
+Marital status_4,0.0083,0.0,0.0008
+Father's occupation_90,0.0082,0.0,0.0007
+Course_9773,0.0078,0.0,0.0032
+Marital status_1,0.0077,0.0,0.0023
+Mother's qualification_3,0.0077,0.0,0.0038
+Father's occupation_8,0.0073,0.0,0.003
+Mother's qualification_38,0.0072,0.0,0.0038
+Mother's qualification_1,0.0069,0.0,0.0053
+Application mode_7,0.0066,0.0,0.001
+Previous qualification_1,0.0066,0.0,0.0033
+Inflation rate,0.0062,0.0,0.0173
+Previous qualification_40,0.0059,0.0,0.0004
+Mother's occupation_infrequent_sklearn,0.0058,0.0,0.0019
+Course_9991,0.005,0.0,0.0021
+Course_171,0.0049,0.0,0.005
+Father's qualification_19,0.0048,0.0,0.0051
+Father's qualification_infrequent_sklearn,0.0048,0.0,0.0016
+Mother's qualification_infrequent_sklearn,0.0046,0.0,0.0012
+Daytime/evening attendance_0,0.0036,0.0,0.0021
+Father's occupation_5,0.0035,0.0,0.0042
+Application mode_53,0.0033,0.0,0.0004
+Nationality_infrequent_sklearn,0.0031,0.0,0.0008
+Father's occupation_6,0.0031,0.0,0.0023
+Mother's qualification_2,0.003,0.0,0.0013
+Mother's occupation_3,0.0027,0.0,0.0034
+Application mode_infrequent_sklearn,0.0027,0.0,0.0007
+Mother's occupation_8,0.0024,0.0,0.0013
+Mother's occupation_1,0.0021,0.0,0.0011
+Father's occupation_2,0.0019,0.0,0.0027
+Father's qualification_34,0.0017,0.0,0.0013
+Father's qualification_2,0.0016,0.0,0.002
+Father's qualification_38,0.001,0.0,0.0042
+Application mode_15,0.0007,0.0,0.0005
+Father's qualification_3,0.0007,0.0,0.0031
+Father's occupation_0,0.0001,0.0,0.0012
+Marital status_2,0.0,0.0,0.0023
+Father's qualification_1,0.0,0.0,0.005
+Mother's qualification_37,0.0,0.0,0.0046
+Mother's qualification_12,0.0,0.0,0.0007
+Mother's qualification_34,0.0,0.0,0.002
+Mother's qualification_4,0.0,0.0,0.0008
+Nationality_1,0.0,0.0,0.0009
+Previous qualification_infrequent_sklearn,0.0,0.0,0.0003
+Previous qualification_42,0.0,0.0,0.0003
+Nationality_41,0.0,0.0,0.0003
+Course_9556,0.0,0.0,0.0008
+Daytime/evening attendance_1,0.0,0.0,0.0022
+Previous qualification_12,0.0,0.0,0.0005
+Application mode_42,0.0,0.0,0.0008
+Course_9085,0.0,0.0,0.0027
+Course_9238,0.0,0.318,0.0038
+Course_9254,0.0,0.0,0.0026
+Course_8014,0.0,0.0,0.0014
+Application mode_43,0.0,0.0,0.0033
+Application mode_44,0.0,0.0,0.0018
+Application mode_51,0.0,0.0,0.0009
+Application mode_16,0.0,0.0,0.0008
+Application mode_17,0.0,0.0,0.0047
+Marital status_infrequent_sklearn,0.0,0.0,0.0005
+Father's qualification_4,0.0,0.0,0.0007
+Father's occupation_9,0.0,0.0,0.0051
+Father's occupation_7,0.0,0.0,0.0041
+Mother's occupation_9,0.0,0.0,0.006
+Mother's occupation_191,0.0,0.0,0.0011
+Mother's occupation_7,0.0,0.0,0.0028
+Unemployment rate,0.0,0.0349,0.0181
+Curricular units 2nd sem (credited),0.0,0.1279,0.0048
+Educational special needs,0.0,0.0,0.001
