@@ -1,0 +1,2 @@
+model,feature_set,f1_macro_mean,f1_macro_std,balanced_accuracy_mean,balanced_accuracy_std,accuracy_mean,accuracy_std,recall_dropout_mean,recall_dropout_std,f1_enrolled_mean,f1_enrolled_std,train_f1_macro_mean,fit_time_mean
+RandomForest,C,0.7256435284583294,0.014348319081086325,0.7311364356065261,0.01584164437578791,0.7665975435315928,0.011962620745177713,0.7308408686915527,0.02049801024748676,0.5439372950740762,0.024816049662698535,0.9061940865103233,0.4724877834320068

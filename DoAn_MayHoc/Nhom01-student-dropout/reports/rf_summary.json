@@ -1,0 +1,76 @@
+{
+  "feature_set": "C",
+  "train_rows": 3539,
+  "random_state": 42,
+  "test_size": 0.2,
+  "cv_folds": 5,
+  "n_iter": 20,
+  "best_params": {
+    "clf__n_estimators": 100,
+    "clf__min_samples_split": 10,
+    "clf__min_samples_leaf": 2,
+    "clf__max_features": "sqrt",
+    "clf__max_depth": null,
+    "clf__class_weight": "balanced"
+  },
+  "best_cv_f1_macro": 0.7256435284583294,
+  "param_distributions": {
+    "clf__n_estimators": [
+      100,
+      200,
+      400
+    ],
+    "clf__max_depth": [
+      null,
+      10,
+      20,
+      30
+    ],
+    "clf__min_samples_split": [
+      2,
+      5,
+      10
+    ],
+    "clf__min_samples_leaf": [
+      1,
+      2,
+      4
+    ],
+    "clf__max_features": [
+      "sqrt",
+      0.5
+    ],
+    "clf__class_weight": [
+      null,
+      "balanced",
+      "balanced_subsample"
+    ]
+  },
+  "metrics": {
+    "model": "RandomForest",
+    "feature_set": "C",
+    "f1_macro_mean": 0.7256435284583294,
+    "f1_macro_std": 0.014348319081086325,
+    "balanced_accuracy_mean": 0.7311364356065261,
+    "balanced_accuracy_std": 0.01584164437578791,
+    "accuracy_mean": 0.7665975435315928,
+    "accuracy_std": 0.011962620745177713,
+    "recall_dropout_mean": 0.7308408686915527,
+    "recall_dropout_std": 0.02049801024748676,
+    "f1_enrolled_mean": 0.5439372950740762,
+    "f1_enrolled_std": 0.024816049662698535,
+    "train_f1_macro_mean": 0.9061940865103233,
+    "fit_time_mean": 0.4724877834320068
+  },
+  "data_sha256": "edc197d1381f25414a3757ab9bbae5f1f6d21aa6a964dbe98a148c15f3d63036",
+  "python": "3.12.10",
+  "versions": {
+    "numpy": "2.5.4",
+    "pandas": "3.0.6",
+    "scipy": "1.18.1",
+    "scikit-learn": "1.9.1",
+    "matplotlib": "3.11.2",
+    "joblib": "1.6.0"
+  },
+  "evaluation_note": "Post-selection CV on train; hold-out test was not evaluated."
+}
