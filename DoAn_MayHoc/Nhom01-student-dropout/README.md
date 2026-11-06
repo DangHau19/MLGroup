@@ -149,7 +149,8 @@ EDA, tiền xử lý và xây dựng mô hình tiếp theo.
 
 Nếu dùng VS Code, chọn interpreter/kernel là `.venv\Scripts\python.exe` của đồ án.
 Các notebook sẽ được chạy theo thứ tự 01 → 02 → 03 → 04 → 05 khi người phụ trách
-bàn giao. Hiện thư mục `notebooks/` mới là khung, chưa có notebook để chạy.
+bàn giao. Hiện có `01_EDA.ipynb` và `02_preprocess.ipynb`; Random Forest chạy
+bằng module theo hướng dẫn issue #10 bên dưới.
 
 ### Lỗi thường gặp
 
@@ -165,8 +166,8 @@ bàn giao. Hiện thư mục `notebooks/` mới là khung, chưa có notebook đ
 ## Cấu trúc repo
 
 ```text
-data/           raw/ và processed/ (hiện chưa có dữ liệu)
-notebooks/      nơi lưu notebook (hiện mới có khung thư mục)
+data/           dữ liệu gốc raw/data.csv và thư mục processed/
+notebooks/      EDA và tiền xử lý
 src/            config.py, data.py, evaluate.py, models/
 models/         nơi lưu mô hình huấn luyện (.joblib)
 reports/        nơi lưu bảng kết quả và figures/
@@ -176,8 +177,7 @@ requirements.txt
 README.md
 ```
 
-Các phần dự kiến bổ sung: `src/preprocessing.py`, notebook `01_eda`,
-`02_preprocess`, `03_models`, `04_timepoint`, `05_error_analysis` và
+Các phần dự kiến bổ sung: notebook `03_models`, `04_timepoint`, `05_error_analysis` và
 `app/streamlit_app.py`. Demo Streamlit sẽ có hướng dẫn chạy khi ứng dụng và
 mô hình đã được bàn giao.
 
@@ -215,6 +215,35 @@ trên train theo `src/evaluate.py`.
 Nhóm cần xác minh thời điểm ghi nhận các biến tài chính trong A trước khi
 kết luận về khả năng cảnh báo ngay lúc nhập học.
 
+## Random Forest — Issue #10 (SV1 Quốc)
+
+Chạy từ thư mục chứa README sau khi cài thư viện và tải dữ liệu:
+
+```powershell
+.\.venv\Scripts\python.exe -X utf8 -m src.models.random_forest --feature-set C --n-iter 20 --n-jobs 4
+.\.venv\Scripts\python.exe -X utf8 -m unittest discover -s tests -v
+```
+
+`RandomizedSearchCV` chọn cấu hình theo Macro-F1, Stratified 5-fold trên train,
+seed 42. Toàn bộ tiền xử lý nằm trong Pipeline, `scale=False` cho RF. Pipeline
+tốt nhất được fit lại trên toàn bộ train và lưu ở `models/rf_best.joblib`.
+`--feature-set` nhận A/B/C; `--n-iter` chọn số cấu hình; `--n-jobs` chọn số tác vụ
+CV song song. Mỗi lần chạy ghi đè bộ sản phẩm RF và thêm dòng vào log CV chung.
+
+- [Báo cáo kết quả và learning curve](reports/03_random_forest.md).
+- `reports/rf_search_results.csv`: tham số và điểm từng fold của các cấu hình.
+- `reports/rf_cv_metrics.csv`: các độ đo chung của nhóm cho cấu hình được chọn.
+- `reports/rf_learning_curve.csv`, `reports/figures/rf_learning_curve.png`: điểm
+  train/validation theo số mẫu, trung bình và độ lệch chuẩn qua 5 fold.
+- `reports/rf_summary.json`: tham số tốt nhất, metadata, SHA-256 dữ liệu, phiên bản.
+- `requirements-rf.txt`: phiên bản thư viện chính xác dùng cho lượt chạy RF;
+  có thể cài bằng `python -m pip install -r requirements-rf.txt` trong môi trường
+  Python tương ứng ghi ở đầu file để tái lập riêng thí nghiệm này.
+
+Đọc mô hình từ thư mục chứa README bằng
+`joblib.load("models/rf_best.joblib")`. Điểm CV/learning curve tính sau tuning
+trên cùng train/fold có thể lạc quan; tập test được giữ cho issue #18.
+
 ## Quy trình Git
 
 - Mỗi người một branch: `feature/<ten-viec>`; gộp vào `main` bằng Pull Request, nhóm trưởng review.
@@ -223,7 +252,7 @@ kết luận về khả năng cảnh báo ngay lúc nhập học.
 
 ## Trạng thái
 
-Repo hiện có khung thư mục, script tải dữ liệu, cấu hình, hàm nạp/chia dữ liệu
-và hàm đánh giá chung. Chưa có notebook, pipeline tiền xử lý, mô hình huấn luyện
-hay demo Streamlit. README bản đầu do SV5 hoàn thiện; kết quả thí nghiệm và
-hướng dẫn demo sẽ bổ sung khi có sản phẩm của nhóm.
+Nhánh này có dữ liệu, notebook EDA/tiền xử lý, pipeline dùng chung và module
+Random Forest cho issue #10. Lệnh chạy và bộ sản phẩm RF được mô tả phía trên.
+Các mô hình khác và demo được bàn giao theo phân công; xem trạng thái mới nhất
+trên nhánh `main` trước khi tích hợp.
