@@ -48,6 +48,7 @@ def cross_validate_model(model, X_train, y_train, name=None, feature_set=None, l
         model, X_train, y_train,
         cv=get_cv(), scoring=SCORING,
         return_train_score=True, n_jobs=n_jobs,
+        error_score="raise",
     )
     out = {"model": name or type(model).__name__, "feature_set": feature_set}
     for k in SCORING:
@@ -113,10 +114,16 @@ def plot_confusion(y_true, y_pred, title="Confusion Matrix", normalize=True, sav
 
 
 def log_result(row: dict, path) -> None:
-    """Thêm một dòng kết quả vào file CSV (tạo mới nếu chưa có)."""
+    """Thêm kết quả, căn theo tên cột để các mô hình ghi khác thứ tự vẫn đúng."""
+    from pathlib import Path
+
+    path = Path(path)
     path.parent.mkdir(parents=True, exist_ok=True)
     df = pd.DataFrame([row])
-    df.to_csv(path, mode="a", header=not path.exists(), index=False)
+    if path.exists() and path.stat().st_size:
+        previous = pd.read_csv(path)
+        df = pd.concat([previous, df], ignore_index=True, sort=False)
+    df.to_csv(path, index=False)
 
 
 def evaluate_on_test(model, X_test, y_test, name, feature_set=None):

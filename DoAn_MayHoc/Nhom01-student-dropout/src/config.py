@@ -24,7 +24,7 @@ POSITIVE_CLASS = "Dropout"  # lớp quan tâm nhất (Recall Dropout)
 
 # ----- Chuẩn hóa tên cột (xem data.clean_columns) -----
 # Tên gốc của UCI có lỗi chính tả "Nacionality" và một số cột có khoảng trắng/tab thừa.
-COLUMN_RENAMES = {"Nacionality": "Nationality", "Marital Status": "Marital Status"}
+COLUMN_RENAMES = {"Nacionality": "Nationality", "Marital status": "Marital Status"}
 
 # ----- Nhóm cột -----
 # Biến phân loại mã hóa bằng số nguyên, KHÔNG có thứ tự -> One-Hot

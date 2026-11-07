@@ -161,14 +161,14 @@ bằng module theo hướng dẫn issue #10 bên dưới.
 | `ModuleNotFoundError` | Kiểm tra đang dùng Python/kernel của `.venv`, rồi cài lại từ `requirements.txt`. |
 | `UnicodeEncodeError` khi tải dữ liệu | Chạy script với `-X utf8` như hướng dẫn ở trên. |
 | Không tìm thấy `data.csv` | Chạy lệnh tải dữ liệu từ thư mục chứa README này. |
-| Thiếu cột `Marital status` khi gọi `load_data()` | Bản dữ liệu tải qua `ucimlrepo` có thể dùng tên `Marital Status`. Code hiện tại chưa chuẩn hóa biến thể này; nhóm cần thống nhất bổ sung ánh xạ tên cột trước khi chạy pipeline. |
+| Thiếu cột khi gọi `load_data()` | `load_data()` đã chuẩn hóa `Marital status` → `Marital Status`, `Nacionality` → `Nationality` và khoảng trắng/tab thừa. Nếu vẫn lỗi, kiểm tra đang dùng đúng dữ liệu UCI 697 và giữ nguyên thông báo tên cột bị thiếu để đối chiếu. |
 
 ## Cấu trúc repo
 
 ```text
 data/           dữ liệu gốc raw/data.csv và thư mục processed/
 notebooks/      EDA và tiền xử lý
-src/            config.py, data.py, evaluate.py, models/
+src/            config.py, data.py, preprocessing.py, features.py, evaluate.py, models/
 models/         nơi lưu mô hình huấn luyện (.joblib)
 reports/        nơi lưu bảng kết quả và figures/
 docs/           kickoff.md, issues.md; nơi lưu báo cáo và slide
@@ -252,7 +252,24 @@ trên cùng train/fold có thể lạc quan; tập test được giữ cho issue
 
 ## Trạng thái
 
-Nhánh này có dữ liệu, notebook EDA/tiền xử lý, pipeline dùng chung và module
-Random Forest cho issue #10. Lệnh chạy và bộ sản phẩm RF được mô tả phía trên.
-Các mô hình khác và demo được bàn giao theo phân công; xem trạng thái mới nhất
-trên nhánh `main` trước khi tích hợp.
+Tiến độ được đối chiếu với các tệp hiện có trong checkout này, xem
+[bảng rà soát tiến độ](docs/progress.md). Đây là trạng thái sản phẩm trong code,
+không phải trạng thái đóng/mở Issue trên GitHub.
+
+- Đã có dữ liệu và EDA (#1–3), pipeline tiền xử lý (#4), đặc trưng mới (#5),
+  xếp hạng MI/L1/RF và thử chọn top-k MI (#6), baseline Dummy (#7), Random Forest (#10).
+- Notebook `02_preprocess.ipynb` có LR và cây độ sâu 5 để so sánh đặc trưng;
+  chưa có tuning/bàn giao hoàn chỉnh cho Logistic Regression (#8) và Decision Tree (#9).
+- Các hạng mục #11–25 chưa có đủ sản phẩm bàn giao trong checkout này;
+  không xem các thư mục trống là phần đã hoàn thành.
+
+MI xác định One-Hot và biến nhị phân là rời rạc; mask được tính riêng theo cột
+sau tiền xử lý của từng fold. Các biến số còn lại dùng ước lượng MI liên tục.
+Kết quả chọn đặc trưng là so sánh CV trên train; chênh lệch nhỏ cần được đọc
+cùng độ lệch chuẩn, chưa đủ để khẳng định một lựa chọn tốt hơn rõ rệt.
+
+Kiểm tra phần dùng chung và Random Forest bằng lệnh:
+
+```powershell
+.\.venv\Scripts\python.exe -X utf8 -m unittest discover -s tests -v
+```

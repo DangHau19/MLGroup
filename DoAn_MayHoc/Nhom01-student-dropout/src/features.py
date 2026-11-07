@@ -1,6 +1,7 @@
 import numpy as np
 import pandas as pd
 from sklearn.base import BaseEstimator, TransformerMixin
+from src import config
 
 PASS_RATE_1 = "Pass rate 1st sem"
 PASS_RATE_2 = "Pass rate 2nd sem"
@@ -9,6 +10,8 @@ GRADE_CHANGE = "Grade change 2nd vs 1st"
 
 def engineered_columns(feature_set: str) -> list:
     """Tên các đặc trưng mới tương ứng với tập đặc trưng A/B/C."""
+    if feature_set not in config.FEATURE_SETS:
+        raise KeyError(f"feature_set phải thuộc {list(config.FEATURE_SETS)}")
     if feature_set == "A":
         return []
     if feature_set == "B":
@@ -33,10 +36,12 @@ class CurricularFeatures(BaseEstimator, TransformerMixin):
         self.feature_set = feature_set
 
     def fit(self, X, y=None):
+        engineered_columns(self.feature_set)
         self.n_features_in_ = X.shape[1]
         return self
 
     def transform(self, X):
+        engineered_columns(self.feature_set)
         X = X.copy()
         fs = self.feature_set
         if fs in ("B", "C"):

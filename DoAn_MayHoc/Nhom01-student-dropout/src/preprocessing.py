@@ -1,4 +1,6 @@
 from functools import partial
+
+import numpy as np
 from sklearn.compose import ColumnTransformer
 from sklearn.feature_selection import SelectKBest, mutual_info_classif
 from sklearn.pipeline import Pipeline
@@ -7,6 +9,38 @@ from src import config
 from src.features import CurricularFeatures, engineered_columns
 
 MIN_FREQUENCY = 20 
+
+
+def _discrete_mask(X):
+    prefixes = tuple(f"{c}_" for c in config.CATEGORICAL_COLS)
+    return np.array([
+        c in config.BINARY_COLS or c.startswith(prefixes) for c in X.columns
+    ])
+
+
+def mutual_information_scores(X, y):
+    """MI: One-Hot và nhị phân là rời rạc; các biến số còn lại là liên tục.
+
+    X là DataFrame đầu ra của preprocessor. Tạo mask tại mỗi fold vì số cột
+    One-Hot có thể thay đổi khi fit trên các tập train khác nhau.
+    """
+    return mutual_info_classif(
+        X, y, discrete_features=_discrete_mask(X), random_state=config.RANDOM_STATE
+    )
+
+
+class MutualInformationSelector(SelectKBest):
+    """Giữ mask theo tên trước khi SelectKBest chuyển DataFrame sang ndarray."""
+
+    def __init__(self, k=10):
+        super().__init__(score_func=mutual_information_scores, k=k)
+
+    def fit(self, X, y):
+        self.score_func = partial(
+            mutual_info_classif, discrete_features=_discrete_mask(X),
+            random_state=config.RANDOM_STATE,
+        )
+        return super().fit(X, y)
 
 
 def get_column_groups(feature_set: str = "C", add_features: bool = True):
@@ -51,9 +85,10 @@ def build_pipeline(estimator, feature_set: str = "C", scale: bool = True,
                    min_frequency: int = MIN_FREQUENCY) -> Pipeline:
     """Pipeline = tiền xử lý [+ chọn đặc trưng MI] + mô hình."""
     steps = [("prep", build_preprocessor(feature_set, scale, add_features, min_frequency))]
-    if select_k:
-        steps.append(("select", SelectKBest(
-            partial(mutual_info_classif, random_state=config.RANDOM_STATE), k=select_k)))
+    if select_k is not None:
+        if isinstance(select_k, bool) or not isinstance(select_k, int) or select_k < 1:
+            raise ValueError("select_k phải là số nguyên dương hoặc None")
+        steps.append(("select", MutualInformationSelector(k=select_k)))
     steps.append(("clf", estimator))
     return Pipeline(steps)
 
