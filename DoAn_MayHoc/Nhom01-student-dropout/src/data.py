@@ -6,6 +6,8 @@ Cách dùng:
 
 Tập test CHỈ được dùng một lần ở bước đánh giá cuối (nhóm trưởng chạy).
 """
+from pathlib import Path
+
 import pandas as pd
 from sklearn.model_selection import train_test_split
 
@@ -15,14 +17,17 @@ from src import config
 def clean_columns(df: pd.DataFrame) -> pd.DataFrame:
     """Bỏ khoảng trắng/tab thừa, sửa lỗi chính tả tên cột."""
     df = df.copy()
-    df.columns = [str(c).replace("\t", " ").strip() for c in df.columns]
+    df.columns = [" ".join(str(c).split()) for c in df.columns]
     df = df.rename(columns=config.COLUMN_RENAMES)
+    if not df.columns.is_unique:
+        duplicates = df.columns[df.columns.duplicated()].tolist()
+        raise ValueError(f"Tên cột trùng sau khi chuẩn hóa: {duplicates}")
     return df
 
 
 def load_data(path=None) -> pd.DataFrame:
     """Đọc data.csv (dấu phân cách ';' hoặc ',', tự phát hiện) và chuẩn hóa tên cột."""
-    path = path or config.DATA_FILE
+    path = config.DATA_FILE if path is None else Path(path)
     if not path.exists():
         raise FileNotFoundError(
             f"Không thấy {path}. Chạy: python scripts/download_data.py"
