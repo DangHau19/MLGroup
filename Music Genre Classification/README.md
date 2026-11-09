@@ -15,7 +15,7 @@ Metric: **F1 micro = accuracy** (đã xác nhận bằng bài nộp thử 06/11)
 | B | (điền) | (điền) | EDA & hiểu dữ liệu, làm slide |
 | C | (điền) | (điền) | Tiền xử lý & trích đặc trưng |
 | D | (điền) | (điền) | Mô hình & tuning |
-| E | (điền) | (điền) | Ensemble, đánh giá, poster |
+| E | Hoàng Đăng Hậu | 3124411085 | Ensemble, đánh giá, poster |
 
 ## Cấu trúc
 
