@@ -1,0 +1,376 @@
+model,feature_set,method,fold,feature,importance,repeat_std,n_repeats
+RF,C,impurity_grouped,1,Admission grade,0.027022638363321368,0.0,1
+RF,C,impurity_grouped,1,Age at enrollment,0.030714780877971318,0.0,1
+RF,C,impurity_grouped,1,Application mode,0.025696319353039933,0.0,1
+RF,C,impurity_grouped,1,Application order,0.008991824358482892,0.0,1
+RF,C,impurity_grouped,1,Course,0.03917668478156249,0.0,1
+RF,C,impurity_grouped,1,Curricular units 1st sem (approved),0.051312049803536125,0.0,1
+RF,C,impurity_grouped,1,Curricular units 1st sem (credited),0.005651593946236819,0.0,1
+RF,C,impurity_grouped,1,Curricular units 1st sem (enrolled),0.018289942482882328,0.0,1
+RF,C,impurity_grouped,1,Curricular units 1st sem (evaluations),0.032273922523766714,0.0,1
+RF,C,impurity_grouped,1,Curricular units 1st sem (grade),0.04671129067945615,0.0,1
+RF,C,impurity_grouped,1,Curricular units 1st sem (without evaluations),0.004214356199970252,0.0,1
+RF,C,impurity_grouped,1,Curricular units 2nd sem (approved),0.08878621423638247,0.0,1
+RF,C,impurity_grouped,1,Curricular units 2nd sem (credited),0.005704285787793185,0.0,1
+RF,C,impurity_grouped,1,Curricular units 2nd sem (enrolled),0.018750469665579587,0.0,1
+RF,C,impurity_grouped,1,Curricular units 2nd sem (evaluations),0.03385416396219505,0.0,1
+RF,C,impurity_grouped,1,Curricular units 2nd sem (grade),0.08499012309755673,0.0,1
+RF,C,impurity_grouped,1,Curricular units 2nd sem (without evaluations),0.0025005134147671445,0.0,1
+RF,C,impurity_grouped,1,Daytime/evening attendance,0.0031665477593402886,0.0,1
+RF,C,impurity_grouped,1,Debtor,0.009322160397458664,0.0,1
+RF,C,impurity_grouped,1,Displaced,0.005060593602406102,0.0,1
+RF,C,impurity_grouped,1,Educational special needs,0.00032638275544034,0.0,1
+RF,C,impurity_grouped,1,Father's occupation,0.03028701918064096,0.0,1
+RF,C,impurity_grouped,1,Father's qualification,0.02137522441350235,0.0,1
+RF,C,impurity_grouped,1,GDP,0.01731057074864595,0.0,1
+RF,C,impurity_grouped,1,Gender,0.0076751585095659195,0.0,1
+RF,C,impurity_grouped,1,Grade change 2nd vs 1st,0.02885527796747264,0.0,1
+RF,C,impurity_grouped,1,Inflation rate,0.014862025939730034,0.0,1
+RF,C,impurity_grouped,1,International,0.0006663258597974761,0.0,1
+RF,C,impurity_grouped,1,Marital Status,0.005508860863025037,0.0,1
+RF,C,impurity_grouped,1,Mother's occupation,0.026031857020416185,0.0,1
+RF,C,impurity_grouped,1,Mother's qualification,0.021229106340364824,0.0,1
+RF,C,impurity_grouped,1,Nationality,0.0009671061386423516,0.0,1
+RF,C,impurity_grouped,1,Pass rate 1st sem,0.06984386803550886,0.0,1
+RF,C,impurity_grouped,1,Pass rate 2nd sem,0.10840129785697564,0.0,1
+RF,C,impurity_grouped,1,Previous qualification,0.008510288028403744,0.0,1
+RF,C,impurity_grouped,1,Previous qualification (grade),0.02528094405181899,0.0,1
+RF,C,impurity_grouped,1,Scholarship holder,0.012325642058005468,0.0,1
+RF,C,impurity_grouped,1,Tuition fees up to date,0.04213300298259273,0.0,1
+RF,C,impurity_grouped,1,Unemployment rate,0.016219565955744846,0.0,1
+RF,C,permutation_validation,1,Marital Status,0.004495645153166516,0.002706179488931782,5
+RF,C,permutation_validation,1,Application mode,-0.0037727186830735617,0.004256938987275441,5
+RF,C,permutation_validation,1,Course,0.014186616994995859,0.0036237262321207825,5
+RF,C,permutation_validation,1,Daytime/evening attendance,0.0012935907365867027,0.0012209340705271437,5
+RF,C,permutation_validation,1,Previous qualification,0.001666491926029079,0.0026252448882405736,5
+RF,C,permutation_validation,1,Nationality,0.0,0.0,5
+RF,C,permutation_validation,1,Mother's qualification,-9.842607362777755e-05,0.0017383112674874263,5
+RF,C,permutation_validation,1,Father's qualification,0.0004821443429354977,0.0015070661129591332,5
+RF,C,permutation_validation,1,Mother's occupation,0.0022527295954861914,0.0027443454888892303,5
+RF,C,permutation_validation,1,Father's occupation,-0.0003742102966712402,0.005204623622362016,5
+RF,C,permutation_validation,1,Displaced,0.0020546141166485564,0.003326193803415627,5
+RF,C,permutation_validation,1,Educational special needs,0.0,0.0,5
+RF,C,permutation_validation,1,Debtor,0.005600835373229041,0.001823790389085905,5
+RF,C,permutation_validation,1,Tuition fees up to date,0.03923403296458798,0.004667200002702203,5
+RF,C,permutation_validation,1,Gender,0.0022092402030257086,0.0041164841526570095,5
+RF,C,permutation_validation,1,Scholarship holder,-0.0015563855801303372,0.0023370152404090633,5
+RF,C,permutation_validation,1,International,0.0022100690103106445,8.45416304413149e-05,5
+RF,C,permutation_validation,1,Application order,0.0006657039223302075,0.0014127478503743898,5
+RF,C,permutation_validation,1,Previous qualification (grade),0.00032216447952300166,0.0032546875576062134,5
+RF,C,permutation_validation,1,Admission grade,-0.000609587591420846,0.0024989623257262094,5
+RF,C,permutation_validation,1,Age at enrollment,0.005742793511596567,0.005552500143415974,5
+RF,C,permutation_validation,1,Unemployment rate,0.0006162760206451567,0.004238398096380626,5
+RF,C,permutation_validation,1,Inflation rate,-0.00023006928485087564,0.0026496591122346824,5
+RF,C,permutation_validation,1,GDP,0.003669880270310366,0.0038318092778305566,5
+RF,C,permutation_validation,1,Curricular units 1st sem (credited),0.0011354864411370568,0.0015087204624952126,5
+RF,C,permutation_validation,1,Curricular units 1st sem (enrolled),0.014313923670555017,0.006974508665301308,5
+RF,C,permutation_validation,1,Curricular units 1st sem (evaluations),-0.003014128874630795,0.004021186019986957,5
+RF,C,permutation_validation,1,Curricular units 1st sem (approved),0.03598538238131899,0.004979723550799496,5
+RF,C,permutation_validation,1,Curricular units 1st sem (grade),0.00439376933704474,0.002894151344927375,5
+RF,C,permutation_validation,1,Curricular units 1st sem (without evaluations),-0.000822200263689199,0.0008758024347134144,5
+RF,C,permutation_validation,1,Curricular units 2nd sem (credited),0.004276648106604042,0.0024081652284420026,5
+RF,C,permutation_validation,1,Curricular units 2nd sem (enrolled),0.02478355922778803,0.0036873974850625112,5
+RF,C,permutation_validation,1,Curricular units 2nd sem (evaluations),0.007203179046946428,0.0037582955174899975,5
+RF,C,permutation_validation,1,Curricular units 2nd sem (approved),0.15268892422575991,0.01814960871743484,5
+RF,C,permutation_validation,1,Curricular units 2nd sem (grade),0.020899868969589307,0.008215324909123621,5
+RF,C,permutation_validation,1,Curricular units 2nd sem (without evaluations),0.0015812614937644742,0.0,5
+RF,C,impurity_grouped,2,Admission grade,0.0264378841900968,0.0,1
+RF,C,impurity_grouped,2,Age at enrollment,0.03228351745765815,0.0,1
+RF,C,impurity_grouped,2,Application mode,0.025417870799792235,0.0,1
+RF,C,impurity_grouped,2,Application order,0.008396003572435834,0.0,1
+RF,C,impurity_grouped,2,Course,0.04001241545974858,0.0,1
+RF,C,impurity_grouped,2,Curricular units 1st sem (approved),0.059429895843312375,0.0,1
+RF,C,impurity_grouped,2,Curricular units 1st sem (credited),0.005175462300414552,0.0,1
+RF,C,impurity_grouped,2,Curricular units 1st sem (enrolled),0.015927244428018333,0.0,1
+RF,C,impurity_grouped,2,Curricular units 1st sem (evaluations),0.02957402386683985,0.0,1
+RF,C,impurity_grouped,2,Curricular units 1st sem (grade),0.05243855110069809,0.0,1
+RF,C,impurity_grouped,2,Curricular units 1st sem (without evaluations),0.0038539699270750604,0.0,1
+RF,C,impurity_grouped,2,Curricular units 2nd sem (approved),0.07666233799839771,0.0,1
+RF,C,impurity_grouped,2,Curricular units 2nd sem (credited),0.00452354657517004,0.0,1
+RF,C,impurity_grouped,2,Curricular units 2nd sem (enrolled),0.016518369262368438,0.0,1
+RF,C,impurity_grouped,2,Curricular units 2nd sem (evaluations),0.03616526268968772,0.0,1
+RF,C,impurity_grouped,2,Curricular units 2nd sem (grade),0.07679173990188246,0.0,1
+RF,C,impurity_grouped,2,Curricular units 2nd sem (without evaluations),0.0026508974060337307,0.0,1
+RF,C,impurity_grouped,2,Daytime/evening attendance,0.0034916935349295552,0.0,1
+RF,C,impurity_grouped,2,Debtor,0.010842921525075015,0.0,1
+RF,C,impurity_grouped,2,Displaced,0.003847341873353854,0.0,1
+RF,C,impurity_grouped,2,Educational special needs,8.289272869495928e-05,0.0,1
+RF,C,impurity_grouped,2,Father's occupation,0.026988348749804377,0.0,1
+RF,C,impurity_grouped,2,Father's qualification,0.021293989154136758,0.0,1
+RF,C,impurity_grouped,2,GDP,0.01572084964582593,0.0,1
+RF,C,impurity_grouped,2,Gender,0.005663495519732026,0.0,1
+RF,C,impurity_grouped,2,Grade change 2nd vs 1st,0.033872282999459706,0.0,1
+RF,C,impurity_grouped,2,Inflation rate,0.014372146053031023,0.0,1
+RF,C,impurity_grouped,2,International,0.000377395583982194,0.0,1
+RF,C,impurity_grouped,2,Marital Status,0.006080325588862865,0.0,1
+RF,C,impurity_grouped,2,Mother's occupation,0.02710630205205893,0.0,1
+RF,C,impurity_grouped,2,Mother's qualification,0.021368755980466426,0.0,1
+RF,C,impurity_grouped,2,Nationality,0.0010211301591905042,0.0,1
+RF,C,impurity_grouped,2,Pass rate 1st sem,0.06248752485502797,0.0,1
+RF,C,impurity_grouped,2,Pass rate 2nd sem,0.13562523837719853,0.0,1
+RF,C,impurity_grouped,2,Previous qualification,0.008551623157422574,0.0,1
+RF,C,impurity_grouped,2,Previous qualification (grade),0.024707689023608623,0.0,1
+RF,C,impurity_grouped,2,Scholarship holder,0.012511625490972329,0.0,1
+RF,C,impurity_grouped,2,Tuition fees up to date,0.03683719712169221,0.0,1
+RF,C,impurity_grouped,2,Unemployment rate,0.014890238045843789,0.0,1
+RF,C,permutation_validation,2,Marital Status,0.0009055292505303347,0.0016691068392891137,5
+RF,C,permutation_validation,2,Application mode,0.004391991787402816,0.002827062354011914,5
+RF,C,permutation_validation,2,Course,0.01528419626636508,0.002203916082023944,5
+RF,C,permutation_validation,2,Daytime/evening attendance,0.00019435002430956416,0.00098751750763408,5
+RF,C,permutation_validation,2,Previous qualification,0.0017165123933366555,0.002910475577217302,5
+RF,C,permutation_validation,2,Nationality,0.00027185391801358704,0.000543707836027174,5
+RF,C,permutation_validation,2,Mother's qualification,0.0053814248127729055,0.0013812844470201067,5
+RF,C,permutation_validation,2,Father's qualification,0.0014557088969395116,0.004640947924947902,5
+RF,C,permutation_validation,2,Mother's occupation,0.005662735419588105,0.002004855348706626,5
+RF,C,permutation_validation,2,Father's occupation,-0.0012132402493968187,0.0024068344407442996,5
+RF,C,permutation_validation,2,Displaced,0.0036586709218646486,0.0034133382671236645,5
+RF,C,permutation_validation,2,Educational special needs,0.0,0.0,5
+RF,C,permutation_validation,2,Debtor,0.004801674478902007,0.0028989689453424966,5
+RF,C,permutation_validation,2,Tuition fees up to date,0.028493784280943357,0.005609282532191406,5
+RF,C,permutation_validation,2,Gender,0.004638774281219704,0.0022905096937211075,5
+RF,C,permutation_validation,2,Scholarship holder,0.007399536250833982,0.002419534795749124,5
+RF,C,permutation_validation,2,International,0.00027185391801358704,0.000543707836027174,5
+RF,C,permutation_validation,2,Application order,8.267847204737055e-05,0.001882571893031492,5
+RF,C,permutation_validation,2,Previous qualification (grade),0.006471106461777776,0.0038598659958514014,5
+RF,C,permutation_validation,2,Admission grade,0.002122288285741081,0.0032245645288487865,5
+RF,C,permutation_validation,2,Age at enrollment,0.00822569777110942,0.007162002483709868,5
+RF,C,permutation_validation,2,Unemployment rate,0.0022499227378302454,0.0034869765655374586,5
+RF,C,permutation_validation,2,Inflation rate,-0.0016848012973784908,0.0032850250824902733,5
+RF,C,permutation_validation,2,GDP,0.0023858797151424804,0.0012232268703994006,5
+RF,C,permutation_validation,2,Curricular units 1st sem (credited),0.0007294568211081431,0.001164899849808219,5
+RF,C,permutation_validation,2,Curricular units 1st sem (enrolled),0.015738191609319618,0.003524378491510388,5
+RF,C,permutation_validation,2,Curricular units 1st sem (evaluations),0.00454377672436519,0.0017568005068747915,5
+RF,C,permutation_validation,2,Curricular units 1st sem (approved),0.0518556955667981,0.008199667520897926,5
+RF,C,permutation_validation,2,Curricular units 1st sem (grade),0.006081078365029691,0.004263600413194218,5
+RF,C,permutation_validation,2,Curricular units 1st sem (without evaluations),-5.673358753059965e-05,0.0001134671750611993,5
+RF,C,permutation_validation,2,Curricular units 2nd sem (credited),-0.0011948652002229609,0.0020902527874232324,5
+RF,C,permutation_validation,2,Curricular units 2nd sem (enrolled),0.016968998956096805,0.003240381521274037,5
+RF,C,permutation_validation,2,Curricular units 2nd sem (evaluations),0.007400030306422578,0.003500618044248361,5
+RF,C,permutation_validation,2,Curricular units 2nd sem (approved),0.16869867837406988,0.00536371909505744,5
+RF,C,permutation_validation,2,Curricular units 2nd sem (grade),0.038526119800829005,0.008912282084334321,5
+RF,C,permutation_validation,2,Curricular units 2nd sem (without evaluations),0.0007505535810508279,0.0009458228655974566,5
+RF,C,impurity_grouped,3,Admission grade,0.03004925513807987,0.0,1
+RF,C,impurity_grouped,3,Age at enrollment,0.03100127810778827,0.0,1
+RF,C,impurity_grouped,3,Application mode,0.023806537047618908,0.0,1
+RF,C,impurity_grouped,3,Application order,0.009991387122890926,0.0,1
+RF,C,impurity_grouped,3,Course,0.04411444319584974,0.0,1
+RF,C,impurity_grouped,3,Curricular units 1st sem (approved),0.05847081426459552,0.0,1
+RF,C,impurity_grouped,3,Curricular units 1st sem (credited),0.005802652108221927,0.0,1
+RF,C,impurity_grouped,3,Curricular units 1st sem (enrolled),0.015039614156056215,0.0,1
+RF,C,impurity_grouped,3,Curricular units 1st sem (evaluations),0.027108966211267526,0.0,1
+RF,C,impurity_grouped,3,Curricular units 1st sem (grade),0.05381369229362925,0.0,1
+RF,C,impurity_grouped,3,Curricular units 1st sem (without evaluations),0.0038084230171691194,0.0,1
+RF,C,impurity_grouped,3,Curricular units 2nd sem (approved),0.08296459292800647,0.0,1
+RF,C,impurity_grouped,3,Curricular units 2nd sem (credited),0.004316766343983068,0.0,1
+RF,C,impurity_grouped,3,Curricular units 2nd sem (enrolled),0.015231678742756905,0.0,1
+RF,C,impurity_grouped,3,Curricular units 2nd sem (evaluations),0.035327867096774185,0.0,1
+RF,C,impurity_grouped,3,Curricular units 2nd sem (grade),0.06934373043606791,0.0,1
+RF,C,impurity_grouped,3,Curricular units 2nd sem (without evaluations),0.001997286715346715,0.0,1
+RF,C,impurity_grouped,3,Daytime/evening attendance,0.00390928536689288,0.0,1
+RF,C,impurity_grouped,3,Debtor,0.007134860555039735,0.0,1
+RF,C,impurity_grouped,3,Displaced,0.00501153645843444,0.0,1
+RF,C,impurity_grouped,3,Educational special needs,0.0003377863056805017,0.0,1
+RF,C,impurity_grouped,3,Father's occupation,0.02892302036655011,0.0,1
+RF,C,impurity_grouped,3,Father's qualification,0.02228116864433791,0.0,1
+RF,C,impurity_grouped,3,GDP,0.016636112997137777,0.0,1
+RF,C,impurity_grouped,3,Gender,0.005856036060696705,0.0,1
+RF,C,impurity_grouped,3,Grade change 2nd vs 1st,0.03254887598742213,0.0,1
+RF,C,impurity_grouped,3,Inflation rate,0.015646895137712898,0.0,1
+RF,C,impurity_grouped,3,International,0.0004915887631474653,0.0,1
+RF,C,impurity_grouped,3,Marital Status,0.004874248221075723,0.0,1
+RF,C,impurity_grouped,3,Mother's occupation,0.025711577011685614,0.0,1
+RF,C,impurity_grouped,3,Mother's qualification,0.021221161470098265,0.0,1
+RF,C,impurity_grouped,3,Nationality,0.0009723388153823265,0.0,1
+RF,C,impurity_grouped,3,Pass rate 1st sem,0.08319167303975891,0.0,1
+RF,C,impurity_grouped,3,Pass rate 2nd sem,0.10445099299769045,0.0,1
+RF,C,impurity_grouped,3,Previous qualification,0.007279313468320433,0.0,1
+RF,C,impurity_grouped,3,Previous qualification (grade),0.025712125006827655,0.0,1
+RF,C,impurity_grouped,3,Scholarship holder,0.01545715410040215,0.0,1
+RF,C,impurity_grouped,3,Tuition fees up to date,0.04353642931022853,0.0,1
+RF,C,impurity_grouped,3,Unemployment rate,0.016626834989375,0.0,1
+RF,C,permutation_validation,3,Marital Status,0.0029951713118198777,0.00149995833494449,5
+RF,C,permutation_validation,3,Application mode,0.00019814115510157214,0.0021627531929106084,5
+RF,C,permutation_validation,3,Course,0.0059951835708066835,0.0017639180387148648,5
+RF,C,permutation_validation,3,Daytime/evening attendance,0.0006429656572410014,0.0010552105082756915,5
+RF,C,permutation_validation,3,Previous qualification,0.001958033656647995,0.002319649248368616,5
+RF,C,permutation_validation,3,Nationality,0.0,0.0,5
+RF,C,permutation_validation,3,Mother's qualification,0.005753702920215553,0.0029730657943768017,5
+RF,C,permutation_validation,3,Father's qualification,-0.00021472042212620224,0.000995623777151847,5
+RF,C,permutation_validation,3,Mother's occupation,0.00415089124367467,0.002425509309122154,5
+RF,C,permutation_validation,3,Father's occupation,-0.0015034682621873241,0.0024680612222864728,5
+RF,C,permutation_validation,3,Displaced,-0.0011568741129860838,0.0011246602649983004,5
+RF,C,permutation_validation,3,Educational special needs,0.0,0.0,5
+RF,C,permutation_validation,3,Debtor,0.005461130478191989,0.002829473299203808,5
+RF,C,permutation_validation,3,Tuition fees up to date,0.04319298421494293,0.004726415039604945,5
+RF,C,permutation_validation,3,Gender,0.003091190279211453,0.0025430351865649344,5
+RF,C,permutation_validation,3,Scholarship holder,0.0014438705394921093,0.002824384113228728,5
+RF,C,permutation_validation,3,International,0.0,0.0,5
+RF,C,permutation_validation,3,Application order,0.0006955301892281662,0.002764333656495628,5
+RF,C,permutation_validation,3,Previous qualification (grade),0.0005821175184559602,0.004492167618405753,5
+RF,C,permutation_validation,3,Admission grade,0.0002934743573333121,0.0026773536286003696,5
+RF,C,permutation_validation,3,Age at enrollment,0.008239918171635252,0.008301867665982624,5
+RF,C,permutation_validation,3,Unemployment rate,-0.0004753467618012541,0.0021520009605738946,5
+RF,C,permutation_validation,3,Inflation rate,0.006184520877364963,0.0019509031856958616,5
+RF,C,permutation_validation,3,GDP,0.00296426271524568,0.0024397637819407033,5
+RF,C,permutation_validation,3,Curricular units 1st sem (credited),0.003002293965581915,0.0013365786512832107,5
+RF,C,permutation_validation,3,Curricular units 1st sem (enrolled),0.015639634499109524,0.006033599586229841,5
+RF,C,permutation_validation,3,Curricular units 1st sem (evaluations),0.001475997743863755,0.002738380077036792,5
+RF,C,permutation_validation,3,Curricular units 1st sem (approved),0.07199691711551912,0.01189846937535029,5
+RF,C,permutation_validation,3,Curricular units 1st sem (grade),-0.0010642893972752088,0.0032320963054222286,5
+RF,C,permutation_validation,3,Curricular units 1st sem (without evaluations),0.0004619024246828696,0.0008404169974926212,5
+RF,C,permutation_validation,3,Curricular units 2nd sem (credited),0.0025555671080210508,0.00215990515098884,5
+RF,C,permutation_validation,3,Curricular units 2nd sem (enrolled),0.027732271307463495,0.009461119575681099,5
+RF,C,permutation_validation,3,Curricular units 2nd sem (evaluations),0.0026178583892664253,0.0041479145145257666,5
+RF,C,permutation_validation,3,Curricular units 2nd sem (approved),0.12759332366204032,0.0036122095026257716,5
+RF,C,permutation_validation,3,Curricular units 2nd sem (grade),0.035071590029400704,0.004487132973706157,5
+RF,C,permutation_validation,3,Curricular units 2nd sem (without evaluations),-0.001588990495914544,0.0,5
+RF,C,impurity_grouped,4,Admission grade,0.026537852426700405,0.0,1
+RF,C,impurity_grouped,4,Age at enrollment,0.03129132786869036,0.0,1
+RF,C,impurity_grouped,4,Application mode,0.025763854110123347,0.0,1
+RF,C,impurity_grouped,4,Application order,0.009978358166826717,0.0,1
+RF,C,impurity_grouped,4,Course,0.0399024837181532,0.0,1
+RF,C,impurity_grouped,4,Curricular units 1st sem (approved),0.042157833173216204,0.0,1
+RF,C,impurity_grouped,4,Curricular units 1st sem (credited),0.005512504214020711,0.0,1
+RF,C,impurity_grouped,4,Curricular units 1st sem (enrolled),0.014958397609368387,0.0,1
+RF,C,impurity_grouped,4,Curricular units 1st sem (evaluations),0.03036668994622944,0.0,1
+RF,C,impurity_grouped,4,Curricular units 1st sem (grade),0.05604557553475691,0.0,1
+RF,C,impurity_grouped,4,Curricular units 1st sem (without evaluations),0.0033942744446215207,0.0,1
+RF,C,impurity_grouped,4,Curricular units 2nd sem (approved),0.10536525040178502,0.0,1
+RF,C,impurity_grouped,4,Curricular units 2nd sem (credited),0.004289372947144486,0.0,1
+RF,C,impurity_grouped,4,Curricular units 2nd sem (enrolled),0.01748114483399826,0.0,1
+RF,C,impurity_grouped,4,Curricular units 2nd sem (evaluations),0.02932715529385993,0.0,1
+RF,C,impurity_grouped,4,Curricular units 2nd sem (grade),0.0676531847563267,0.0,1
+RF,C,impurity_grouped,4,Curricular units 2nd sem (without evaluations),0.0028505185083263222,0.0,1
+RF,C,impurity_grouped,4,Daytime/evening attendance,0.003871387579293984,0.0,1
+RF,C,impurity_grouped,4,Debtor,0.007132426754519097,0.0,1
+RF,C,impurity_grouped,4,Displaced,0.004557948373549802,0.0,1
+RF,C,impurity_grouped,4,Educational special needs,0.00037680520322708124,0.0,1
+RF,C,impurity_grouped,4,Father's occupation,0.029382747878789566,0.0,1
+RF,C,impurity_grouped,4,Father's qualification,0.01921307359847632,0.0,1
+RF,C,impurity_grouped,4,GDP,0.014595568960720295,0.0,1
+RF,C,impurity_grouped,4,Gender,0.006627214487244689,0.0,1
+RF,C,impurity_grouped,4,Grade change 2nd vs 1st,0.034212813701161214,0.0,1
+RF,C,impurity_grouped,4,Inflation rate,0.01458521714329803,0.0,1
+RF,C,impurity_grouped,4,International,0.000540300152399004,0.0,1
+RF,C,impurity_grouped,4,Marital Status,0.004979552037688131,0.0,1
+RF,C,impurity_grouped,4,Mother's occupation,0.026651729245447602,0.0,1
+RF,C,impurity_grouped,4,Mother's qualification,0.021615133868500877,0.0,1
+RF,C,impurity_grouped,4,Nationality,0.0008951278968899813,0.0,1
+RF,C,impurity_grouped,4,Pass rate 1st sem,0.06873596051431459,0.0,1
+RF,C,impurity_grouped,4,Pass rate 2nd sem,0.12829905530543836,0.0,1
+RF,C,impurity_grouped,4,Previous qualification,0.0070860357233036315,0.0,1
+RF,C,impurity_grouped,4,Previous qualification (grade),0.023719685354868354,0.0,1
+RF,C,impurity_grouped,4,Scholarship holder,0.014678749521871596,0.0,1
+RF,C,impurity_grouped,4,Tuition fees up to date,0.03878018475001447,0.0,1
+RF,C,impurity_grouped,4,Unemployment rate,0.016587503994835447,0.0,1
+RF,C,permutation_validation,4,Marital Status,0.0028399274025216357,0.002192130635482215,5
+RF,C,permutation_validation,4,Application mode,0.00897631559024432,0.009470209297161443,5
+RF,C,permutation_validation,4,Course,0.012831094252988607,0.0062099624790242355,5
+RF,C,permutation_validation,4,Daytime/evening attendance,0.0006985293864985697,0.0015948189864385337,5
+RF,C,permutation_validation,4,Previous qualification,0.0029434282423145496,0.0013625074861302639,5
+RF,C,permutation_validation,4,Nationality,0.0,0.0,5
+RF,C,permutation_validation,4,Mother's qualification,0.008131492172290589,0.0026159364903851905,5
+RF,C,permutation_validation,4,Father's qualification,0.008588856935492694,0.001770814732824429,5
+RF,C,permutation_validation,4,Mother's occupation,0.0123785153650128,0.0021487237966931814,5
+RF,C,permutation_validation,4,Father's occupation,0.006205737551179524,0.0026375901416948594,5
+RF,C,permutation_validation,4,Displaced,-0.0011245226145215836,0.002395964718941065,5
+RF,C,permutation_validation,4,Educational special needs,0.0,0.0,5
+RF,C,permutation_validation,4,Debtor,0.0009028534636162045,0.0022020491333889186,5
+RF,C,permutation_validation,4,Tuition fees up to date,0.027922766009069865,0.00611665023926273,5
+RF,C,permutation_validation,4,Gender,0.005482934508995308,0.0012674939009866826,5
+RF,C,permutation_validation,4,Scholarship holder,0.0036791152033546657,0.005994917158028314,5
+RF,C,permutation_validation,4,International,0.0,0.0,5
+RF,C,permutation_validation,4,Application order,0.0028088218288837784,0.00438359253127792,5
+RF,C,permutation_validation,4,Previous qualification (grade),0.005076539913982892,0.003803229573773547,5
+RF,C,permutation_validation,4,Admission grade,0.005897907688664517,0.003007691007907439,5
+RF,C,permutation_validation,4,Age at enrollment,0.014629030774753127,0.002840367989653488,5
+RF,C,permutation_validation,4,Unemployment rate,0.003623101473185253,0.003677741312990579,5
+RF,C,permutation_validation,4,Inflation rate,6.132028499452601e-05,0.0022891600328545747,5
+RF,C,permutation_validation,4,GDP,0.0063644763123977596,0.002549610676617348,5
+RF,C,permutation_validation,4,Curricular units 1st sem (credited),0.0026590955928369243,0.0008914686880081359,5
+RF,C,permutation_validation,4,Curricular units 1st sem (enrolled),0.022604879450464632,0.00570960269347219,5
+RF,C,permutation_validation,4,Curricular units 1st sem (evaluations),0.007451898681787061,0.002943219748535701,5
+RF,C,permutation_validation,4,Curricular units 1st sem (approved),0.03822267816057927,0.005040519591466446,5
+RF,C,permutation_validation,4,Curricular units 1st sem (grade),0.0122203736993596,0.005397582710816423,5
+RF,C,permutation_validation,4,Curricular units 1st sem (without evaluations),-0.00273150275862033,0.001069557998228791,5
+RF,C,permutation_validation,4,Curricular units 2nd sem (credited),0.0007941283797706866,0.0017885707881816063,5
+RF,C,permutation_validation,4,Curricular units 2nd sem (enrolled),0.0338442566170057,0.0067723963656346805,5
+RF,C,permutation_validation,4,Curricular units 2nd sem (evaluations),0.007364672699110164,0.006536608150901588,5
+RF,C,permutation_validation,4,Curricular units 2nd sem (approved),0.15063888117459037,0.013042456326168506,5
+RF,C,permutation_validation,4,Curricular units 2nd sem (grade),0.04241662431120787,0.005383581018555393,5
+RF,C,permutation_validation,4,Curricular units 2nd sem (without evaluations),0.00119012972542194,0.0010003787235462577,5
+RF,C,impurity_grouped,5,Admission grade,0.025532710034887197,0.0,1
+RF,C,impurity_grouped,5,Age at enrollment,0.03151041236186278,0.0,1
+RF,C,impurity_grouped,5,Application mode,0.024911249048557595,0.0,1
+RF,C,impurity_grouped,5,Application order,0.00908762929951606,0.0,1
+RF,C,impurity_grouped,5,Course,0.04276211683634049,0.0,1
+RF,C,impurity_grouped,5,Curricular units 1st sem (approved),0.054510084530952164,0.0,1
+RF,C,impurity_grouped,5,Curricular units 1st sem (credited),0.005405885543776276,0.0,1
+RF,C,impurity_grouped,5,Curricular units 1st sem (enrolled),0.016009307202967137,0.0,1
+RF,C,impurity_grouped,5,Curricular units 1st sem (evaluations),0.029629320901554856,0.0,1
+RF,C,impurity_grouped,5,Curricular units 1st sem (grade),0.0458988273431518,0.0,1
+RF,C,impurity_grouped,5,Curricular units 1st sem (without evaluations),0.0035729870378320137,0.0,1
+RF,C,impurity_grouped,5,Curricular units 2nd sem (approved),0.08894293596219134,0.0,1
+RF,C,impurity_grouped,5,Curricular units 2nd sem (credited),0.004832274114743967,0.0,1
+RF,C,impurity_grouped,5,Curricular units 2nd sem (enrolled),0.018362441648562815,0.0,1
+RF,C,impurity_grouped,5,Curricular units 2nd sem (evaluations),0.03557601021236731,0.0,1
+RF,C,impurity_grouped,5,Curricular units 2nd sem (grade),0.078571316063037,0.0,1
+RF,C,impurity_grouped,5,Curricular units 2nd sem (without evaluations),0.0028576925926532505,0.0,1
+RF,C,impurity_grouped,5,Daytime/evening attendance,0.004063591316420881,0.0,1
+RF,C,impurity_grouped,5,Debtor,0.010765448634066189,0.0,1
+RF,C,impurity_grouped,5,Displaced,0.0042186731276927765,0.0,1
+RF,C,impurity_grouped,5,Educational special needs,0.000554527339965273,0.0,1
+RF,C,impurity_grouped,5,Father's occupation,0.02769146835481231,0.0,1
+RF,C,impurity_grouped,5,Father's qualification,0.02039592190984657,0.0,1
+RF,C,impurity_grouped,5,GDP,0.01621395775650514,0.0,1
+RF,C,impurity_grouped,5,Gender,0.006727066284396929,0.0,1
+RF,C,impurity_grouped,5,Grade change 2nd vs 1st,0.030966453322615786,0.0,1
+RF,C,impurity_grouped,5,Inflation rate,0.01326714143159511,0.0,1
+RF,C,impurity_grouped,5,International,0.0007130991832739776,0.0,1
+RF,C,impurity_grouped,5,Marital Status,0.005087664211919453,0.0,1
+RF,C,impurity_grouped,5,Mother's occupation,0.02652798933965103,0.0,1
+RF,C,impurity_grouped,5,Mother's qualification,0.02243362393635567,0.0,1
+RF,C,impurity_grouped,5,Nationality,0.0012327668190631003,0.0,1
+RF,C,impurity_grouped,5,Pass rate 1st sem,0.07556427102542525,0.0,1
+RF,C,impurity_grouped,5,Pass rate 2nd sem,0.11291968597500157,0.0,1
+RF,C,impurity_grouped,5,Previous qualification,0.008233520181916639,0.0,1
+RF,C,impurity_grouped,5,Previous qualification (grade),0.02264486469751463,0.0,1
+RF,C,impurity_grouped,5,Scholarship holder,0.010675621692857372,0.0,1
+RF,C,impurity_grouped,5,Tuition fees up to date,0.046492716608335954,0.0,1
+RF,C,impurity_grouped,5,Unemployment rate,0.014636726115814291,0.0,1
+RF,C,permutation_validation,5,Marital Status,0.001712500791527649,0.0019673513893593516,5
+RF,C,permutation_validation,5,Application mode,0.007926358243357634,0.005272006055494155,5
+RF,C,permutation_validation,5,Course,0.013933382115665416,0.0031751277155701637,5
+RF,C,permutation_validation,5,Daytime/evening attendance,0.0011657897800406935,0.0008790319358863241,5
+RF,C,permutation_validation,5,Previous qualification,0.0044527082924159965,0.003111124587325152,5
+RF,C,permutation_validation,5,Nationality,-0.00043350266799979664,0.0008670053359995932,5
+RF,C,permutation_validation,5,Mother's qualification,0.0038251893355376156,0.0016380679738190033,5
+RF,C,permutation_validation,5,Father's qualification,0.007335787466391475,0.0020152700372741963,5
+RF,C,permutation_validation,5,Mother's occupation,0.0030139872049488536,0.002468781068858012,5
+RF,C,permutation_validation,5,Father's occupation,0.005938478364443389,0.0045747697975206175,5
+RF,C,permutation_validation,5,Displaced,0.003415064817152791,0.0027134364095203634,5
+RF,C,permutation_validation,5,Educational special needs,0.0,0.0,5
+RF,C,permutation_validation,5,Debtor,-0.0015679632050658698,0.003846506257295519,5
+RF,C,permutation_validation,5,Tuition fees up to date,0.03755701842284929,0.005852629236082772,5
+RF,C,permutation_validation,5,Gender,0.0039363467003712405,0.0028737491230712464,5
+RF,C,permutation_validation,5,Scholarship holder,0.00844402570317262,0.0036439493819689084,5
+RF,C,permutation_validation,5,International,-0.00043350266799979664,0.0008670053359995932,5
+RF,C,permutation_validation,5,Application order,0.002817756765078383,0.0009754502844279184,5
+RF,C,permutation_validation,5,Previous qualification (grade),0.006247855410638303,0.0031607204994930425,5
+RF,C,permutation_validation,5,Admission grade,0.011837496082262255,0.002764122746585974,5
+RF,C,permutation_validation,5,Age at enrollment,0.017630130235555576,0.005297662279854445,5
+RF,C,permutation_validation,5,Unemployment rate,0.00609632693307025,0.0006530530176701647,5
+RF,C,permutation_validation,5,Inflation rate,0.0011551634024383084,0.003999632525882631,5
+RF,C,permutation_validation,5,GDP,0.009559754302359603,0.0030329300769285582,5
+RF,C,permutation_validation,5,Curricular units 1st sem (credited),0.0011719167150155308,0.000991961089407699,5
+RF,C,permutation_validation,5,Curricular units 1st sem (enrolled),0.02430369998955999,0.00918577477904356,5
+RF,C,permutation_validation,5,Curricular units 1st sem (evaluations),0.01276118427815407,0.004052077078986144,5
+RF,C,permutation_validation,5,Curricular units 1st sem (approved),0.07250291453074012,0.009451410371605294,5
+RF,C,permutation_validation,5,Curricular units 1st sem (grade),0.0072577522740354,0.002374291395902661,5
+RF,C,permutation_validation,5,Curricular units 1st sem (without evaluations),-0.00018943147833541118,0.0013077945279239389,5
+RF,C,permutation_validation,5,Curricular units 2nd sem (credited),0.0010465449275119498,0.0015144158756504017,5
+RF,C,permutation_validation,5,Curricular units 2nd sem (enrolled),0.0414718251869554,0.005747129101653077,5
+RF,C,permutation_validation,5,Curricular units 2nd sem (evaluations),0.013744759095797688,0.004774341685285589,5
+RF,C,permutation_validation,5,Curricular units 2nd sem (approved),0.156001860120402,0.015330261397589527,5
+RF,C,permutation_validation,5,Curricular units 2nd sem (grade),0.03301373246141437,0.003898290192695916,5
+RF,C,permutation_validation,5,Curricular units 2nd sem (without evaluations),0.0,0.0,5
