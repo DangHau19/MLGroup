@@ -12,7 +12,7 @@ Metric: **F1 micro = accuracy** (đã xác nhận bằng bài nộp thử 06/11)
 | | Họ tên | MSSV | Vai trò |
 |---|---|---|---|
 | A | (điền) | (điền) | Trưởng nhóm, tích hợp, đóng gói |
-| B | (điền) | (điền) | EDA & hiểu dữ liệu, làm slide |
+| B | Nguyễn Minh Triết | 3124411320 | EDA & hiểu dữ liệu, làm slide |
 | C | (điền) | (điền) | Tiền xử lý & trích đặc trưng |
 | D | (điền) | (điền) | Mô hình & tuning |
 | E | Hoàng Đăng Hậu | 3124411085 | Ensemble, đánh giá, poster |
@@ -43,6 +43,29 @@ Tải từ trang Data của Kaggle (cần bấm Join) và **đổi tên** đúng
 Dữ liệu là **bảng đặc trưng kiểu Spotify** (không phải file âm thanh): `Artist Name`, `Track Name`, `Popularity`, `danceability`, `energy`, `key`, `loudness`, `mode`, `speechiness`, `acousticness`, `instrumentalness`, `liveness`, `valence`, `tempo`, `duration_in min/ms`, `time_signature`; nhãn `Class` có **11 thể loại (0–10)**, mất cân bằng (lớp 10 có 3.959 mẫu, lớp 4 chỉ 310).
 
 Chạy baseline một lần để kiểm tra môi trường: `python code/00_baseline_A.py`.
+
+## Phần B — Nguyễn Minh Triết
+
+- Notebook có đầu ra: [code/01_eda_B.ipynb](code/01_eda_B.ipynb).
+- Bàn giao cho C: [eda_findings.md](eda_findings.md), đang chờ C xác nhận nhận bản bàn giao.
+- Mục 3 của paper: [paper/03_dataset_eda.md](paper/03_dataset_eda.md).
+- Hai hình dùng cho paper: `paper/figures/B_01_class_distribution.png` và
+  `paper/figures/B_02_duration_and_features.png` (300 dpi).
+- Hình bổ sung, số liệu kiểm chứng, phiên bản thư viện và SHA-256 dữ liệu nằm trong notebook.
+- Slide nháp **1 trang 16:9**: [slide/slide_B_draft.pptx](slide/slide_B_draft.pptx).
+  CV baseline lấy từ log của A; pipeline và kết quả cuối chờ nhóm chốt.
+
+Chạy lại EDA bằng PowerShell tại thư mục Challenge 2:
+
+```powershell
+py -3.12 -m venv .venv
+.\.venv\Scripts\python.exe -m pip install -r code/requirements_B.txt
+.\.venv\Scripts\python.exe -m notebook
+```
+
+Chọn kernel `.venv`, mở `code/01_eda_B.ipynb` rồi **Restart & Run All**.
+Notebook cần ba CSV trong `data/`, giữ nguyên file gốc và ghi lại các đầu ra B cùng tên.
+Phần B chỉ mô tả/kiểm chứng dữ liệu; không sửa pipeline của C hoặc chạy tuning của D.
 
 ## Dùng nhanh
 
