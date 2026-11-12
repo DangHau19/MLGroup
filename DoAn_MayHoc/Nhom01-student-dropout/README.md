@@ -171,7 +171,7 @@ notebooks/      EDA và tiền xử lý
 src/            config.py, data.py, preprocessing.py, features.py, evaluate.py, models/
 models/         nơi lưu mô hình huấn luyện (.joblib)
 reports/        nơi lưu bảng kết quả và figures/
-docs/           kickoff.md, issues.md; nơi lưu báo cáo và slide
+docs/           hướng dẫn cộng tác, mẫu kiểm thử, checklist và tài liệu lịch sử
 scripts/        download_data.py, create_issues.sh
 requirements.txt
 README.md
@@ -252,9 +252,9 @@ trên cùng train/fold có thể lạc quan; tập test được giữ cho issue
 
 ## Trạng thái
 
-Tiến độ được đối chiếu với các tệp hiện có trong checkout này, xem
-[bảng rà soát tiến độ](docs/progress.md). Đây là trạng thái sản phẩm trong code,
-không phải trạng thái đóng/mở Issue trên GitHub.
+Phân công và bàn giao hiện hành xem [hướng dẫn cộng tác](docs/README.md).
+[Bảng rà soát ngày 08/11/2026](docs/archive/progress.md) và danh sách dưới đây
+là ghi nhận lịch sử, không phải trạng thái đóng/mở Issue hoặc tiến độ hiện tại.
 
 - Đã có dữ liệu và EDA (#1–3), pipeline tiền xử lý (#4), đặc trưng mới (#5),
   xếp hạng MI/L1/RF và thử chọn top-k MI (#6), baseline Dummy (#7), Random Forest (#10).

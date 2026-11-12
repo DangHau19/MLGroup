@@ -9,7 +9,7 @@
 - [ ] Mô hình bàn giao nạp được và hướng dẫn tạo lại.
 - [ ] README cài đặt, chạy phân tích và demo từ bản clone sạch.
 - [ ] Bảng kết quả, log, dự đoán, hình và metadata thực nghiệm.
-- [ ] Nhật ký của 5 người và Google Trang tính đủ 6 tab.
+- [ ] Nhật kí 5 người trong Sheets chung: `Nhat_ky` có công việc thực tế, `Thi_nghiem` có lượt chạy và link kết quả, `Ban_giao` đủ link ảnh, báo cáo, slide và video cá nhân. Cách ghi xem [hướng dẫn nhật kí](../Nhat_ky/README.md).
 - [ ] Bảng nghiệm thu issue cũ với link minh chứng và người kiểm tra.
 - [ ] Bảng đóng góp có tỷ lệ được 5 thành viên xác nhận.
 - [ ] Kết quả kiểm tra chéo và các sửa đổi liên quan.
