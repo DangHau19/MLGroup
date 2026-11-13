@@ -1,0 +1,44 @@
+{
+  "name": "catboost_v2_te_selected_D",
+  "metric": "accuracy",
+  "cv_mean": 0.6547652058971093,
+  "cv_std": 0.003911565427006328,
+  "macro_f1": 0.7005216420737531,
+  "fold_scores": [
+    0.6548611111111111,
+    0.6613407433136506,
+    0.649183744355679,
+    0.6533518582841265,
+    0.6550885724209795
+  ],
+  "seconds": 86.07668399810791,
+  "seed": 42,
+  "n_folds": 5,
+  "feature_version": "v2",
+  "target_encoding": true,
+  "preprocessing": "fold-local median/scaler; global label-free frequencies",
+  "model_params": {
+    "iterations": 800,
+    "learning_rate": 0.1,
+    "depth": 4,
+    "l2_leaf_reg": 20.0,
+    "thread_count": 4,
+    "random_seed": 42,
+    "verbose": false,
+    "allow_writing_files": false
+  },
+  "classes": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "oof_accuracy": 0.6547652125590442
+}

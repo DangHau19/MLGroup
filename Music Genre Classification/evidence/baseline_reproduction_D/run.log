@@ -1,0 +1,33 @@
+train (14396, 18), test (3600, 17) | Id='Id', nhan='Class', metric chinh='accuracy'
+
+== features v0: X(14396, 14), 11 the loai
+logreg_v0          CV accuracy = 0.4965 (+/- 0.0085)  macroF1 = 0.5109  [4.0s]
+rf_v0              CV accuracy = 0.5123 (+/- 0.0070)  macroF1 = 0.5608  [13.5s]
+histgb_v0          CV accuracy = 0.5389 (+/- 0.0046)  macroF1 = 0.5715  [13.9s]
+
+== features v1: X(14396, 21), 11 the loai
+logreg_v1          CV accuracy = 0.5258 (+/- 0.0036)  macroF1 = 0.5587  [5.9s]
+rf_v1              CV accuracy = 0.5348 (+/- 0.0073)  macroF1 = 0.5888  [15.4s]
+histgb_v1          CV accuracy = 0.5585 (+/- 0.0071)  macroF1 = 0.6068  [11.0s]
+
+CV (OOF) cua histgb_v1 (Kaggle cham bang accuracy = micro F1; macro/weighted chi de tham khao):
+  macro F1 = 0.6069 | accuracy (micro F1) = 0.5585 | weighted F1 = 0.5451
+Da ghi D:\Documents\Machine_Learning\MLGroup\Music Genre Classification\evidence\baseline_reproduction_D\submissions\histgb_v1.csv (3600 dong). Phan bo nhan du doan:
+Class
+10    1367
+9      466
+6      457
+8      326
+5      281
+2      228
+0      132
+7      106
+4       81
+1       79
+Name: count, dtype: int64
+
+Xong. Nop file D:\Documents\Machine_Learning\MLGroup\Music Genre Classification\evidence\baseline_reproduction_D\submissions\histgb_v1.csv len Kaggle, chup leaderboard vao evidence/leaderboard/.
+       model  cv_accuracy    cv_std  macro_f1    seconds
+0  histgb_v1     0.558488  0.007060  0.606778  10.983897
+1      rf_v1     0.534801  0.007302  0.588839  15.397819
+2  logreg_v1     0.525840  0.003620  0.558662   5.890349

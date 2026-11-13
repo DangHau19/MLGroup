@@ -1,0 +1,4 @@
+number,value,datetime_start,datetime_complete,duration,params_colsample_bytree,params_learning_rate,params_min_child_samples,params_n_estimators,params_num_leaves,params_reg_lambda,params_subsample,state
+0,0.5746730876847671,2026-11-13 22:03:57.677350,2026-11-13 22:04:06.550739,0 days 00:00:08.873389,1.0,0.025,50,200,15,0.0,0.8,COMPLETE
+1,0.5713386930261279,2026-11-13 22:04:06.578277,2026-11-13 22:04:19.976216,0 days 00:00:13.397939,0.8,0.05,20,400,7,2.0,1.0,COMPLETE
+2,0.5402889940565784,2026-11-13 22:04:19.989585,2026-11-13 22:05:07.455609,0 days 00:00:47.466024,0.8,0.05,20,400,63,10.0,0.8,COMPLETE
