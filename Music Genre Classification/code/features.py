@@ -40,6 +40,8 @@ def build_features(train: pd.DataFrame, test: pd.DataFrame, version: str = "v1")
         return _v0_baseline(train, test)
     if version == "v1":
         return _v1(train, test)
+    if version == "v2":
+        return _v2(train, test)
     raise ValueError(f"Chua co phien ban '{version}'. C them vao day.")
 
 
@@ -93,4 +95,93 @@ def _v1(train: pd.DataFrame, test: pd.DataFrame):
     X = full.iloc[:n].reset_index(drop=True)
     X_test = full.iloc[n:].reset_index(drop=True)
     assert list(X.columns) == list(X_test.columns) and not X.isna().any().any() and not X_test.isna().any().any()
+    return X, y, X_test, test_ids, classes
+
+
+def _v2(train: pd.DataFrame, test: pd.DataFrame):
+    """
+    Feature Engineering v2.
+    Ke thua v1 va bo sung cac dac trung moi.
+    """
+
+    X, y, X_test, test_ids, classes = _v1(train, test)
+
+    def add_features(df):
+        df = df.copy()
+
+        # 1. Log transformation
+        for col in [
+            "speechiness",
+            "instrumentalness",
+            "liveness",
+            "acousticness"
+        ]:
+            if col in df.columns:
+                df[col + "_log1p"] = np.log1p(
+                    df[col].clip(lower=0)
+                )
+
+        # 2. Loudness clipping
+        if "loudness" in df.columns:
+            df["loudness_clipped"] = df["loudness"].clip(
+                lower=-40,
+                upper=5
+            )
+
+        # 3. Interaction features
+        if {"energy", "acousticness"}.issubset(df.columns):
+            df["energy_acousticness_ratio"] = (
+                df["energy"] /
+                (df["acousticness"].clip(lower=0) + 0.01)
+            )
+
+        if {"danceability", "valence"}.issubset(df.columns):
+            df["danceability_x_valence"] = (
+                df["danceability"] * df["valence"]
+            )
+
+        if {"loudness", "energy"}.issubset(df.columns):
+            df["loudness_x_energy"] = (
+                df["loudness"] * df["energy"]
+            )
+
+        # 4. Key + Mode
+        if {"key", "mode"}.issubset(df.columns):
+            key = df["key"].round().clip(0, 11).astype(int)
+            mode = df["mode"].round().clip(0, 1).astype(int)
+
+            df["key_mode_24"] = key + 12 * mode
+
+            if "key_missing" in df.columns:
+                df.loc[
+                    df["key_missing"] == 1,
+                    "key_mode_24"
+                ] = -1
+
+        # 5. Tempo features
+        if "tempo" in df.columns:
+            df["tempo_rounded_10"] = (
+                np.round(df["tempo"] / 10) * 10
+            )
+
+            df["tempo_group_20"] = np.floor(
+                df["tempo"].clip(lower=0) / 20
+            )
+
+        return df.replace([np.inf, -np.inf], np.nan)
+
+    X = add_features(X)
+    X_test = add_features(X_test)
+
+    # Fill missing values
+    medians = X.median().fillna(0)
+
+    X = X.fillna(medians).fillna(0)
+    X_test = X_test.fillna(medians).fillna(0)
+
+    # Validate output
+    assert list(X.columns) == list(X_test.columns)
+    assert not X.isna().any().any()
+    assert not X_test.isna().any().any()
+
     return X, y, X_test, test_ids, classes

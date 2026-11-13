@@ -13,7 +13,7 @@ Metric: **F1 micro = accuracy** (đã xác nhận bằng bài nộp thử 06/11)
 |---|---|---|---|
 | A | (điền) | (điền) | Trưởng nhóm, tích hợp, đóng gói |
 | B | Nguyễn Minh Triết | 3124411320 | EDA & hiểu dữ liệu, làm slide |
-| C | (điền) | (điền) | Tiền xử lý & trích đặc trưng |
+| C | Phan Lê Minh Huy | 3124411111 | Tiền xử lý & trích đặc trưng |
 | D | (điền) | (điền) | Mô hình & tuning |
 | E | Hoàng Đăng Hậu | 3124411085 | Ensemble, đánh giá, poster |
 
