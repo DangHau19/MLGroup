@@ -1,0 +1,4 @@
+file,cv_accuracy,public_score,private_score,kaggle_status,note
+histgb_v1.csv,0.5582,0.57460,0.55092,Complete (after deadline),mo hinh don cua A; CV tu evidence/cv_logs/histgb_v1_cv.json
+probe_all10.csv,,0.26626,0.29537,Complete (after deadline),bai tham do: du doan toan lop 10
+ensemble_E.csv,0.6623,0.68849,0.66388,Complete (after deadline),stacking HistGB cua E; CV la nested (evidence/ensemble_E/summary_E.json)

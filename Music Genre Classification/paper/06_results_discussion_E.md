@@ -75,7 +75,7 @@ Phân tích dưới đây dùng nested OOF của ensemble chốt (Bảng 4, Hìn
 
 **Điểm yếu nằm ở các lớp lớn và gần nhau.** F1 thấp nhất ở lớp 1 (0,310; recall chỉ 0,233) và lớp 6 (0,539), rồi lớp 10 (0,660). Các cặp nhầm nhiều nhất (đúng → dự đoán) là: 6 → 10 (486 mẫu, 23,5% lớp 6), 10 → 6 (410, 10,4% lớp 10), 8 → 10 (384, 25,9% lớp 8), 1 → 10 (353, 32,1% lớp 1) và 1 → 6 (338, 30,8% lớp 1). Lớp 10 là lớp lớn nhất (27,5% dữ liệu) và đóng vai trò "lớp hút": được dự đoán cho 31,1% mẫu, nhiều hơn tỉ lệ thật; ngược lại lớp 1 chỉ được dự đoán cho 3,8% mẫu trong khi chiếm 7,6% dữ liệu. Vì metric là accuracy, mô hình có xu hướng gán nhãn của lớp lớn khi không chắc chắn, đúng như đã dự báo ở phần EDA.
 
-**Một giả thuyết và kiểm chứng của nó.** Theo bảng theo lớp trong notebook EDA của B (mục 3), cờ thời lượng thuộc thang phút (duration < 30) có ở **100%** mẫu train của các lớp 0, 3, 4, 7, ở 0% mẫu của các lớp 1, 2, 5, 6, 8, và ở 16,8% (lớp 9) và 3,6% (lớp 10). Bốn lớp 0, 3, 4, 7 cũng là các lớp có F1 cao (0,806; 0,850; 0,832; 0,949), và phần lớn lỗi của chúng nằm ngay trong nhóm này (lớp 3 nhầm sang lớp 0 ở 11% mẫu, lớp 4 nhầm sang lớp 0 ở 11%, lớp 0 nhầm sang lớp 3 và 4 ở 5% mỗi lớp). Điều này phù hợp với việc cờ đơn vị là một đặc trưng rất mạnh, trong đó mô hình dễ tách nhóm {0, 3, 4, 7} khỏi phần còn lại rồi chỉ còn phân biệt các lớp trong nhóm. Đây là một hiện tượng của nguồn dữ liệu chứ không phải đặc tính âm nhạc. iả thuyết này được kiểm chứng ở mục 6.7: khi bỏ cột duration và huấn luyện lại, F1 của lớp 0 giảm từ 0,813 xuống 0,429 và F1 các lớp 3, 4, 7 giảm 11 đến 15 điểm, trong khi các lớp 1, 5, 8 giảm dưới 1 điểm.
+**Một giả thuyết và kiểm chứng của nó.** Theo bảng theo lớp trong notebook EDA của B (mục 3), cờ thời lượng thuộc thang phút (duration < 30) có ở **100%** mẫu train của các lớp 0, 3, 4, 7, ở 0% mẫu của các lớp 1, 2, 5, 6, 8, và ở 16,8% (lớp 9) và 3,6% (lớp 10). Bốn lớp 0, 3, 4, 7 cũng là các lớp có F1 cao (0,806; 0,850; 0,832; 0,949), và phần lớn lỗi của chúng nằm ngay trong nhóm này (lớp 3 nhầm sang lớp 0 ở 11% mẫu, lớp 4 nhầm sang lớp 0 ở 11%, lớp 0 nhầm sang lớp 3 và 4 ở 5% mỗi lớp). Điều này phù hợp với việc cờ đơn vị là một đặc trưng rất mạnh, trong đó mô hình dễ tách nhóm {0, 3, 4, 7} khỏi phần còn lại rồi chỉ còn phân biệt các lớp trong nhóm. Đây là một hiện tượng của nguồn dữ liệu chứ không phải đặc tính âm nhạc. Giả thuyết này được kiểm chứng ở mục 6.6: khi bỏ cột duration và huấn luyện lại, F1 của lớp 0 giảm từ 0,813 xuống 0,429 và F1 các lớp 3, 4, 7 giảm 11 đến 15 điểm, trong khi các lớp 1, 5, 8 giảm dưới 1 điểm.
 
 **Ensemble cải thiện ở đâu.** So với CatBoost đơn, F1 tăng rõ nhất ở lớp 1 (+0,056) và lớp 6 (+0,021), tức đúng ở những lớp khó và hay bị nhầm; giảm nhẹ ở lớp 0 (−0,013) và lớp 8 (−0,009). Phần lớn mức tăng accuracy tổng thể đến từ các lớp lớn.
 
@@ -105,12 +105,9 @@ Kết quả đáng chú ý là **ExtraTrees**: là mô hình đơn yếu nhất 
 1. Điểm nested của ensemble học trên OOF mà mỗi OOF lại do mô hình nền được huấn luyện trên dữ liệu bao gồm cả fold dùng để chấm. Đây là cách stacking thường làm và rò rỉ thường nhỏ, nhưng với meta-learner linh hoạt (HistGB) có thể làm điểm hơi cao; muốn loại bỏ hẳn cần huấn luyện lại mô hình nền trong từng vòng, việc ngoài phạm vi phần E.
 2. CV phân tầng cho phép một nghệ sĩ xuất hiện ở cả train và validation. Điều này phù hợp với test của cuộc thi (khoảng 63,8% dòng test có nghệ sĩ đã biết) nhưng không đo được khả năng tổng quát hóa sang nghệ sĩ mới [6, 7].
 3. Tần suất không nhãn trên train + test là thiết lập transductive đã được nhóm cho phép (mục 4, 5).
-4. Điểm của mô hình đơn tốt nhất và các ensemble được chọn trên cùng các fold, nên có thiên lệch lựa chọn nhẹ. **Chưa có điểm leaderboard** cho các mô hình này; E không dự đoán điểm public/private.
+4. Điểm của mô hình đơn tốt nhất và các ensemble được chọn trên cùng các fold, nên có thiên lệch lựa chọn nhẹ. Điểm leaderboard của bài nộp được báo cáo ở mục 6.7; E không dùng điểm đó để chọn lại mô hình.
 
-## 6.6. Kết luận phần E
-
-Stacking HistGradientBoosting trên bảy mô hình của D đạt nested CV accuracy 0,6623 ± 0,0024, hơn mô hình đơn tốt nhất (CatBoost, 0,6548) khoảng +0,76 điểm phần trăm, nhất quán ở cả 5 fold. Ensemble đơn giản (trung bình đều 3 boosting) đã mang lại khoảng +0,28 điểm; trung bình đều cả 7 mô hình lại làm giảm điểm. Phần lớn sai sót tập trung ở các lớp lớn và gần nhau (1, 6, 8, 10), còn các lớp ít mẫu 3, 4 và 7 được nhận diện tốt. Bài nộp đề xuất: `submissions/ensemble_E.csv` (cột `Id`, `Class`, 3.600 dòng), cần A nộp và ghi `log_submission`.
-## 6.7. Cột nào quan trọng nhất (permutation importance và ablation)
+## 6.6. Cột nào quan trọng nhất (permutation importance và ablation)
 
 **Cách đo.** E chạy lại cấu hình HistGradientBoosting + đặc trưng v2 + target encoding của D trên đúng 5 fold chung (accuracy 0,6415, khớp với `histgb_v2_te_selected_D_cv.json`), rồi đo trên **cột gốc** (một cột gốc có thể sinh nhiều đặc trưng, ví dụ duration → cờ đơn vị + giá trị ms). Hai phép đo bổ sung cho nhau:
 - *Permutation*: xáo trộn một cột trên fold validation, không huấn luyện lại, 3 lần xáo mỗi fold; đo accuracy giảm bao nhiêu.
@@ -127,3 +124,25 @@ Stacking HistGradientBoosting trên bảy mô hình của D đạt nested CV acc
 **Kiểm chứng giả thuyết ở mục 6.3 (Hình 9).** Trong dữ liệu train, cờ thang phút của duration là 100% ở các lớp 0, 3, 4, 7, 0% ở các lớp 1, 2, 5, 6, 8, 16,8% ở lớp 9 và 3,6% ở lớp 10. Khi bỏ cột duration, F1 giảm mạnh đúng ở các lớp này: lớp 0 giảm 38,4 điểm (0,813 → 0,429), lớp 4 giảm 14,6, lớp 7 giảm 12,3, lớp 3 giảm 11,1; trong khi các lớp 1, 5, 8 giảm dưới 1 điểm. Như vậy giả thuyết được ủng hộ: phần lớn giá trị của duration đến từ việc đơn vị lưu trữ tách được nhóm {0, 3, 4, 7}, một đặc điểm của dữ liệu chứ không phải đặc tính âm nhạc. Ngược lại, bỏ Artist Name làm giảm F1 ở mọi lớp (2,3 đến 19,2 điểm), mạnh nhất ở các lớp 1, 2, 4, 6.
 
 **Hạn chế.** (1) Chỉ đo trên một mô hình (HistGB); thứ hạng có thể khác với CatBoost. (2) Artist Name mạnh một phần vì cùng nghệ sĩ xuất hiện ở train và validation (xem hạn chế 2 ở mục 6.5), nên kết quả này không nói được gì về nghệ sĩ mới. (3) Permutation dùng 3 lần xáo, độ lệch chuẩn khoảng 0,3 đến 0,8 điểm, nên không nên đọc thứ hạng giữa các cột có chênh lệch nhỏ hơn mức đó.
+
+## 6.7. Điểm trên Kaggle
+
+Sau khi nhóm hoàn tất, A nộp `submissions/ensemble_E.csv` lên Kaggle (ảnh chụp: `evidence/leaderboard/20261115_my_submissions.png`). Cả ba lần nộp của nhóm đều được Kaggle đánh dấu "after deadline" (nộp muộn), nên điểm dưới đây dùng để đối chiếu với CV chứ không phải thứ hạng chính thức.
+
+| Bài nộp | CV (5 fold) | Public | Private |
+|---|---|---|---|
+| `histgb_v1.csv` (mô hình đơn của A) | 0,5582 | 0,5746 | 0,5509 |
+| `ensemble_E.csv` (stacking HistGB, nested CV) | 0,6623 | 0,6885 | 0,6639 |
+
+*Bảng 6. CV và điểm Kaggle. `probe_all10.csv` (dự đoán toàn lớp 10, dùng để thăm dò tỉ lệ lớp) đạt 0,2663 public và 0,2954 private nên không đưa vào bảng.*
+
+![Hình 10. CV, Public và Private của hai bài nộp](figures/E_10_kaggle_vs_cv.png)
+
+Nhận xét:
+- Điểm **private của ensemble (0,6639) rất gần nested CV (0,6623)**, chênh +0,16 điểm phần trăm; điểm **public cao hơn CV 2,6 điểm** (0,6885). Với mô hình đơn của A cũng thấy kiểu tương tự: public cao hơn CV 1,6 điểm còn private thấp hơn 0,7 điểm. Public và private chấm trên hai phần khác nhau của tập test (Kaggle không công bố tỉ lệ chia); nếu mỗi phần có khoảng 1.000 đến 2.000 dòng thì độ lệch chuẩn của accuracy ở mỗi phần khoảng 1,1 đến 1,5 điểm phần trăm, nên chênh 2,5 điểm giữa public và private của ensemble vì vậy chưa đủ để kết luận mô hình "thật sự" tốt hơn hay kém hơn CV. Cách đọc thận trọng hơn là CV (0,662) và điểm private (0,664) cùng cho một mức ước lượng khoảng 0,66.
+- **Ensemble hơn mô hình đơn của A** ở cả hai tập: +11,4 điểm (public) và +11,3 điểm (private), cùng hướng với tiến trình CV ở Hình 7 (0,558 → 0,662).
+- CV đã dự báo đúng thứ tự giữa hai bài nộp và đúng mức độ cải thiện, tuy chưa có đủ bài nộp để đánh giá CV chọn mô hình tốt đến đâu giữa các ensemble gần nhau (chênh dưới 1 điểm); E chỉ nộp một ensemble nên không có bằng chứng từ leaderboard về việc stacking HistGB hơn trung bình đều 3 mô hình boosting.
+
+## 6.8. Kết luận phần E
+
+Stacking HistGradientBoosting trên bảy mô hình của D đạt nested CV accuracy 0,6623 ± 0,0024, hơn mô hình đơn tốt nhất (CatBoost, 0,6548) khoảng +0,76 điểm phần trăm, nhất quán ở cả 5 fold. Ensemble đơn giản (trung bình đều 3 boosting) đã mang lại khoảng +0,28 điểm; trung bình đều cả 7 mô hình lại làm giảm điểm. Phần lớn sai sót tập trung ở các lớp lớn và gần nhau (1, 6, 8, 10), còn các lớp ít mẫu 3, 4 và 7 được nhận diện tốt. Về dữ liệu, Artist Name là cột quan trọng nhất (bỏ đi giảm 10,0 điểm accuracy) và duration đứng thứ hai nhờ cờ đơn vị phút/ms (mục 6.6). Bài nộp `submissions/ensemble_E.csv` (3.600 dòng) đạt 0,6885 public và 0,6639 private trên Kaggle, phù hợp với nested CV 0,6623 (mục 6.7).
