@@ -5,7 +5,7 @@ Tất cả số liệu là CV 5-fold trên tập train (feature set C, `random_s
 ## 1. Mất cân bằng lớp (issue #11, `notebooks/03_imbalance.ipynb`)
 Xem `reports/imbalance_comparison.csv`. `class_weight="balanced"` cho Macro-F1 tốt nhất (LR 0,711; RF 0,725) và tăng F1 Enrolled mạnh nhất, nhưng Recall Dropout giảm nhẹ so với không xử lý (khoảng 0,775 xuống 0,74). Cần bước chỉnh ngưỡng (issue #14).
 
-## 2. Gradient Boosting (issue #12, `src/models/tuning_sv4.py`)
+## 2. Gradient Boosting (issue #12, `src/models/tuning.py`)
 RandomizedSearchCV 12 tổ hợp, scoring `f1_macro`. Tốt nhất: n_estimators=200, learning_rate=0,05, max_depth=4, subsample=0,85.
 Macro-F1 val 0,719 ± 0,012, Recall Dropout 0,783, F1 Enrolled 0,493. Train Macro-F1 0,900, chênh lớn so với val nên mô hình overfit rõ. Lưu: `models/gb_best.joblib`.
 
