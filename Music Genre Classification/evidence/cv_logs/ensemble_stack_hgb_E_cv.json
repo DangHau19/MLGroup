@@ -1,0 +1,18 @@
+{
+  "name": "ensemble_stack_hgb_E",
+  "metric": "accuracy",
+  "cv_mean": 0.6626142854386169,
+  "cv_std": 0.004732546318966622,
+  "macro_f1": 0.7099587769166518,
+  "fold_scores": [
+    0.6673611111111111,
+    0.6665508857242098,
+    0.6540465439388676,
+    0.6630774574505036,
+    0.6620354289683918
+  ],
+  "seconds": 0.0,
+  "seed": 42,
+  "n_folds": 5,
+  "note": "OOF l\u00e0 nested (tr\u1ecdng s\u1ed1/meta h\u1ecdc tr\u00ean 4 fold, d\u1ef1 \u0111o\u00e1n fold c\u00f2n l\u1ea1i); test = ensemble h\u1ecdc tr\u00ean to\u00e0n b\u1ed9 OOF \u00e1p l\u00ean x\u00e1c su\u1ea5t test (trung b\u00ecnh 5 outer model c\u1ee7a D)."
+}

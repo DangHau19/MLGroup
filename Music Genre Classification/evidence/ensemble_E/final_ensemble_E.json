@@ -1,0 +1,29 @@
+{
+  "final_strategy": "stack_hgb",
+  "description": "Stacking: HistGradientBoosting n\u00f4ng",
+  "info": {},
+  "models_order": [
+    "CatBoost",
+    "LightGBM",
+    "XGBoost",
+    "HistGB",
+    "MLP",
+    "SVM",
+    "ExtraTrees"
+  ],
+  "tags": [
+    "catboost_v2_te_selected_D",
+    "lightgbm_v2_te_selected_D",
+    "xgboost_v2_te_selected_D",
+    "histgb_v2_te_selected_D",
+    "mlp_v2_te_selected_D",
+    "svm_v2_te_selected_D",
+    "extratrees_v2_te_selected_D"
+  ],
+  "submission_file": "submissions/ensemble_E.csv",
+  "cv_tag": "ensemble_stack_hgb_E",
+  "nested_accuracy": 0.6626142854386169,
+  "nested_std": 0.004732546318966622,
+  "macro_f1": 0.7099587769166518,
+  "oracle_accuracy_7_models": 0.7678521811614337
+}

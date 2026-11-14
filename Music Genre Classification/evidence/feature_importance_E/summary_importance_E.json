@@ -1,0 +1,9 @@
+{
+  "model": "histgb_v2_te_selected_D (chay lai)",
+  "n_repeat": 3,
+  "baseline_accuracy": 0.6455959988885802,
+  "baseline_macro_f1": 0.6963425436567584,
+  "baseline_logloss": 0.9341969720575206,
+  "matches_D_cv_json": false,
+  "seconds": 669.6689131259918
+}

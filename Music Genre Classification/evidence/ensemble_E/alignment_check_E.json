@@ -1,0 +1,56 @@
+{
+  "folds_match_common_get_folds": true,
+  "n_train": 14396,
+  "n_test": 3600,
+  "models": [
+    {
+      "tag": "catboost_v2_te_selected_D",
+      "shape_ok": true,
+      "acc_recomputed": 0.6547652058971093,
+      "acc_in_json": 0.6547652058971093,
+      "match": true
+    },
+    {
+      "tag": "lightgbm_v2_te_selected_D",
+      "shape_ok": true,
+      "acc_recomputed": 0.6540008104665971,
+      "acc_in_json": 0.6540008104665971,
+      "match": true
+    },
+    {
+      "tag": "xgboost_v2_te_selected_D",
+      "shape_ok": true,
+      "acc_recomputed": 0.6510838302265447,
+      "acc_in_json": 0.6510838302265447,
+      "match": true
+    },
+    {
+      "tag": "histgb_v2_te_selected_D",
+      "shape_ok": true,
+      "acc_recomputed": 0.6414980847902435,
+      "acc_in_json": 0.6414980847902435,
+      "match": true
+    },
+    {
+      "tag": "mlp_v2_te_selected_D",
+      "shape_ok": true,
+      "acc_recomputed": 0.6314945872409401,
+      "acc_in_json": 0.6314945872409401,
+      "match": true
+    },
+    {
+      "tag": "svm_v2_te_selected_D",
+      "shape_ok": true,
+      "acc_recomputed": 0.6290633562965535,
+      "acc_in_json": 0.6290633562965535,
+      "match": true
+    },
+    {
+      "tag": "extratrees_v2_te_selected_D",
+      "shape_ok": true,
+      "acc_recomputed": 0.6163514289297981,
+      "acc_in_json": 0.6163514289297981,
+      "match": true
+    }
+  ]
+}
