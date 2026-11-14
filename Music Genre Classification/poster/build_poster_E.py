@@ -2,7 +2,7 @@
 build_poster_E.py - Sinh poster A1 dọc (3 cột) từ số liệu thật rồi xuất PDF + ảnh xem trước.
 
 Chạy tại thư mục dự án:   python poster/build_poster_E.py
-Cần: playwright (Chromium) để xuất PDF; opencv-python để tạo mã QR. Nếu thiếu thì chỉ ghi HTML.
+Cần: playwright (Chromium) để xuất PDF. Nếu thiếu thì chỉ ghi HTML (mở HTML bằng Chrome rồi In → Lưu PDF, khổ A1, bỏ lề).
 Chỉnh nội dung: sửa phần TEXT bên dưới (hoặc sửa trực tiếp poster_E.html rồi chạy lại bước PDF).
 """
 import os, sys, json, shutil, tempfile
@@ -16,7 +16,7 @@ OUT = Path(os.environ.get("MG_OUT", ROOT)).resolve()
 # ---- chỉnh ở đây nếu cần ----------------------------------------------------------------------------
 KAGGLE_PUBLIC = "0,6885"   # public, từ ảnh Kaggle ngày 15/11/2026
 KAGGLE_PRIVATE = "0,6639"
-TEAM_A = "A: (Trần Văn Võ Doanh,3124411052 )"
+TEAM_A = "A: Trần Văn Võ Doanh (3124411052)"
 # -----------------------------------------------------------------------------------------------------
 
 E = OUT / "evidence" / "ensemble_E"
@@ -132,8 +132,6 @@ tr.hl td {{ background: #e3eefc; font-weight: 700 }}
 .box {{ background: #eaf1fb; border-left: 3mm solid #1f5fa8; padding: 2mm 4mm }} .box b {{ color: #0b2a55 }}
 .arrow {{ text-align: center; color: #1f5fa8; line-height: .6 }}
 .todo {{ background: #fff4c2; border: 0.8mm dashed #b58900; padding: 0 2mm }}
-footer {{ flex: none; display: flex; align-items: center; gap: 10mm; padding: 5mm 16mm; background: #eef3fa; border-top: 1mm solid #1f5fa8 }}
-footer img.qr {{ width: 46mm; height: 46mm }} footer div {{ flex: 1 }} footer .u {{ word-break: break-all; font-size: 24pt }}
 </style></head><body>
 <header>
   <h1>Phân loại thể loại nhạc từ đặc trưng dạng bảng: mã hóa theo nghệ sĩ và ensemble</h1>
@@ -182,12 +180,12 @@ footer img.qr {{ width: 46mm; height: 46mm }} footer div {{ flex: 1 }} footer .u
    <img src="fig_p2_progress.png" alt="Hình 2">
    <div class="cap">Hình 2. Accuracy CV qua các giai đoạn (trục bắt đầu từ 0,5).</div>
    <ul><li>Stacking hơn CatBoost đơn <b>+{vn(summ['diff_vs_single'] * 100, 2)} điểm %</b> (CI 95%: +{vn(ci[0] * 100, 2)} đến +{vn(ci[1] * 100, 2)}), hơn ở cả 5 fold.</li>
-   <li><b>Kaggle:</b> public {kag}, private <b>{KAGGLE_PRIVATE}</b> (nộp muộn), sát với nested CV 0,6623.</li></ul>
+   <li><b>Kaggle:</b> public {kag}, private <b>{KAGGLE_PRIVATE}</b> (nộp muộn), sát với nested CV {vn(summ['nested_accuracy'])}.</li></ul>
   </section>
   <section><h2>8. Kết luận và hạn chế</h2>
    <ul><li>Thông tin nghệ sĩ cải thiện nhiều hơn mọi lựa chọn mô hình; ensemble thêm khoảng 0,3–0,8 điểm %.</li>
    <li>Trung bình đều 7 mô hình thấp hơn mô hình đơn tốt nhất.</li>
-   <li>Private 0,664 khớp CV 0,662; chưa kiểm tra nghệ sĩ mới.</li></ul>
+   <li>Private {vn(float(KAGGLE_PRIVATE.replace(',', '.')), 3)} khớp CV {vn(summ['nested_accuracy'], 3)}; chưa kiểm tra nghệ sĩ mới.</li></ul>
   </section>
  </div>
 
@@ -197,7 +195,7 @@ footer img.qr {{ width: 46mm; height: 46mm }} footer div {{ flex: 1 }} footer .u
    <div class="cap">Hình 3. Ma trận nhầm lẫn (% theo hàng).</div>
    <ul><li><b>Lớp ít mẫu không bị bỏ qua:</b> lớp 3 và 4 có F1 = 0,85 và 0,83; lớp 7 đạt 0,95.</li>
    <li><b>Khó nhất:</b> lớp 1 (F1 0,31), lớp 6 (0,54); thường bị nhầm sang lớp 10, lớp lớn nhất.</li>
-   <li><b>ExtraTrees</b> yếu nhất khi đứng riêng ({vn(float(base_df.set_index('model').loc['ExtraTrees', 'cv_accuracy']))}) nhưng bỏ nó đi thì ensemble giảm nhiều nhất (−0,85 điểm %): giá trị nằm ở sự đa dạng.</li>
+   <li><b>ExtraTrees</b> yếu nhất khi đứng riêng ({vn(float(base_df.set_index('model').loc['ExtraTrees', 'cv_accuracy']))}) nhưng bỏ nó đi thì ensemble giảm nhiều nhất (−{vn(-drop.set_index('bỏ mô hình').loc['ExtraTrees','delta_vs_ensemble'] * 100, 2)} điểm %): giá trị nằm ở sự đa dạng.</li>
    </ul>
    <img src="fig_p4_f1.png" alt="Hình 4">
    <div class="cap">Hình 4. F1 theo thể loại: ensemble so với CatBoost đơn.</div>
@@ -210,7 +208,6 @@ footer img.qr {{ width: 46mm; height: 46mm }} footer div {{ flex: 1 }} footer .u
   </section>
  </div>
 </main>
-<footer></footer>
 </body></html>"""
 (OUT / "poster" / "poster_E.html").write_text(HTML, encoding="utf-8")
 print("Đã ghi poster/poster_E.html")

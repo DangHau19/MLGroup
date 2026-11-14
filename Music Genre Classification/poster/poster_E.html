@@ -26,13 +26,11 @@ tr.hl td { background: #e3eefc; font-weight: 700 }
 .box { background: #eaf1fb; border-left: 3mm solid #1f5fa8; padding: 2mm 4mm } .box b { color: #0b2a55 }
 .arrow { text-align: center; color: #1f5fa8; line-height: .6 }
 .todo { background: #fff4c2; border: 0.8mm dashed #b58900; padding: 0 2mm }
-footer { flex: none; display: flex; align-items: center; gap: 10mm; padding: 5mm 16mm; background: #eef3fa; border-top: 1mm solid #1f5fa8 }
-footer img.qr { width: 46mm; height: 46mm } footer div { flex: 1 } footer .u { word-break: break-all; font-size: 24pt }
 </style></head><body>
 <header>
   <h1>Phân loại thể loại nhạc từ đặc trưng dạng bảng: mã hóa theo nghệ sĩ và ensemble</h1>
   <p class="sub">Challenge 2 · Môn Máy học · Cuộc thi Kaggle “shai-music-genre-classification”</p>
-  <p class="team"><span class="nw">A: (Trần Văn Võ Doanh,3124411052 )</span> · <span class="nw">B: Nguyễn Minh Triết (3124411320)</span> · <span class="nw">C: Phan Lê Minh Huy (3124411111)</span> ·
+  <p class="team"><span class="nw">A: Trần Văn Võ Doanh (3124411052)</span> · <span class="nw">B: Nguyễn Minh Triết (3124411320)</span> · <span class="nw">C: Phan Lê Minh Huy (3124411111)</span> ·
   <span class="nw">D: Trần Đình Bảo Quốc (3124411252)</span> · <span class="nw">E: Hoàng Đăng Hậu (3124411085)</span></p>
 </header>
 <main>
@@ -76,12 +74,12 @@ footer img.qr { width: 46mm; height: 46mm } footer div { flex: 1 } footer .u { w
    <img src="fig_p2_progress.png" alt="Hình 2">
    <div class="cap">Hình 2. Accuracy CV qua các giai đoạn (trục bắt đầu từ 0,5).</div>
    <ul><li>Stacking hơn CatBoost đơn <b>+0,78 điểm %</b> (CI 95%: +0,33 đến +1,24), hơn ở cả 5 fold.</li>
-   <li><b>Kaggle:</b> public <b>0,6885</b>, private <b>0,6639</b> (nộp muộn), sát với nested CV 0,6623.</li></ul>
+   <li><b>Kaggle:</b> public <b>0,6885</b>, private <b>0,6639</b> (nộp muộn), sát với nested CV 0,6626.</li></ul>
   </section>
   <section><h2>8. Kết luận và hạn chế</h2>
    <ul><li>Thông tin nghệ sĩ cải thiện nhiều hơn mọi lựa chọn mô hình; ensemble thêm khoảng 0,3–0,8 điểm %.</li>
    <li>Trung bình đều 7 mô hình thấp hơn mô hình đơn tốt nhất.</li>
-   <li>Private 0,664 khớp CV 0,662; chưa kiểm tra nghệ sĩ mới.</li></ul>
+   <li>Private 0,664 khớp CV 0,663; chưa kiểm tra nghệ sĩ mới.</li></ul>
   </section>
  </div>
 
@@ -91,7 +89,7 @@ footer img.qr { width: 46mm; height: 46mm } footer div { flex: 1 } footer .u { w
    <div class="cap">Hình 3. Ma trận nhầm lẫn (% theo hàng).</div>
    <ul><li><b>Lớp ít mẫu không bị bỏ qua:</b> lớp 3 và 4 có F1 = 0,85 và 0,83; lớp 7 đạt 0,95.</li>
    <li><b>Khó nhất:</b> lớp 1 (F1 0,31), lớp 6 (0,54); thường bị nhầm sang lớp 10, lớp lớn nhất.</li>
-   <li><b>ExtraTrees</b> yếu nhất khi đứng riêng (0,6164) nhưng bỏ nó đi thì ensemble giảm nhiều nhất (−0,85 điểm %): giá trị nằm ở sự đa dạng.</li>
+   <li><b>ExtraTrees</b> yếu nhất khi đứng riêng (0,6164) nhưng bỏ nó đi thì ensemble giảm nhiều nhất (−0,73 điểm %): giá trị nằm ở sự đa dạng.</li>
    </ul>
    <img src="fig_p4_f1.png" alt="Hình 4">
    <div class="cap">Hình 4. F1 theo thể loại: ensemble so với CatBoost đơn.</div>
@@ -104,5 +102,4 @@ footer img.qr { width: 46mm; height: 46mm } footer div { flex: 1 } footer .u { w
   </section>
  </div>
 </main>
-<footer></footer>
 </body></html>
