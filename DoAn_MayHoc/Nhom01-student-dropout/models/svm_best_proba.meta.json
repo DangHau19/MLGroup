@@ -1,0 +1,53 @@
+{
+  "name": "SVM(best, probability=True)",
+  "file": "svm_best_proba.joblib",
+  "feature_set": "C",
+  "train_rows": 3539,
+  "classes_": [
+    "Dropout",
+    "Enrolled",
+    "Graduate"
+  ],
+  "has_predict_proba": true,
+  "params": {
+    "kernel": "rbf",
+    "C": 10,
+    "gamma": 0.003,
+    "class_weight": "balanced"
+  },
+  "random_state": 42,
+  "search": "GridSearchCV; probability=True thêm sau tuning",
+  "search_source": "reports/svm_search_results.csv",
+  "cv": "StratifiedKFold(5, shuffle=True, seed=42) trên train (src.evaluate.get_cv)",
+  "scoring": "f1_macro",
+  "cv_result": {
+    "model": "SVM(best, probability=True)",
+    "feature_set": "C",
+    "f1_macro_mean": 0.7213,
+    "f1_macro_std": 0.0113,
+    "balanced_accuracy_mean": 0.7294,
+    "balanced_accuracy_std": 0.0114,
+    "accuracy_mean": 0.7601,
+    "accuracy_std": 0.0104,
+    "recall_dropout_mean": 0.7273,
+    "recall_dropout_std": 0.0227,
+    "f1_enrolled_mean": 0.5398,
+    "f1_enrolled_std": 0.0228,
+    "train_f1_macro_mean": 0.7691,
+    "fit_time_mean": 4.0514
+  },
+  "pipeline": "prep(CurricularFeatures -> ColumnTransformer: OneHot+StandardScaler) -> clf",
+  "scaling_inside_pipeline": true,
+  "data_file_sha256": "edc197d1381f25414a3757ab9bbae5f1f6d21aa6a964dbe98a148c15f3d63036",
+  "versions": {
+    "python": "3.12.10",
+    "scikit_learn": "1.8.0",
+    "numpy": "2.4.4",
+    "pandas": "3.0.2",
+    "scipy": "1.17.1",
+    "joblib": "1.5.3"
+  },
+  "created": "2026-11-15",
+  "command": ".\\.venv\\Scripts\\python.exe -X utf8 scripts/sv4_rebuild_models.py",
+  "load": "joblib.load('models/svm_best_proba.joblib')  # cần cùng phiên bản scikit-learn; nếu lỗi, dựng lại bằng src.models.proba"
+}
