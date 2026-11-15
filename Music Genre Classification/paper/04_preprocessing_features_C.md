@@ -1,7 +1,7 @@
 # 4. Preprocessing & Feature Extraction
 
 **Phần C — Phan Lê Minh Huy, MSSV: 3124411111.** 
-Nội dung trình bày quy trình tiền xử lý dữ liệu và xây dựng đặc trưng phục vụ bài toán phân loại thể loại nhạc (Music Genre Classification). Các phương pháp được triển khai trong `code/features.py`, `code/artist_target_encoder_C.py`, `code/02_ablation_target_C.py` và `code/02_ablation_foldsafe_C.py`. Notebook `code/02_features_C.ipynb` được sử dụng để kiểm tra dữ liệu đầu ra, tổng hợp bảng kết quả và trực quan hóa quá trình so sánh các phiên bản đặc trưng.
+Nội dung trình bày quy trình tiền xử lý dữ liệu và xây dựng đặc trưng phục vụ bài toán phân loại thể loại nhạc (Music Genre Classification). Quy trình chính thức được triển khai trong `code/features.py`, `code/artist_target_encoder_C.py` và `code/02_ablation_foldsafe_C.py`; `code/02_ablation_target_C.py` là lệnh tương thích, chuyển tiếp tới runner fold-safe. Notebook `code/02_features_C.ipynb` kiểm tra dữ liệu đầu ra, chạy ablation fold-safe và trực quan hóa các phiên bản đặc trưng.
 
 Toàn bộ quá trình sử dụng dữ liệu do cuộc thi Kaggle cung cấp, không bổ sung dữ liệu nghệ sĩ, tên bài hát hoặc nhãn thể loại từ các nguồn bên ngoài. Kết quả được đánh giá bằng Stratified 5-Fold Cross-Validation với seed 42, sử dụng Accuracy làm tiêu chí chính và Macro-F1 làm tiêu chí bổ sung.
 
@@ -141,7 +141,7 @@ Với từng inner fold, encoder chỉ học thống kê nhãn từ inner traini
 
 Đối với outer validation và test, một encoder khác được fit trên toàn bộ outer training fold rồi thực hiện phép biến đổi tương ứng. Nhờ đó, mô hình không sử dụng trực tiếp nhãn của outer validation trong quá trình xây dựng đặc trưng Target Encoding.
 
-Quy trình được triển khai trong `code/artist_target_encoder_C.py`, `code/02_ablation_target_C.py` và `code/02_ablation_foldsafe_C.py`. Các kết quả xác suất OOF và test được lưu để phục vụ việc đánh giá và kết hợp mô hình của những thành viên phụ trách các giai đoạn tiếp theo.
+Quy trình chính thức được triển khai trong `code/artist_target_encoder_C.py` và `code/02_ablation_foldsafe_C.py`. `ArtistTargetEncoder.fit_transform` tạo inner OOF cho dữ liệu train, còn `transform` dùng mapping đã fit trên outer train. `common.cross_validate_model` giữ nguyên DataFrame và chọn hàng bằng `.iloc`, nên encoder dùng được trong sklearn `Pipeline` qua CV chung. Ablation đầy đủ vẫn dùng runner fold-safe để fit các bước xây đặc trưng/điền median trong từng outer fold. Lệnh `code/02_ablation_target_C.py` chuyển tiếp tới runner này để không còn chạy luồng tiền xử lý cũ.
 
 ## 4.5. Thiết lập thực nghiệm và Ablation Study
 
@@ -157,20 +157,20 @@ Mã nguồn đánh giá được đặt tại `code/02_ablation_foldsafe_C.py`, 
 
 | Cấu hình | CV Accuracy | Độ lệch chuẩn | Macro-F1 |
 |---|---:|---:|---:|
-| v0 | 0.538344 | 0.005567 | 0.572662 |
-| v1 | 0.559808 | 0.001722 | 0.606438 |
-| v2 | 0.558072 | 0.003065 | 0.607497 |
-| **v2 + Artist Target Encoding** | **0.642053** | **0.002693** | **0.693766** |
+| v0 | 0.536954 | 0.005811 | 0.572361 |
+| v1 | 0.559114 | 0.006972 | 0.608375 |
+| v2 | 0.559044 | 0.003184 | 0.608798 |
+| **v2 + Artist Target Encoding** | **0.641081** | **0.005267** | **0.692182** |
 
 *Độ lệch chuẩn được tính từ accuracy trên năm folds. Số liệu phản ánh lần chạy thử nghiệm đã hoàn thành trên môi trường Python của thành viên phụ trách phần C.*
 
-Kết quả cho thấy v1 cải thiện accuracy từ 0,5383 lên 0,5598 so với v0, tương ứng mức tăng khoảng 2,15 điểm phần trăm. Điều này chứng minh giá trị thực nghiệm của các phép chuẩn hóa thời lượng, bổ sung cờ thiếu và xây dựng đặc trưng tần suất.
+Kết quả cho thấy v1 cải thiện accuracy từ 0,5370 lên 0,5591 so với v0, tương ứng mức tăng khoảng 2,22 điểm phần trăm. Điều này cho thấy các phép chuẩn hóa thời lượng, bổ sung cờ thiếu và xây dựng đặc trưng tần suất có ích trong lần chạy này.
 
-Phiên bản v2 đạt accuracy 0,5581, thấp hơn v1 khoảng 0,17 điểm phần trăm. Trong khi đó, Macro-F1 tăng nhẹ từ 0,6064 lên 0,6075. Như vậy, các phép biến đổi phi tuyến và tương tác được bổ sung chưa giúp cải thiện accuracy của HistGradientBoosting khi sử dụng riêng lẻ.
+Phiên bản v2 đạt accuracy 0,5590, gần như bằng v1 (thấp hơn khoảng 0,01 điểm phần trăm). Macro-F1 tăng nhẹ từ 0,6084 lên 0,6088. Như vậy, các phép biến đổi phi tuyến và tương tác được bổ sung chưa tạo cải thiện accuracy đáng kể khi sử dụng riêng lẻ.
 
 Một nguyên nhân có thể là HistGradientBoosting đã có khả năng học các quan hệ phi tuyến từ đặc trưng gốc, khiến lợi ích của những biến tương tác thủ công bị hạn chế. Đây là cách diễn giải từ kết quả thực nghiệm, chưa phải kết luận nhân quả được chứng minh bằng phân tích importance riêng.
 
-Khi kết hợp v2 với Artist Target Encoding, accuracy tăng lên **0,642053 (64,21%)**, Macro-F1 đạt **0,693766**. So với v1, cấu hình kết hợp cải thiện khoảng **8,22 điểm phần trăm accuracy**. So với v2, mức cải thiện khoảng 8,40 điểm phần trăm.
+Khi kết hợp v2 với Artist Target Encoding, accuracy đạt **0,641081 (64,11%)**, Macro-F1 đạt **0,692182**. So với v1, cấu hình kết hợp cải thiện khoảng **8,20 điểm phần trăm accuracy**. So với v2, mức cải thiện cũng khoảng 8,20 điểm phần trăm.
 
 Kết quả cho thấy việc mã hóa phân phối thể loại theo nghệ sĩ là hướng khai thác đặc trưng hiệu quả trong dữ liệu hiện tại. Tuy nhiên, bảng ablation chưa có cấu hình v1 + Target Encoding, do đó chưa thể tách riêng hoàn toàn tác động của Target Encoding và những phép biến đổi bổ sung trong v2 khi kết hợp.
 
@@ -202,8 +202,8 @@ Ngoài ra, việc sử dụng Accuracy làm tiêu chí chính có thể khiến 
 
 Phần C đã xây dựng và kiểm chứng ba phiên bản đặc trưng v0, v1, v2, đồng thời phát triển Artist Target Encoding có làm mịn và nested out-of-fold encoding. Quy trình đánh giá được thực hiện bằng Stratified 5-Fold CV trên tập dữ liệu của cuộc thi, sử dụng mô hình HistGradientBoosting với cấu hình cố định.
 
-Trong các thử nghiệm đã thực hiện, cấu hình **v2 + Artist Target Encoding đạt kết quả cao nhất với CV Accuracy 0,642053 và Macro-F1 0,693766**. Kết quả này cho thấy thông tin về nghệ sĩ có giá trị dự báo đáng kể đối với bài toán phân loại thể loại nhạc trong bộ dữ liệu hiện tại.
+Trong lần chạy fold-safe mới nhất, cấu hình **v2 + Artist Target Encoding đạt CV Accuracy 0,641081 và Macro-F1 0,692182**. Kết quả này cho thấy thông tin về nghệ sĩ có giá trị dự báo đáng kể đối với bài toán phân loại thể loại nhạc trong bộ dữ liệu hiện tại.
 
-Các sản phẩm bàn giao bao gồm `code/features.py` với phiên bản v2, `code/artist_target_encoder_C.py`, `code/02_ablation_target_C.py`, `code/02_ablation_foldsafe_C.py`, notebook `code/02_features_C.ipynb`, bảng kết quả `evidence/cv_logs/ablation_foldsafe_C.csv` và các tệp xác suất OOF/test phục vụ đánh giá mô hình.
+Các sản phẩm bàn giao bao gồm `code/features.py` với phiên bản v2, `code/artist_target_encoder_C.py`, script chính thức `code/02_ablation_foldsafe_C.py`, notebook `code/02_features_C.ipynb`, bảng kết quả `evidence/cv_logs/ablation_foldsafe_C.csv` và các tệp xác suất OOF/test phục vụ đánh giá mô hình. `code/02_ablation_target_C.py` được giữ làm tên lệnh tương thích và chuyển tiếp tới runner fold-safe.
 
 Kết quả và đặc trưng của phần C là cơ sở để các thành viên tiếp tục thử nghiệm LightGBM, XGBoost, CatBoost và các phương pháp ensemble. Các giới hạn về nguồn đơn vị thời lượng, nghệ sĩ chưa biết và việc sử dụng thống kê không nhãn trên dữ liệu kết hợp cần được ghi nhận khi tổng hợp kết luận chung của nhóm.

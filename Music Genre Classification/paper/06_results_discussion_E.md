@@ -25,7 +25,7 @@ Bảng 3 (sinh tự động bởi script, trùng `paper/table_03_cv_results_E.md
 | ExtraTrees (đơn) | 0.6164 | 0.0050 | 0.6571 | 1.0439 |
 | **Ensemble: stacking HistGradientBoosting nông** | **0.6626** | 0.0047 | 0.7100 | 0.8891 |
 | Ensemble: trọng số tối ưu accuracy (leo đồi) | 0.6581 | 0.0038 | 0.7070 | 0.8899 |
-| Ensemble: stacking hồi quy logistic | 0.6578 | 0.0011 | 0.7085 | 0.8882 |
+| Ensemble: stacking hồi quy logistic | 0.6578 | 0.0012 | 0.7081 | 0.8882 |
 | Ensemble: trung bình đều 3 boosting | 0.6575 | 0.0035 | 0.7083 | 0.8911 |
 | Ensemble: chọn tham lam có lặp | 0.6571 | 0.0038 | 0.7062 | 0.8903 |
 | Ensemble: trọng số tối ưu log-loss | 0.6568 | 0.0051 | 0.7065 | 0.8862 |
@@ -34,13 +34,13 @@ Bảng 3 (sinh tự động bởi script, trùng `paper/table_03_cv_results_E.md
 
 *Chú thích: accuracy là trung bình 5 fold; Std là độ lệch chuẩn giữa 5 fold (không phải khoảng tin cậy). Điểm ensemble là nested. Mốc baseline của A (HistGB v1) là 0,5585.*
 
-Ensemble được chốt là **stacking HistGradientBoosting**, nested accuracy **0,6626 ± 0,0047**, macro F1 0,7100. So với mô hình đơn tốt nhất của D (CatBoost, 0,6548), mức tăng là **+0,78 điểm phần trăm** (tính trên toàn bộ 14.396 OOF: 0,6626 so với 0,6548). So với mốc 0,5585 của A, tổng mức tăng là +10,41 điểm phần trăm; phần lớn đến từ đặc trưng nghệ sĩ và mô hình boosting (mục 4, 5), không phải từ ensemble. Hình 7 tóm tắt tiến trình này.
+Ensemble được chốt là **stacking HistGradientBoosting**, nested accuracy **0,6626 ± 0,0047**, macro F1 0,7100. So với mô hình đơn tốt nhất của D (CatBoost, 0,6548), mức tăng là **+0,78 điểm phần trăm** (0,6626 so với 0,6548 trên 14.396 dòng OOF). So với mốc 0,5585 của A, tổng mức tăng là +10,41 điểm phần trăm; phần lớn đến từ đặc trưng nghệ sĩ và mô hình boosting (mục 4, 5), không phải từ ensemble. Hình 7 tóm tắt tiến trình này.
 
 ![Hình 6. So sánh chiến lược ensemble và mô hình đơn](figures/E_06_ensemble_comparison.png)
 
 ![Hình 7. Accuracy CV qua các giai đoạn](figures/E_07_cv_progress.png)
 
-**Mức tăng có đáng tin không?** Cải thiện +0,78 điểm phần trăm có khoảng tin cậy bootstrap 95% theo dòng là [+0,33; +1,24]; kiểm định McNemar: 611 dòng chỉ ensemble đúng so với 498 dòng chỉ CatBoost đúng (p = 0,0008); ensemble tốt hơn ở cả 5 fold (chênh +0,49 đến +1,25 điểm phần trăm). So với các ensemble đơn giản hơn, stacking HistGB hơn trung bình đều 3 boosting +0,51 điểm (CI [+0,06; +0,97]; 5/5 fold), hơn trọng số tối ưu accuracy +0,45 điểm (CI [0,00; +0,90], chạm 0; 5/5 fold) và hơn stacking logistic +0,48 điểm (CI [+0,04; +0,94]; chỉ 4/5 fold). Cần đọc kỹ ba hạn chế: (i) các dòng cùng nghệ sĩ không độc lập nên khoảng tin cậy theo dòng có thể quá hẹp; (ii) chúng tôi chọn 1 trong 8 chiến lược theo cùng nested accuracy nên điểm của chiến lược thắng có thể còn lạc quan nhẹ; (iii) CatBoost cũng đã được D chọn trên cùng các fold. Kết luận thận trọng: **ensemble hơn mô hình đơn khoảng 0,3–0,8 điểm phần trăm**, nhỏ nhưng nhất quán giữa các fold; khoảng 0,3 điểm là mức của ensemble đơn giản (trung bình đều 3 boosting), phần còn lại phụ thuộc vào meta-learner.
+**Mức tăng có đáng tin không?** Cải thiện +0,78 điểm phần trăm có khoảng tin cậy bootstrap 95% theo dòng là [+0,33; +1,24]; kiểm định McNemar: 611 dòng chỉ ensemble đúng so với 498 dòng chỉ CatBoost đúng (p = 0,00076). Ensemble tốt hơn CatBoost ở cả 5 fold, chênh +0,49 đến +1,25 điểm phần trăm. So với các ensemble đơn giản hơn, stacking HistGB hơn trung bình đều 3 boosting +0,51 điểm (CI [+0,06; +0,97], tốt hơn cả 5 fold), hơn stacking logistic +0,49 điểm (CI [+0,06; +0,94], tốt hơn 4/5 fold), và hơn trọng số tối ưu accuracy +0,45 điểm (CI [0; +0,90], tốt hơn cả 5 fold). Cần đọc kỹ ba hạn chế: (i) các dòng cùng nghệ sĩ không độc lập nên khoảng tin cậy theo dòng có thể quá hẹp; (ii) chúng tôi chọn 1 trong 8 chiến lược theo cùng nested accuracy nên điểm của chiến lược thắng có thể còn lạc quan nhẹ; (iii) CatBoost cũng đã được D chọn trên cùng các fold. Kết luận thận trọng: mức tăng so với mô hình đơn dưới 1 điểm phần trăm và có thể còn lạc quan do lựa chọn mô hình.
 
 **Ba quan sát về các chiến lược.**
 1. *Trung bình đều không phải lúc nào cũng tốt.* Trung bình đều cả 7 mô hình (0,6503) thấp hơn CatBoost đơn (0,6548), trùng với cảnh báo trong phân công: ba mô hình yếu hơn (MLP, SVM, ExtraTrees) kéo điểm xuống khi có trọng số bằng nhau. Chỉ lấy 3 boosting thì tăng lên 0,6575.
@@ -71,13 +71,13 @@ Phân tích dưới đây dùng nested OOF của ensemble chốt (Bảng 4, Hìn
 
 ![Hình 5. F1 theo từng thể loại](figures/E_05_f1_per_class.png)
 
-**Lớp ít mẫu không bị bỏ qua.** Câu hỏi đặt ra trong phân công là các lớp nhỏ (3 và 4) có bị mô hình bỏ qua không. Kết quả cho thấy ngược lại: lớp 3 (322 mẫu) có F1 = 0,852 với recall 0,832; lớp 4 (310 mẫu) có F1 = 0,838 với recall 0,826. Hai lớp này nằm trong nhóm dễ nhận nhất, cùng với lớp 7 (F1 = 0,954). Lỗi chính của chúng là nhầm sang lớp 0: 11,5% mẫu lớp 3 và 11,6% mẫu lớp 4 bị dự đoán là lớp 0.
+**Lớp ít mẫu không bị bỏ qua.** Câu hỏi đặt ra trong phân công là các lớp nhỏ (3 và 4) có bị mô hình bỏ qua không. Kết quả cho thấy ngược lại: lớp 3 (322 mẫu) có F1 = 0,852 với recall 0,832; lớp 4 (310 mẫu) có F1 = 0,838 với recall 0,826. Hai lớp này nằm trong nhóm dễ nhận nhất, cùng với lớp 7 (F1 = 0,954). Ma trận nhầm lẫn hiện tại cho thấy lớp 3 bị nhầm sang lớp 0 ở 11,5% (37/322) và lớp 4 sang lớp 0 ở 11,6% (36/310).
 
-**Điểm yếu nằm ở các lớp lớn và gần nhau.** F1 thấp nhất ở lớp 1 (0,307; recall chỉ 0,231) và lớp 6 (0,542), rồi lớp 10 (0,659). Các cặp nhầm nhiều nhất (đúng → dự đoán) là: 6 → 10 (482 mẫu, 23,3% lớp 6), 10 → 6 (408, 10,3% lớp 10), 8 → 10 (388, 26,2% lớp 8), 1 → 10 (352, 32,1% lớp 1) và 1 → 6 (337, 30,7% lớp 1). Lớp 10 là lớp lớn nhất (27,5% dữ liệu) và đóng vai trò "lớp hút": được dự đoán cho 31,0% mẫu, nhiều hơn tỉ lệ thật; ngược lại lớp 1 chỉ được dự đoán cho 3,9% mẫu trong khi chiếm 7,6% dữ liệu. Vì metric là accuracy, mô hình có xu hướng gán nhãn của lớp lớn khi không chắc chắn, đúng như đã dự báo ở phần EDA.
+**Điểm yếu nằm ở các lớp lớn và gần nhau.** F1 thấp nhất ở lớp 1 (0,307; recall chỉ 0,231), rồi lớp 6 (0,542) và lớp 10 (0,659). Các cặp nhầm nhiều nhất (đúng → dự đoán) là: 6 → 10 (482 mẫu, 23,3% lớp 6), 10 → 6 (408, 10,3% lớp 10), 8 → 10 (388, 26,2% lớp 8), 1 → 10 (352, 32,1% lớp 1) và 1 → 6 (337, 30,7% lớp 1). Lớp 10 là lớp lớn nhất (27,5% dữ liệu) và được dự đoán cho 31,0% mẫu, nhiều hơn tỉ lệ thật; ngược lại lớp 1 chỉ được dự đoán cho 3,9% mẫu trong khi chiếm 7,6% dữ liệu. Điều này phù hợp với mục tiêu accuracy và mức mất cân bằng lớp.
 
-**Một giả thuyết và kiểm chứng của nó.** Theo bảng theo lớp trong notebook EDA của B (mục 3), cờ thời lượng thuộc thang phút (duration < 30) có ở **100%** mẫu train của các lớp 0, 3, 4, 7, ở 0% mẫu của các lớp 1, 2, 5, 6, 8, và ở 16,8% (lớp 9) và 3,6% (lớp 10). Bốn lớp 0, 3, 4, 7 cũng là các lớp có F1 cao (0,811; 0,852; 0,838; 0,954), và phần lớn lỗi của chúng nằm ngay trong nhóm này (lớp 3 nhầm sang lớp 0 ở 11,5% mẫu, lớp 4 nhầm sang lớp 0 ở 11,6%, lớp 0 nhầm sang lớp 3 và 4 ở 4,6% và 4,4%). Điều này phù hợp với việc cờ đơn vị là một đặc trưng rất mạnh, trong đó mô hình dễ tách nhóm {0, 3, 4, 7} khỏi phần còn lại rồi chỉ còn phân biệt các lớp trong nhóm. Đây là một hiện tượng của nguồn dữ liệu chứ không phải đặc tính âm nhạc. Giả thuyết này được kiểm chứng ở mục 6.6: khi bỏ cột duration và huấn luyện lại, F1 của lớp 0 giảm từ 0,813 xuống 0,429 và F1 các lớp 3, 4, 7 giảm 11 đến 15 điểm, trong khi các lớp 1, 5, 8 giảm dưới 1 điểm.
+**Một giả thuyết và kiểm chứng của nó.** Theo bảng theo lớp trong notebook EDA của B (mục 3), cờ thời lượng thuộc thang phút có ở 100% mẫu train của các lớp 0, 3, 4, 7, ở 0% mẫu của các lớp 1, 2, 5, 6, 8, và ở 16,8% (lớp 9) và 3,6% (lớp 10). F1 của các lớp 0, 3, 4, 7 trong nested ensemble vẫn cao (0,811; 0,852; 0,838; 0,954). Phép ablation riêng của HistGB (mục 6.6) cho thấy khi thay duration bằng hằng số, F1 lớp 0 giảm từ 0,816 xuống 0,417; lớp 3 từ 0,854 xuống 0,751; lớp 4 từ 0,821 xuống 0,666; lớp 7 từ 0,949 xuống 0,825. Đây là kết quả của phép chạy HistGB riêng, không phải dự đoán nested ensemble trong bảng này. Kết quả ủng hộ giả thuyết cờ đơn vị giúp phân biệt nhóm lớp, nhưng vẫn là hiện tượng của nguồn dữ liệu chứ không phải đặc tính âm nhạc.
 
-**Ensemble cải thiện ở đâu.** So với CatBoost đơn, F1 tăng rõ nhất ở lớp 1 (+0,052) và lớp 6 (+0,025), tức đúng ở những lớp khó và hay bị nhầm; giảm nhẹ ở lớp 0 (−0,009) và lớp 8 (−0,011). Phần lớn mức tăng accuracy tổng thể đến từ các lớp lớn.
+**Ensemble cải thiện ở đâu.** So với CatBoost đơn, F1 tăng rõ nhất ở lớp 1 (+0,053) và lớp 6 (+0,024); giảm nhẹ ở lớp 0 (−0,009) và lớp 8 (−0,010).
 
 ## 6.4. Mỗi mô hình nền đóng góp bao nhiêu
 
@@ -93,13 +93,13 @@ Phân tích dưới đây dùng nested OOF của ensemble chốt (Bảng 4, Hìn
 | XGBoost | 0.6639 | +0.0013 |
 | HistGB | 0.6655 | +0.0029 |
 
-*Bảng 5. Ensemble đầy đủ: 0,6626. Chênh lệch dưới khoảng 0,3 điểm phần trăm nằm trong mức dao động giữa các fold (std khoảng 0,5 điểm), nên chỉ nên đọc xu hướng.*
+*Bảng 5. Ensemble đầy đủ: 0,6626. Chênh lệch khi bỏ từng mô hình dao động từ −0,73 đến +0,29 điểm phần trăm; đọc như phân tích độ nhạy, không phải kiểm định ý nghĩa thống kê.*
 
-Kết quả đáng chú ý là **ExtraTrees**: là mô hình đơn yếu nhất (0,6164) nhưng loại nó làm điểm giảm nhiều nhất (−0,73 điểm). Lý do hợp lý là đa dạng: ExtraTrees và các mô hình không phải boosting bất đồng với nhau nhiều hơn so với các boosting (tỉ lệ bất đồng dự đoán 14–21% khi có mặt một trong ExtraTrees/SVM/MLP, so với 7,6–10,5% giữa ba mô hình boosting; thấp nhất là LightGBM–XGBoost 7,6%, cao nhất là HistGB–MLP 20,6%). Ngược lại bỏ HistGB (+0,29 điểm) hoặc XGBoost (+0,13) không làm giảm điểm, vì chúng cùng họ boosting và rất giống CatBoost, LightGBM; các chênh này nằm trong mức dao động nên không nên đọc là "bỏ đi thì tốt hơn". Trần lý thuyết cũng cho thấy còn dư địa: ít nhất một trong 7 mô hình dự đoán đúng cho 76,8% mẫu, so với 66,3% của ensemble.
+Kết quả đáng chú ý là **ExtraTrees**: là mô hình đơn yếu nhất (0,6164) nhưng loại nó làm điểm giảm nhiều nhất (−0,73 điểm), phù hợp với vai trò bổ sung dự đoán khác biệt. Tỉ lệ bất đồng giữa các mô hình boosting là 7,6–13,9%; giữa HistGB và MLP là 20,6%. Loại XGBoost hoặc HistGB làm điểm tăng lần lượt 0,13 và 0,29 điểm trên phép thử này; điều đó gợi ý có thể giảm độ phức tạp, nhưng chưa đủ để kết luận cải thiện tổng quát hóa. Ít nhất một trong 7 mô hình đúng cho 76,8% mẫu, so với 66,3% của ensemble.
 
 ## 6.5. Kiểm tra độ bền và hạn chế
 
-*Phân phối xác suất test khác OOF.* Xác suất test mà D bàn giao là trung bình của 5 mô hình outer, trong khi mỗi dòng OOF chỉ do 1 mô hình dự đoán. Do trung bình làm mềm xác suất, độ tự tin trung bình (xác suất lớn nhất) trên test thấp hơn trên OOF khoảng 0,8 đến 2,2 điểm phần trăm tuỳ mô hình (ví dụ CatBoost 0,650 → 0,641; HistGB 0,683 → 0,661). Do meta-learner học trên OOF, E kiểm tra xem lệch này có làm đổi kết quả nhiều không: tỉ lệ bất đồng giữa các ensemble trên test (ví dụ stacking HistGB và trung bình 3 boosting: 9,8%) gần với trên OOF (10,6%). Không thấy dấu hiệu lệch mạnh, nhưng đây là điểm cần lưu ý.
+*Phân phối xác suất test khác OOF.* Xác suất test mà D bàn giao là trung bình của 5 mô hình outer, trong khi mỗi dòng OOF chỉ do 1 mô hình dự đoán. Độ tự tin trung bình (xác suất lớn nhất) trên test thấp hơn trên OOF khoảng 0,77–2,20 điểm phần trăm tuỳ mô hình (ví dụ CatBoost 0,650 → 0,641; HistGB 0,683 → 0,661). Tỉ lệ bất đồng giữa stacking HistGB và trung bình 3 boosting là 10,59% trên OOF và 9,83% trên test. Đây là kiểm tra mô tả, không loại trừ mọi khác biệt phân phối.
 
 *Các hạn chế khác.*
 1. Điểm nested của ensemble học trên OOF mà mỗi OOF lại do mô hình nền được huấn luyện trên dữ liệu bao gồm cả fold dùng để chấm. Đây là cách stacking thường làm và rò rỉ thường nhỏ, nhưng với meta-learner linh hoạt (HistGB) có thể làm điểm hơi cao; muốn loại bỏ hẳn cần huấn luyện lại mô hình nền trong từng vòng, việc ngoài phạm vi phần E.
@@ -110,25 +110,25 @@ Kết quả đáng chú ý là **ExtraTrees**: là mô hình đơn yếu nhất 
 
 ## 6.6. Cột nào quan trọng nhất (permutation importance và ablation)
 
-**Cách đo.** E chạy lại cấu hình HistGradientBoosting + đặc trưng v2 + target encoding của D trên đúng 5 fold chung (accuracy 0,6415, khớp với `histgb_v2_te_selected_D_cv.json`), rồi đo trên **cột gốc** (một cột gốc có thể sinh nhiều đặc trưng, ví dụ duration → cờ đơn vị + giá trị ms). Hai phép đo bổ sung cho nhau:
+**Cách đo và giới hạn tái lập.** Lượt chạy được lưu trong `evidence/feature_importance_E/summary_importance_E.json` dùng HistGradientBoosting (max_iter=150, learning_rate=0,08), v2 + TE và đúng 5 fold chung. Lượt này đạt accuracy **0,6456**, không khớp CV đã lưu của D (**0,6415**; chênh 0,41 điểm phần trăm), trái với mô tả cũ. Môi trường hiện tại cũng khác manifest D (NumPy/pandas/scikit-learn 2.4.2/3.0.2/1.8.0 so với 2.5.4/3.1.1/1.9.1); nguyên nhân chênh lệch chưa được cô lập, nên không xem phép đo feature importance là tái lập chính xác CV của D. Các kết quả dưới đây là một lượt chạy riêng, được so sánh nội bộ với baseline 0,6456 của chính lượt đó. Đo trên **cột gốc** (một cột gốc có thể sinh nhiều đặc trưng, ví dụ duration → cờ đơn vị + giá trị ms):
 - *Permutation*: xáo trộn một cột trên fold validation, không huấn luyện lại, 3 lần xáo mỗi fold; đo accuracy giảm bao nhiêu.
 - *Ablation*: thay cột bằng hằng số ở cả train và validation rồi huấn luyện lại 5 fold; đo accuracy và F1 theo lớp.
 
 **Kết quả (Hình 8).**
-- `Artist Name` quan trọng nhất: xáo trộn làm accuracy giảm 25,8 điểm; bỏ hẳn (ablation) còn 0,5412, giảm 10,0 điểm, ở cả 5/5 fold. Bỏ cả Artist và Track còn 0,5375.
-- `duration_in min/ms` đứng thứ hai: permutation giảm 12,5 điểm, ablation giảm 4,0 điểm (0,6012), 5/5 fold.
-- Nhóm tiếp theo nhỏ hơn nhiều: acousticness (−4,1), instrumentalness (−4,0), energy (−3,7), Popularity (−3,0) theo permutation. Bỏ nhóm cột hay thiếu (Popularity, key, instrumentalness) giảm 2,3 điểm.
-- `tempo`, `key`, `mode`, `time_signature`, `liveness`, `loudness` gần như không đóng góp (dưới 0,4 điểm theo permutation; bỏ đi đôi khi còn tăng nhẹ accuracy, trong sai số).
+- `Artist Name` quan trọng nhất: permutation làm accuracy giảm 26,21 điểm; ablation còn 0,5363 (giảm 10,93 điểm); bỏ cả Artist và Track còn 0,5358 (giảm 10,98 điểm). Cả hai ablation kém baseline ở 5/5 fold.
+- `duration_in min/ms` đứng thứ hai: permutation giảm 12,76 điểm; ablation còn 0,6003 (giảm 4,53 điểm), kém baseline ở 5/5 fold.
+- Nhóm tiếp theo theo permutation gồm instrumentalness (4,50 điểm), acousticness (4,40), energy (4,08) và Popularity (3,37). Ablation nhóm Popularity, key và instrumentalness giảm 3,11 điểm.
+- Các cột tempo, key, time_signature và mode có mức giảm permutation nhỏ (xấp xỉ −0,16 đến +0,22 điểm); kết quả gần 0 nên không nên diễn giải thứ hạng nhỏ giữa chúng.
 
-**Giải thích khác biệt giữa hai phép đo.** Permutation luôn lớn hơn ablation vì khi một cột bị xáo trộn, mô hình vẫn dựa vào nó nhưng nhận giá trị sai; còn khi bỏ cột và huấn luyện lại, các cột tương quan (ví dụ energy với loudness và acousticness) bù lại phần nào. Vì vậy ablation là thước đo gần với "mất bao nhiêu nếu không có cột này" hơn; thứ hạng của hai phép đo giống nhau ở nhóm đầu.
+**Giải thích khác biệt giữa hai phép đo.** Với Artist và duration, permutation giảm accuracy lớn hơn ablation vì mô hình nhận giá trị bị xáo sai, còn khi thay bằng hằng số và huấn luyện lại, mô hình có thể thích nghi. Các cột tương quan cũng có thể bù một phần. Vì vậy hai phép đo trả lời những câu hỏi khác nhau; permutation không phải ước lượng trực tiếp mức giảm khi bỏ hẳn một cột.
 
-**Kiểm chứng giả thuyết ở mục 6.3 (Hình 9).** Trong dữ liệu train, cờ thang phút của duration là 100% ở các lớp 0, 3, 4, 7, 0% ở các lớp 1, 2, 5, 6, 8, 16,8% ở lớp 9 và 3,6% ở lớp 10. Khi bỏ cột duration, F1 giảm mạnh đúng ở các lớp này: lớp 0 giảm 38,4 điểm (0,813 → 0,429), lớp 4 giảm 14,6, lớp 7 giảm 12,3, lớp 3 giảm 11,1; trong khi các lớp 1, 5, 8 giảm dưới 1 điểm. Như vậy giả thuyết được ủng hộ: phần lớn giá trị của duration đến từ việc đơn vị lưu trữ tách được nhóm {0, 3, 4, 7}, một đặc điểm của dữ liệu chứ không phải đặc tính âm nhạc. Ngược lại, bỏ Artist Name làm giảm F1 ở mọi lớp (2,3 đến 19,2 điểm), mạnh nhất ở các lớp 1, 2, 4, 6.
+**Kiểm chứng giả thuyết ở mục 6.3 (Hình 9).** Trong ablation HistGB, bỏ duration làm F1 lớp 0 giảm 39,87 điểm (0,816 → 0,417); lớp 3 giảm 10,26 điểm (0,854 → 0,751); lớp 4 giảm 15,54 điểm (0,821 → 0,666); lớp 7 giảm 12,39 điểm (0,949 → 0,825). Các lớp 1, 5, 8 cũng giảm lần lượt khoảng 2,98; 1,56; 1,46 điểm, không phải dưới 1 điểm như bản trước. Bỏ Artist Name làm giảm F1 ở cả 11 lớp; mức giảm lớn nhất ở lớp 2 (21,62 điểm), tiếp đến lớp 1 (18,88) và lớp 6 (15,71). Kết quả ủng hộ việc duration và artist chứa tín hiệu mạnh trong dữ liệu này, nhưng không chứng minh tính khái quát sang dữ liệu khác.
 
 **Hạn chế.** (1) Chỉ đo trên một mô hình (HistGB); thứ hạng có thể khác với CatBoost. (2) Artist Name mạnh một phần vì cùng nghệ sĩ xuất hiện ở train và validation (xem hạn chế 2 ở mục 6.5), nên kết quả này không nói được gì về nghệ sĩ mới. (3) Permutation dùng 3 lần xáo, độ lệch chuẩn khoảng 0,3 đến 0,8 điểm, nên không nên đọc thứ hạng giữa các cột có chênh lệch nhỏ hơn mức đó.
 
 ## 6.7. Điểm trên Kaggle
 
-Sau khi nhóm hoàn tất,  nộp `submissions/ensemble_E.csv` lên Kaggle (ảnh chụp: `evidence/leaderboard/20261115_my_submissions.png`). Cả ba lần nộp của nhóm đều được Kaggle đánh dấu "after deadline" (nộp muộn), nên điểm dưới đây dùng để đối chiếu với CV chứ không phải thứ hạng chính thức.
+Nhóm đã nộp `submissions/ensemble_E.csv` lên Kaggle (ảnh chụp: `evidence/leaderboard/20261115_my_submissions.jpg`). Cả ba lần nộp hiển thị "Complete (after deadline)"; trang Submissions cũng cho thấy chưa chọn bài nào trong 3 bài để đánh giá final score (0/3). Vì vậy, các điểm dưới đây dùng để đối chiếu với CV, không phải thứ hạng hoặc điểm final chính thức.
 
 | Bài nộp | CV (5 fold) | Public | Private |
 |---|---|---|---|

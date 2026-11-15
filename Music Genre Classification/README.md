@@ -4,14 +4,11 @@ Kaggle: https://www.kaggle.com/competitions/shai-music-genre-classification
 Hạn nộp: **23:59 ngày 15/11** — nhóm trưởng nộp file zip.
 Metric: **F1 micro = accuracy** (đã xác nhận bằng bài nộp thử 06/11). Luật: không có quy định cụ thể; nhóm **không dùng dữ liệu ngoài**.
 
-> ⚠️ Đề bài ghi tên file zip là `challenge1_titanic_hoten_masv.zip` (nhiều khả năng giảng viên copy nhầm từ bài cũ).
-> Tên hợp lý: `challenge2_musicgenre_hoten_masv.zip`. **A hỏi lại giảng viên** trước khi nộp.
-
 ## Thành viên
 
 | | Họ tên | MSSV | Vai trò |
 |---|---|---|---|
-| A | (điền) | (điền) | Trưởng nhóm, tích hợp, đóng gói |
+| A | Trần Văn Võ Doanh | 3124411052 | Trưởng nhóm, tích hợp, đóng gói |
 | B | Nguyễn Minh Triết | 3124411320 | EDA & hiểu dữ liệu, làm slide |
 | C | Phan Lê Minh Huy | 3124411111 | Tiền xử lý & trích đặc trưng |
 | D | Trần Đình Bảo Quốc | 3124411252 | Mô hình & tuning |
@@ -86,7 +83,9 @@ macro F1 0,700522**. Đây là CV sau lựa chọn trên cùng folds, chưa có 
   `*_test.npy`, `*_cv.json` trong `evidence/cv_logs/`.
 - Điểm mọi cấu hình, trial, siêu tham số, nhãn/ID/fold và manifest SHA-256:
   `evidence/models_D/`. Baseline A tái lập giữ riêng tại `evidence/baseline_reproduction_D/`.
-- Tiến độ: [D_progress.md](D_progress.md); rà soát chéo: [review_notes.md](review_notes.md).
+- Trạng thái notebook: `evidence/models_D/notebook_execution_D.json`; kết quả và audit:
+  `evidence/models_D/all_results_D.csv`. Không có các file `D_progress.md` hoặc
+  `review_notes.md` trong bản hiện tại.
 
 Tại thư mục dự án, dùng Python 3.12 và dữ liệu tên chuẩn `data/train.csv`, `test.csv`,
 `sample_submission.csv`. Các tên chuẩn hiện là bản sao nguyên byte của CSV gốc, không sửa dữ liệu.

@@ -31,16 +31,17 @@ toàn bộ phần C. Chưa có xác nhận C đã nhận bản bàn giao EDA c�
 | v2 | 0,558072 ± 0,003065 | 0,607497 |
 | v2 + TE | 0,642053 ± 0,002693 | 0,693766 |
 
-Đây là đối chiếu đầu ra đã lưu và kiểm tra chức năng trên dữ liệu/mẫu kiểm soát,
-không phải một lượt huấn luyện lại toàn bộ ablation.
+Rà soát ban đầu đối chiếu đầu ra đã lưu và kiểm tra chức năng trên dữ liệu/mẫu
+kiểm soát. Ngày 15/11/2026, A đã chạy lại toàn bộ ablation fold-safe; kết quả mới
+được ghi trong `paper/04_preprocessing_features_C.md` và các artifact C.
 
 ### Vấn đề cần chủ phần C/A xử lý
 
 | Mã | Mức độ | Phát hiện và bằng chứng | Đề nghị xử lý | Trạng thái |
 |---|---|---|---|---|
-| B-C-01 | Quan trọng | Ô `CELL 6` của `code/02_features_C.ipynb` vẫn gọi `02_ablation_target_C.py`; ô kế tiếp đọc các log `histgb_v0_C`, `histgb_v1_C`, `histgb_v2_C`, `histgb_v2_artist_te_C`. Luồng này xây đặc trưng trên toàn train trước CV. Ô cuối chỉ đọc bảng fold-safe có sẵn, nên Run All chưa bảo đảm tái tạo bảng cuối. | C chuyển đường chạy và bảng được đọc sang `02_ablation_foldsafe_C.py`/`histgb_foldsafe_*`, rồi chạy sạch và xác nhận kết quả. | Chờ C sửa và B kiểm lại. |
-| B-C-02 | Quan trọng khi dùng luồng cũ | `features.py` điền median trên tập được truyền vào. Nếu gọi một lần trên toàn train rồi chuyển cho CV, validation đã ảnh hưởng median: mẫu kiểm soát có 30 dòng train (Popularity=20, dòng đầu thiếu), 30 dòng validation đổi từ 1 sang 99 thì giá trị điền cho dòng train đầu đổi **1 → 99**. Với wrapper fold-safe, giá trị luôn **20**. | Giữ việc fit median trong từng outer train. Dùng wrapper fold-safe cho số liệu chính thức; không lấy đường chạy legacy làm bằng chứng chống leakage. | Bản fold-safe đạt kiểm tra; notebook/đường cũ vẫn cần đồng bộ. |
-| B-C-03 | Tích hợp | Dùng trực tiếp `Pipeline(ArtistTargetEncoder, DummyClassifier)` với `common.cross_validate_model` trên mẫu kiểm soát báo `Khong tim thay cot Artist Name`: API chung chuyển DataFrame thành `.values` trước khi fit. Encoder độc lập hiện không có `fit_transform` tạo inner OOF; luồng cuối đang xử lý inner OOF thủ công và đã qua kiểm tra ở trên. | C phối hợp A thống nhất cách tích hợp giữ tên cột và tạo OOF cho phần train; hoặc ghi rõ dùng luồng thủ công fold-safe, không tuyên bố transformer hiện tại cắm trực tiếp vào API chung. | Chờ C/A xác nhận phương án. |
+| B-C-01 | Quan trọng | Ô `CELL 6` gọi luồng legacy và ô kết quả đọc log không fold-safe; Run All không tái tạo bảng cuối. | A chuyển notebook sang `02_ablation_foldsafe_C.py`, đổi bảng sang `ablation_foldsafe_C.csv`, rồi chạy sạch. | Đã xử lý bởi A; chờ B kiểm lại. |
+| B-C-02 | Quan trọng khi dùng luồng cũ | Tiền xử lý trước CV khiến validation ảnh hưởng median: mẫu kiểm soát đổi giá trị điền train **1 → 99**; wrapper fold-safe giữ **20**. | Không để lệnh cũ tiếp tục chạy luồng rò rỉ; dùng fold-safe runner cho mọi lần gọi. | Đã xử lý: `02_ablation_target_C.py` chuyển tiếp sang runner fold-safe; ablation được chạy lại. |
+| B-C-03 | Tích hợp | `common.cross_validate_model` từng chuyển DataFrame thành `.values`, và encoder chưa có `fit_transform` inner OOF. | Giữ DataFrame qua CV; triển khai `fit_transform` OOF để dùng trong sklearn `Pipeline`; kiểm thử với CV chung. | Đã xử lý bởi A; kiểm thử tích hợp PASS; chờ B kiểm lại. |
 
 Không đánh dấu toàn bộ C hoàn tất chỉ dựa vào shape/NaN hoặc notebook không có output lỗi.
 Các giới hạn về cờ đơn vị nguồn, nghệ sĩ mới và thiếu cấu hình v1+TE đã được C nêu
@@ -54,11 +55,15 @@ trong paper; B không tự bổ sung thí nghiệm hay nhận công việc của
 - OOF `ensemble_stack_hgb_E_oof.npy`, nhãn/fold của D và CV JSON cho mean accuracy
   **0,6626142854**, SD **0,0047325463**. `summary_E.json`, `final_ensemble_E.json`
   và bảng 3 cùng nguồn này. Slide dùng **0,6626 ± 0,0047**.
-- `evidence/leaderboard/kaggle_scores_E.csv` ghi CV **0,6623**, chưa khớp các nguồn
-  trên. Đề nghị E đồng bộ; B giữ nguyên tệp E và ghi nguồn trong speaker notes.
+- `evidence/leaderboard/kaggle_scores_E.csv` đã được A đồng bộ CV thành
+  **0,6626142854** theo `summary_E.json`; public **0,68849** và private **0,66388**
+  được đối chiếu với ảnh `20261115_my_submissions.jpg`.
 - Public **0,68849**, private **0,66388** và trạng thái **Complete (after deadline)**
   của `ensemble_E.csv` khớp ảnh `20261115_my_submissions.jpg`. Đây là điểm từ ảnh
   bàn giao, không phải xác nhận nộp bài môn học hoặc thứ hạng hiện tại.
+- Ảnh hiện có chưa hiển thị rõ tên tài khoản Kaggle/thời điểm tuyệt đối; `evidence/submission_log.csv`
+  cũng chưa có. Không tự suy đoán hoặc tạo log hồi tố; A/E cần bổ sung minh chứng này
+  trước khi đưa vào PDF nếu rubric yêu cầu.
 - Điểm stacking là đánh giá meta-learner trên OOF nền đã có, không phải full nested
   CV tái huấn luyện mọi mô hình nền trong từng outer meta fold. Có thiên lệch sau
   lựa chọn cấu hình; không coi CV là ước lượng độc lập cuối. Chênh với CatBoost là
@@ -69,7 +74,9 @@ trong paper; B không tự bổ sung thí nghiệm hay nhận công việc của
 - Slide cuối của B: `slide/slide_B.pptx`, giữ một trang 16:9; nguồn chi tiết và giới
   hạn nằm trong speaker notes. B tổng hợp kết quả D/E, không nhận là lượt B tự huấn luyện.
 - Bản nháp cũ được thay bằng bản này, không giữ thêm PPTX trùng trong repo.
-- Chờ C xác nhận nhận EDA, sửa B-C-01/B-C-03 và chạy lại. Sau khi có commit sửa,
-  B kiểm lại phần bị ảnh hưởng và ghi ngày/kết quả thực tế tại đây.
+- A đã xử lý B-C-01/B-C-03, chuyển tiếp lệnh legacy và chạy lại ablation ngày
+  15/11/2026. B cần kiểm lại các thay đổi và ghi kết quả rà soát.
+- A đã tiếp nhận EDA của B và chỉ đạo dùng làm căn cứ hoàn thiện C; chưa ghi nhận
+  xác nhận cá nhân từ C, nhưng điều này không còn chặn việc hoàn thiện mã theo A.
 - Chưa gửi tin nhắn nhóm hoặc sửa trạng thái thay C/D/E. Mã, số liệu và dữ liệu của
   các thành viên khác giữ nguyên trong lượt rà này.

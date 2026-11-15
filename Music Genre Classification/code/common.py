@@ -100,6 +100,12 @@ def _proba(m, X, n_classes):
     return p
 
 
+def _take_rows(X, indices):
+    if isinstance(X, pd.DataFrame):
+        return X.iloc[indices]
+    return X[indices]
+
+
 @dataclass
 class CVResult:
     name: str
@@ -122,10 +128,12 @@ class CVResult:
 
 def cross_validate_model(model, X, y, X_test=None, name: str = "model",
                          fit_params: dict | None = None, verbose: bool = True) -> CVResult:
-    """Stratified K-fold chuan cua nhom. y la nhan da ma hoa 0..K-1 (xem encode_labels)."""
-    Xa = X.values if hasattr(X, "values") else np.asarray(X)
+    """Stratified K-fold chuan cua nhom; giu DataFrame de transformer dung ten cot."""
+    Xa = X.copy() if isinstance(X, pd.DataFrame) else np.asarray(X)
     ya = np.asarray(y, dtype=int)
-    Xt = None if X_test is None else (X_test.values if hasattr(X_test, "values") else np.asarray(X_test))
+    Xt = None if X_test is None else (
+        X_test.copy() if isinstance(X_test, pd.DataFrame) else np.asarray(X_test)
+    )
     K = int(ya.max()) + 1
     fit_params = fit_params or {}
 
@@ -135,8 +143,8 @@ def cross_validate_model(model, X, y, X_test=None, name: str = "model",
     t0 = time.time()
     for k, (tr, va) in enumerate(get_folds(ya)):
         m = clone(model)
-        m.fit(Xa[tr], ya[tr], **fit_params)
-        p = _proba(m, Xa[va], K)
+        m.fit(_take_rows(Xa, tr), ya[tr], **fit_params)
+        p = _proba(m, _take_rows(Xa, va), K)
         oof[va] = p
         s = score(ya[va], p.argmax(1))
         acc.append(s[PRIMARY_METRIC]); f1s.append(s["macro_f1"])

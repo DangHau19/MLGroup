@@ -1,5 +1,5 @@
 # Bàn giao EDA từ B cho C
-Nguyễn Minh Triết · 3124411320. **Trạng thái: đã chuẩn bị, chờ C xác nhận.**
+Nguyễn Minh Triết · 3124411320. **Trạng thái: A đã tiếp nhận để chỉ đạo hoàn thiện phần C; chưa ghi nhận xác nhận cá nhân từ C.**
 Nguồn: ZIP Kaggle người dùng cung cấp; bằng chứng: `code/01_eda_B.ipynb` (bảng kiểm chứng và số liệu ở mục 8–9).
 
 | Phát hiện đo trên dữ liệu | Đề xuất để C thử trong ablation |
@@ -13,4 +13,4 @@ Nguồn: ZIP Kaggle người dùng cung cấp; bằng chứng: `code/01_eda_B.ip
 
 Spearman: energy–loudness 0.735, energy–acousticness -0.728. PCA 2D giữ 33.1% phương sai; các cặp có trộn láng giềng cao gồm 8–10, 6–10, 1–10, chỉ là dấu hiệu trên phép chiếu, chưa là lỗi mô hình.
 Đối chiếu A: độ đúng nghệ sĩ đã biết 62,31% so với mốc 62,8%; cần kiểm tra quy tắc hòa/định nghĩa trước khi kết luận nguyên nhân khác biệt. Popularity thiếu ở 333 dòng (Class 0: 12,0%); nhóm thiếu có trung vị acousticness 0,144 so với 0,0801.
-ID train/test không giao nhau; trùng dòng train bỏ Id: 0. Giữ dữ liệu gốc, không dùng Id làm feature. **C xác nhận nhận bàn giao: chưa có.**
+ID train/test không giao nhau; trùng dòng train bỏ Id: 0. Giữ dữ liệu gốc, không dùng Id làm feature. **C xác nhận nhận bàn giao: chưa có; A đã chỉ đạo dùng nội dung này làm căn cứ hoàn thiện C ngày 15/11/2026.**
