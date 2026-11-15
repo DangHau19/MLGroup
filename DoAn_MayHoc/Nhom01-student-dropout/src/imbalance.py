@@ -72,7 +72,8 @@ def build_smote_pipeline(estimator, feature_set="C", scale=True):
     """Pipeline: tiền xử lý -> SMOTE (chỉ trên fold train) -> mô hình."""
     prep = build_preprocessor(feature_set, scale=scale)
     if HAS_IMBLEARN:
-        return ImbPipeline([("prep", prep),
-                            ("smote", SMOTE(random_state=config.RANDOM_STATE)),
-                            ("clf", estimator)])
+        # imblearn không cho Pipeline lồng làm bước trung gian -> trải phẳng các bước tiền xử lý
+        prep_steps = list(prep.steps) if hasattr(prep, "steps") else [("prep", prep)]
+        return ImbPipeline(prep_steps + [("smote", SMOTE(random_state=config.RANDOM_STATE)),
+                                         ("clf", estimator)])
     return _SmotePipeline(prep=prep, clf=estimator)
