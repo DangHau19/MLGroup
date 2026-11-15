@@ -1,0 +1,42 @@
+{
+  "description": "Cấu hình ngưỡng Dropout chọn trên dự đoán OOF của TRAIN (CV 5 fold, seed 42); không dùng test.",
+  "decision_rule": "Nếu P(Dropout) >= threshold -> Dropout; ngược lại argmax trong {Enrolled, Graduate}. Xem src/threshold.py",
+  "selection_criterion": "Trong các ngưỡng có Recall Dropout >= Recall Dropout của argmax, chọn Macro-F1 OOF cao nhất; hòa chọn ngưỡng lớn hơn.",
+  "grid": [
+    0.1,
+    0.8,
+    0.01
+  ],
+  "models": {
+    "gb": {
+      "threshold": 0.45,
+      "positive_class": "Dropout",
+      "classes_order": [
+        "Dropout",
+        "Enrolled",
+        "Graduate"
+      ],
+      "feature_set": "C",
+      "expects": "pipeline fit trên TOÀN train, có predict_proba"
+    },
+    "svm": {
+      "threshold": 0.44,
+      "positive_class": "Dropout",
+      "classes_order": [
+        "Dropout",
+        "Enrolled",
+        "Graduate"
+      ],
+      "feature_set": "C",
+      "expects": "pipeline fit trên TOÀN train, có predict_proba"
+    }
+  },
+  "created": "2026-11-15",
+  "versions": {
+    "python": "3.12.10",
+    "scikit_learn": "1.9.1",
+    "numpy": "2.5.4",
+    "pandas": "3.1.1"
+  },
+  "note": "Ngưỡng gắn với mô hình tương ứng; nếu Quốc đổi mô hình/feature set phải chạy lại scripts/sv4_threshold.py."
+}
