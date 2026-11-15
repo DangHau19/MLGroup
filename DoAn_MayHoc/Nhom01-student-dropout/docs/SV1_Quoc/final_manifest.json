@@ -1,0 +1,118 @@
+{
+  "ready_for_final_test": false,
+  "note": "DRAFT. Chỉ bật readiness sau khi đủ bàn giao và commit bản chốt. Không dùng kết quả test để thay lựa chọn.",
+  "scope": [
+    "LR",
+    "DT",
+    "RF",
+    "GB",
+    "SVM"
+  ],
+  "seed": 42,
+  "test_size": 0.2,
+  "python": "3.12.10",
+  "data_sha256": "edc197d1381f25414a3757ab9bbae5f1f6d21aa6a964dbe98a148c15f3d63036",
+  "versions": {
+    "numpy": "2.5.4",
+    "pandas": "3.1.1",
+    "scipy": "1.18.1",
+    "scikit-learn": "1.9.1",
+    "joblib": "1.6.0"
+  },
+  "confirmations": {
+    "model_handover_complete": false,
+    "threshold_handover_complete": false,
+    "abc_scope_confirmed": false
+  },
+  "source_sha256": {
+    "src/config.py": "46c4bc6cf6dbaf484eb7e40bb182dd544bdcc24f55c24cd47e373689c1de402b",
+    "src/data.py": "5923ac69745b8dbc392f862d9e70c0ca1aa153bcd222e1db6ebeacc293ad24d9",
+    "src/evaluate.py": "4a3b97113972dfa4e43400737a09199214ec75d40195039fd11ac009480331f2",
+    "src/preprocessing.py": "718b22188b11890cdf31dfe757a688e383b5ed7dc48c3f8348d22cfdb86c5630",
+    "src/features.py": "02f428c167a785c68cc6161e9b67076ae793ab5f314fb804a0ff4446d0d67ba7",
+    "src/sv1_final_evaluation.py": "f5700cc59d1d7266bf5d2514bfe01e6af926d681995f729fee4b5afaf5e0b035",
+    "requirements.txt": "8bd969015c822fa2be3aee649b4adba84d40526bf291a6ecce6d2d4cf5215293"
+  },
+  "models": [
+    {
+      "name": "LR",
+      "path": "models/lr_best.joblib",
+      "feature_set": "C",
+      "sha256": null,
+      "trained_rows": null,
+      "training_data_sha256": null,
+      "cv_evidence": "reports/lr_cv_metrics.csv",
+      "cv_evidence_sha256": null,
+      "decision": {
+        "kind": "native_predict",
+        "evidence": "docs/SV1_Quoc/decision_record.md",
+        "evidence_sha256": "fd38ba33ba4a3b07c8f7d2e3e4321fbb759c0b5eab949c95eac1aa7221813674"
+      },
+      "handover_status": "WAITING FOR OWNER; native_predict is provisional"
+    },
+    {
+      "name": "DT",
+      "path": "models/dt_best.joblib",
+      "feature_set": "C",
+      "sha256": null,
+      "trained_rows": null,
+      "training_data_sha256": null,
+      "cv_evidence": "reports/dt_cv_metrics.csv",
+      "cv_evidence_sha256": null,
+      "decision": {
+        "kind": "native_predict",
+        "evidence": "docs/SV1_Quoc/decision_record.md",
+        "evidence_sha256": "fd38ba33ba4a3b07c8f7d2e3e4321fbb759c0b5eab949c95eac1aa7221813674"
+      },
+      "handover_status": "WAITING FOR OWNER; native_predict is provisional"
+    },
+    {
+      "name": "RF",
+      "path": "models/rf_best.joblib",
+      "feature_set": "C",
+      "sha256": "79278e4826366b41fdf2679a9986bb777195694f927c4574be8cccec5aa5237c",
+      "trained_rows": 3539,
+      "training_data_sha256": "edc197d1381f25414a3757ab9bbae5f1f6d21aa6a964dbe98a148c15f3d63036",
+      "cv_evidence": "reports/rf_cv_metrics.csv",
+      "cv_evidence_sha256": "26fb2792bfd051099b017d91e03a8df1fe7b89450d8f05df7e98e071c2ac1856",
+      "decision": {
+        "kind": "native_predict",
+        "evidence": "docs/SV1_Quoc/decision_record.md",
+        "evidence_sha256": "fd38ba33ba4a3b07c8f7d2e3e4321fbb759c0b5eab949c95eac1aa7221813674"
+      },
+      "handover_status": "RF checked on train/CV"
+    },
+    {
+      "name": "GB",
+      "path": "models/gb_best.joblib",
+      "feature_set": "C",
+      "sha256": "7f94011a1050a1684acfc0b27e4e7923b25abb3ca4298da6da6aeb70cddca518",
+      "trained_rows": null,
+      "training_data_sha256": null,
+      "cv_evidence": "reports/sv4_rebuild_cv.csv",
+      "cv_evidence_sha256": "d4a7840514d9af8e5e750c7857aa9dee1331e1198187a578ebaac41498244f5b",
+      "decision": {
+        "kind": "native_predict",
+        "evidence": "docs/SV1_Quoc/decision_record.md",
+        "evidence_sha256": "fd38ba33ba4a3b07c8f7d2e3e4321fbb759c0b5eab949c95eac1aa7221813674"
+      },
+      "handover_status": "WAITING FOR OWNER; native_predict is provisional"
+    },
+    {
+      "name": "SVM",
+      "path": "models/svm_best_proba.joblib",
+      "feature_set": "C",
+      "sha256": "44277628e41836c547281693684241c04690dfe1afaebb4024a2c80c125eb391",
+      "trained_rows": null,
+      "training_data_sha256": null,
+      "cv_evidence": "reports/sv4_rebuild_cv.csv",
+      "cv_evidence_sha256": "d4a7840514d9af8e5e750c7857aa9dee1331e1198187a578ebaac41498244f5b",
+      "decision": {
+        "kind": "native_predict",
+        "evidence": "docs/SV1_Quoc/decision_record.md",
+        "evidence_sha256": "fd38ba33ba4a3b07c8f7d2e3e4321fbb759c0b5eab949c95eac1aa7221813674"
+      },
+      "handover_status": "WAITING FOR OWNER; native_predict is provisional"
+    }
+  ]
+}

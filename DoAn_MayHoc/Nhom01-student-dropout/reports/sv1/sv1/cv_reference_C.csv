@@ -1,0 +1,4 @@
+model,f1_macro_mean,f1_macro_std,balanced_accuracy_mean,recall_dropout_mean,f1_enrolled_mean,source,evaluation
+GB,0.7138501234632468,0.011870891875378578,0.7053021598194368,0.7827150475307211,0.4822845654158211,"reports/timepoint_cv.csv (SV5, fixed C-selected parameters)",post-selection train CV; not test
+RF,0.7256435284583294,0.014348319081086325,0.7311364356065261,0.7308408686915527,0.5439372950740763,"reports/timepoint_cv.csv (SV5, fixed C-selected parameters)",post-selection train CV; not test
+SVM,0.7212949703875116,0.01126998714400544,0.7293992527538528,0.7273089110441301,0.539779970234769,"reports/timepoint_cv.csv (SV5, fixed C-selected parameters)",post-selection train CV; not test
