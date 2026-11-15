@@ -51,7 +51,7 @@ def main() -> None:
     git = lambda *a: subprocess.check_output(["git", *a], cwd=ROOT, text=True, encoding="utf-8").strip()
     source_files = ["src/config.py", "src/data.py", "src/preprocessing.py", "src/features.py", "src/evaluate.py",
                     "reports/rf_summary.json", "reports/gb_search_results.csv", "reports/svm_search_results.csv",
-                    "requirements-sv5.txt", "scripts/run_sv5_analysis.py"]
+                    "requirements.txt", "scripts/run_sv5_analysis.py"]
     names = ["04_timepoint.ipynb", "05_error_analysis.ipynb"]
     previous = output / "previous"
     previous.mkdir()

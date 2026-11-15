@@ -13,7 +13,7 @@ có sản phẩm và người kiểm tra xác nhận.
 - Hậu bàn giao GB/SVM, ngưỡng và môi trường chung đã khóa. Huy/Doanh tích hợp demo.
 - Không nhận việc của người khác là lượt tự chạy. Ghi rõ Codex hỗ trợ khi dùng AI thực thi.
 
-## 2. Chuẩn bị môi trường riêng cho phân tích SV5
+## 2. Chuẩn bị môi trường chung của đồ án
 
 Mở PowerShell tại thư mục `DoAn_MayHoc/Nhom01-student-dropout` trong bản clone của mình.
 Dùng Python **3.12.10** và kiểm tra thay đổi trước khi pull:
@@ -23,13 +23,15 @@ git status --short --branch
 git pull --ff-only
 py -3.12 --version
 py -3.12 -m venv .venv
-.\.venv\Scripts\python.exe -m pip install -r requirements-sv5.txt
+.\.venv\Scripts\python.exe -m pip install -r requirements.txt
 .\.venv\Scripts\python.exe -m pip check
 ```
 
 Nếu đã có `.venv`, kiểm tra phiên bản thay vì tạo đè môi trường đang dùng.
-`requirements-sv5.txt` chỉ tái lập #15–17; đây **chưa phải** môi trường toàn nhóm
-được Hậu nghiệm thu ở #20. Không thay `requirements.txt` bằng file SV5.
+`requirements.txt` là file môi trường duy nhất cho toàn nhóm, bao gồm phân tích SV5,
+huấn luyện và demo. Các output SV5 cũ giữ nguyên metadata lịch sử; muốn xác nhận
+kết quả trên môi trường chung cần chạy lại và lưu minh chứng. Việc hợp nhất file
+không thay cho nghiệm thu toàn demo ở #20.
 Dữ liệu gốc cần ở `data/raw/data.csv`, 4.424 × 37, không chỉnh sửa dữ liệu gốc.
 
 Lỗi sau lần chuyển tài liệu vào `docs/archive/` đã được xử lý: notebook nhận diện

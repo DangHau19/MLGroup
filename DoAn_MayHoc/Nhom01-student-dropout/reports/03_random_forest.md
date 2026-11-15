@@ -58,6 +58,6 @@ Learning curve dùng mẫu đã xáo trộn và cùng kích thước train tuy�
 .\.venv\Scripts\python.exe -X utf8 -m unittest discover -s tests -v
 ```
 
-Phiên bản thư viện, SHA-256 dữ liệu, tham số và độ đo lưu trong rf_summary.json. requirements-rf.txt ghi chính xác các phiên bản dùng cho lượt chạy này. Chạy lệnh tại thư mục chứa README; cần dữ liệu gốc data/raw/data.csv.
+Phiên bản thư viện, SHA-256 dữ liệu, tham số và độ đo lưu trong rf_summary.json. Phiên bản lịch sử của lượt chạy này nằm trong rf_summary.json; môi trường chung hiện tại nằm trong requirements.txt. Chạy lệnh tại thư mục chứa README; cần dữ liệu gốc data/raw/data.csv.
 
 Sản phẩm: rf_search_results.csv, rf_learning_curve.csv, rf_summary.json, rf_cv_metrics.csv, figures/rf_learning_curve.png và ../models/rf_best.joblib. Kết quả cũng được thêm vào cv_results.csv bằng hàm log chung (file Git ignore).

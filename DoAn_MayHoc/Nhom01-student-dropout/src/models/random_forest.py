@@ -125,7 +125,7 @@ def write_report(summary, curve, path):
         f".\\.venv\\Scripts\\python.exe -X utf8 -m src.models.random_forest --feature-set {summary['feature_set']} --n-iter {summary['n_iter']} --n-jobs 4",
         ".\\.venv\\Scripts\\python.exe -X utf8 -m unittest discover -s tests -v", "```", "",
         "Phiên bản thư viện, SHA-256 dữ liệu, tham số và độ đo lưu trong rf_summary.json. "
-        "requirements-rf.txt ghi chính xác các phiên bản dùng cho lượt chạy này. "
+        "requirements.txt là môi trường chung; metadata lưu phiên bản thực tế của lượt chạy. "
         "Chạy lệnh tại thư mục chứa README; cần dữ liệu gốc data/raw/data.csv.", "",
         "Sản phẩm: rf_search_results.csv, rf_learning_curve.csv, rf_summary.json, "
         "rf_cv_metrics.csv, figures/rf_learning_curve.png và ../models/rf_best.joblib. "
@@ -163,10 +163,6 @@ def run_experiment(feature_set="C", n_iter=20, n_jobs=4):
     plot_learning_curve(curve, config.FIGURES_DIR / "rf_learning_curve.png")
     (config.RESULTS_DIR / "rf_summary.json").write_text(
         json.dumps(summary, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
-    (config.ROOT / "requirements-rf.txt").write_text(
-        f"# Issue #10 run environment: Python {summary['python']}\n"
-        + "\n".join(f"{p}=={v}" for p, v in summary["versions"].items()) + "\n",
-        encoding="utf-8")
     write_report(summary, curve, config.RESULTS_DIR / "03_random_forest.md")
     log_result(metrics, config.CV_RESULTS_FILE)
     print(json.dumps(summary, indent=2, ensure_ascii=False), flush=True)

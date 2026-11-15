@@ -73,11 +73,25 @@ nên không cần kích hoạt môi trường hoặc thay đổi Execution Polic
 Sau mỗi lần pull có cập nhật `requirements.txt`, chạy lại lệnh cài thư viện
 và `pip check`. Cài thư viện của đồ án bằng Python trong `.venv`.
 
-**Trạng thái thư viện:** [requirements.txt](requirements.txt) hiện dùng ràng buộc
-phiên bản tối thiểu (`>=`), nên các máy cài ở thời điểm khác nhau vẫn có thể nhận
-phiên bản khác nhau. SV5 sẽ ghim phiên bản chính xác sau khi nhóm kiểm tra bộ
-thư viện thống nhất. Khi gặp lỗi khác máy, gửi kèm kết quả `--version`,
-`python.exe -m pip freeze` trong `.venv` và thông báo lỗi cho nhóm.
+**Môi trường thống nhất:** toàn nhóm chỉ cài từ [requirements.txt](requirements.txt),
+đã ghim chính xác cả thư viện trực tiếp và phụ thuộc gián tiếp cho Python 3.12.10,
+Windows 64-bit. Bộ chính: scikit-learn 1.9.1, pandas 3.1.1, NumPy 2.5.4,
+SciPy 1.18.1, joblib 1.6.0. Dùng cùng môi trường này cho notebook, huấn luyện và demo.
+Hai file requirements riêng RF/SV5 đã được hợp nhất; phiên bản của các lượt chạy cũ
+vẫn được giữ trong metadata kết quả, không sửa thành phiên bản mới.
+
+Nếu môi trường cũ có thư viện khác phiên bản, đổi tên để giữ lại rồi tạo `.venv` sạch
+và cài theo các lệnh trên. Trong Jupyter/VS Code, chọn kernel của `.venv` này.
+Không dùng `pip freeze` từ môi trường cá nhân để tự ghi đè file chung.
+Khi cập nhật thư viện, cả nhóm cập nhật cùng file và kiểm tra lại trên môi trường sạch.
+
+**Mô hình cũ:** `gb_best.joblib` và `svm_best.joblib` được lưu bằng sklearn 1.8.0;
+cần huấn luyện và xuất lại trong môi trường chung trước khi bàn giao demo.
+`rf_best.joblib` dùng sklearn 1.9.1 nhưng metadata lượt chạy cũ ghi pandas 3.0.6;
+cần kiểm tra nạp/dự đoán trong môi trường mới. Đổi requirements không chuyển đổi
+mô hình hay chạy lại các notebook. Không sửa metadata notebook để giả định đã chạy lại.
+Khi gặp lỗi khác máy, gửi kèm phiên bản Python, `python.exe -m pip freeze`
+trong `.venv` và đầy đủ traceback.
 
 ### 4. Tải dữ liệu
 
@@ -236,9 +250,8 @@ CV song song. Mỗi lần chạy ghi đè bộ sản phẩm RF và thêm dòng v
 - `reports/rf_learning_curve.csv`, `reports/figures/rf_learning_curve.png`: điểm
   train/validation theo số mẫu, trung bình và độ lệch chuẩn qua 5 fold.
 - `reports/rf_summary.json`: tham số tốt nhất, metadata, SHA-256 dữ liệu, phiên bản.
-- `requirements-rf.txt`: phiên bản thư viện chính xác dùng cho lượt chạy RF;
-  có thể cài bằng `python -m pip install -r requirements-rf.txt` trong môi trường
-  Python tương ứng ghi ở đầu file để tái lập riêng thí nghiệm này.
+- `requirements.txt`: môi trường chung để chạy RF và toàn bộ đồ án. Phiên bản
+  thực tế của lượt chạy RF được ghi riêng trong `reports/rf_summary.json`.
 
 Đọc mô hình từ thư mục chứa README bằng
 `joblib.load("models/rf_best.joblib")`. Điểm CV/learning curve tính sau tuning
