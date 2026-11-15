@@ -52,8 +52,12 @@ Chạy baseline một lần để kiểm tra môi trường: `python code/00_bas
 - Hai hình dùng cho paper: `paper/figures/B_01_class_distribution.png` và
   `paper/figures/B_02_duration_and_features.png` (300 dpi).
 - Hình bổ sung, số liệu kiểm chứng, phiên bản thư viện và SHA-256 dữ liệu nằm trong notebook.
-- Slide nháp **1 trang 16:9**: [slide/slide_B_draft.pptx](slide/slide_B_draft.pptx).
-  CV baseline lấy từ log của A; pipeline và kết quả cuối chờ nhóm chốt.
+- Slide **1 trang 16:9** đã cập nhật kết quả D/E: [slide/slide_B.pptx](slide/slide_B.pptx).
+  CV stacking 0,6626 ± 0,0047 đối chiếu từ OOF/JSON; Kaggle public 0,68849,
+  private 0,66388 theo ảnh bàn giao, trạng thái `Complete (after deadline)`.
+  Nguồn và giới hạn đánh giá nằm trong speaker notes; B không huấn luyện phần D/E.
+- [Rà soát chéo B → C ngày 15/11](review_notes.md): đầu ra/bảng cuối khớp, còn
+  đường chạy notebook cũ và tích hợp target encoder cần C/A xử lý. Chưa xác nhận thay C.
 
 Chạy lại EDA bằng PowerShell tại thư mục Challenge 2:
 
