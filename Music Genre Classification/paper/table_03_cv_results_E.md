@@ -13,7 +13,7 @@ Accuracy là trung bình 5 fold (StratifiedKFold seed 42); std là độ lệch 
 | ExtraTrees (đơn) | 0.6164 | 0.0050 | 0.6571 | 1.0439 |
 | **Ensemble: Stacking: HistGradientBoosting nông** | **0.6626** | 0.0047 | 0.7100 | 0.8891 |
 | Ensemble: Trọng số tối ưu accuracy (leo đồi) | 0.6581 | 0.0038 | 0.7070 | 0.8899 |
-| Ensemble: Stacking: Logistic Regression | 0.6578 | 0.0011 | 0.7081 | 0.8883 |
+| Ensemble: Stacking: Logistic Regression | 0.6578 | 0.0012 | 0.7081 | 0.8882 |
 | Ensemble: Trung bình đều 3 boosting (CatBoost, LightGBM, XGBoost) | 0.6575 | 0.0035 | 0.7083 | 0.8911 |
 | Ensemble: Chọn tham lam có lặp (Caruana) | 0.6571 | 0.0038 | 0.7062 | 0.8903 |
 | Ensemble: Trọng số tối ưu log-loss | 0.6568 | 0.0051 | 0.7065 | 0.8862 |

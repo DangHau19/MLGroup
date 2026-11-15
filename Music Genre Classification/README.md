@@ -82,7 +82,9 @@ macro F1 0,700522**. Đây là CV sau lựa chọn trên cùng folds, chưa có 
   `*_test.npy`, `*_cv.json` trong `evidence/cv_logs/`.
 - Điểm mọi cấu hình, trial, siêu tham số, nhãn/ID/fold và manifest SHA-256:
   `evidence/models_D/`. Baseline A tái lập giữ riêng tại `evidence/baseline_reproduction_D/`.
-- Tiến độ: [D_progress.md](D_progress.md); rà soát chéo: [review_notes.md](review_notes.md).
+- Trạng thái notebook: `evidence/models_D/notebook_execution_D.json`; kết quả và audit:
+  `evidence/models_D/all_results_D.csv`. Không có các file `D_progress.md` hoặc
+  `review_notes.md` trong bản hiện tại.
 
 Tại thư mục dự án, dùng Python 3.12 và dữ liệu tên chuẩn `data/train.csv`, `test.csv`,
 `sample_submission.csv`. Các tên chuẩn hiện là bản sao nguyên byte của CSV gốc, không sửa dữ liệu.

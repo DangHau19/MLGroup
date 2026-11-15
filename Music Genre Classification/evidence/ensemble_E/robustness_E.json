@@ -46,17 +46,17 @@
       "folds_ensemble_better": 5
     },
     "stack_logreg": {
-      "diff": 0.004792998055015318,
+      "diff": 0.004862461794943096,
       "ci95": [
-        0.00041678243956655425,
-        0.009377604890247304
+        0.0005539733259238073,
+        0.00944706863017497
       ],
       "fold_diffs": [
-        0.010763888888888795,
-        0.007988885029524218,
-        -0.0024313997915943464,
+        0.011458333333333348,
+        0.008336227856894807,
+        -0.0027787426189649356,
         0.003820771101076703,
-        0.003820771101076814
+        0.003473428273706225
       ],
       "folds_ensemble_better": 4
     },
@@ -93,8 +93,8 @@
   },
   "ensemble_disagreement": {
     "stack_hgb vs stack_logreg": {
-      "disagree_oof": 0.09752709085857182,
-      "disagree_test": 0.08361111111111111
+      "disagree_oof": 0.09808280077799389,
+      "disagree_test": 0.08333333333333333
     },
     "stack_hgb vs weighted_acc": {
       "disagree_oof": 0.10259794387329814,
@@ -106,11 +106,11 @@
     },
     "stack_logreg vs weighted_acc": {
       "disagree_oof": 0.08620450125034732,
-      "disagree_test": 0.06694444444444445
+      "disagree_test": 0.06527777777777778
     },
     "stack_logreg vs mean_boost3": {
-      "disagree_oof": 0.08780216726868574,
-      "disagree_test": 0.07027777777777777
+      "disagree_oof": 0.08773270352875799,
+      "disagree_test": 0.06861111111111111
     },
     "weighted_acc vs mean_boost3": {
       "disagree_oof": 0.022853570436232287,
