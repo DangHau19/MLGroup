@@ -1,0 +1,5 @@
+model,f1_macro_mean,f1_macro_std,train_f1_macro_mean,balanced_accuracy_mean,accuracy_mean,recall_dropout_mean,f1_enrolled_mean
+Dummy(most_frequent),0.222,0.0002,0.222,0.3333,0.4993,0.0,0.0
+Dummy(stratified),0.3383,0.0092,0.3305,0.3385,0.3919,0.3465,0.1745
+LogisticRegression,0.717,0.0191,0.7544,0.7246,0.7578,0.7361,0.5305
+DecisionTree,0.6823,0.0139,0.6952,0.6747,0.7482,0.6587,0.4533
