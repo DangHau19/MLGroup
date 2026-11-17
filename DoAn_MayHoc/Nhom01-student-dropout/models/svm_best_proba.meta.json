@@ -34,18 +34,18 @@
     "f1_enrolled_mean": 0.5398,
     "f1_enrolled_std": 0.0228,
     "train_f1_macro_mean": 0.7691,
-    "fit_time_mean": 4.0514
+    "fit_time_mean": 9.2885
   },
   "pipeline": "prep(CurricularFeatures -> ColumnTransformer: OneHot+StandardScaler) -> clf",
   "scaling_inside_pipeline": true,
   "data_file_sha256": "edc197d1381f25414a3757ab9bbae5f1f6d21aa6a964dbe98a148c15f3d63036",
   "versions": {
     "python": "3.12.10",
-    "scikit_learn": "1.8.0",
-    "numpy": "2.4.4",
-    "pandas": "3.0.2",
-    "scipy": "1.17.1",
-    "joblib": "1.5.3"
+    "scikit_learn": "1.9.1",
+    "numpy": "2.5.4",
+    "pandas": "3.1.1",
+    "scipy": "1.18.1",
+    "joblib": "1.6.0"
   },
   "created": "2026-11-15",
   "command": ".\\.venv\\Scripts\\python.exe -X utf8 scripts/sv4_rebuild_models.py",

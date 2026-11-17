@@ -1,0 +1,75 @@
+[
+  {
+    "file": "gb_best.joblib",
+    "sha256": "7f94011a1050a1684acfc0b27e4e7923b25abb3ca4298da6da6aeb70cddca518",
+    "status": "load_failed",
+    "error": "ModuleNotFoundError: No module named '_loss'"
+  },
+  {
+    "file": "rf_best.joblib",
+    "sha256": "79278e4826366b41fdf2679a9986bb777195694f927c4574be8cccec5aa5237c",
+    "predictions_train3": [
+      "Graduate",
+      "Dropout",
+      "Enrolled"
+    ],
+    "classes": [
+      "Dropout",
+      "Enrolled",
+      "Graduate"
+    ],
+    "has_predict_proba": true,
+    "probabilities_valid": true,
+    "warnings": [],
+    "status": "loaded"
+  },
+  {
+    "file": "svm_best.joblib",
+    "sha256": "1066d8464faa09d3b0e3911ba7b6d968cbb476d7798c2831a6f07195a929c26e",
+    "predictions_train3": [
+      "Graduate",
+      "Dropout",
+      "Enrolled"
+    ],
+    "classes": [
+      "Dropout",
+      "Enrolled",
+      "Graduate"
+    ],
+    "has_predict_proba": false,
+    "warnings": [
+      "Trying to unpickle estimator ColumnTransformer from version 1.8.0 when using version 1.9.1. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:\nhttps://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations",
+      "Trying to unpickle estimator FunctionTransformer from version 1.8.0 when using version 1.9.1. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:\nhttps://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations",
+      "Trying to unpickle estimator OneHotEncoder from version 1.8.0 when using version 1.9.1. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:\nhttps://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations",
+      "Trying to unpickle estimator Pipeline from version 1.8.0 when using version 1.9.1. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:\nhttps://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations",
+      "Trying to unpickle estimator SVC from version 1.8.0 when using version 1.9.1. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:\nhttps://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations",
+      "Trying to unpickle estimator StandardScaler from version 1.8.0 when using version 1.9.1. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:\nhttps://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations"
+    ],
+    "status": "loaded_with_warnings"
+  },
+  {
+    "file": "svm_best_proba.joblib",
+    "sha256": "44277628e41836c547281693684241c04690dfe1afaebb4024a2c80c125eb391",
+    "predictions_train3": [
+      "Graduate",
+      "Dropout",
+      "Enrolled"
+    ],
+    "classes": [
+      "Dropout",
+      "Enrolled",
+      "Graduate"
+    ],
+    "has_predict_proba": true,
+    "probabilities_valid": true,
+    "warnings": [
+      "Trying to unpickle estimator ColumnTransformer from version 1.8.0 when using version 1.9.1. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:\nhttps://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations",
+      "Trying to unpickle estimator FunctionTransformer from version 1.8.0 when using version 1.9.1. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:\nhttps://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations",
+      "Trying to unpickle estimator OneHotEncoder from version 1.8.0 when using version 1.9.1. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:\nhttps://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations",
+      "Trying to unpickle estimator Pipeline from version 1.8.0 when using version 1.9.1. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:\nhttps://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations",
+      "Trying to unpickle estimator SVC from version 1.8.0 when using version 1.9.1. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:\nhttps://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations",
+      "Trying to unpickle estimator StandardScaler from version 1.8.0 when using version 1.9.1. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:\nhttps://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations"
+    ],
+    "status": "loaded_with_warnings"
+  }
+]

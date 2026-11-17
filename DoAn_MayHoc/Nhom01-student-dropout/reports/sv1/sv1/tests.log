@@ -1,0 +1,28 @@
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+{
+  "status": "blocked",
+  "holdout_evaluated": false,
+  "errors": [
+    "Missing LR/DT"
+  ]
+}
+
+test_feature_sets_and_unknown_category (test_random_forest.RandomForestTests.test_feature_sets_and_unknown_category) ... ok
+test_search_curve_and_model_roundtrip (test_random_forest.RandomForestTests.test_search_curve_and_model_roundtrip) ... ok
+test_colliding_names_fail_clearly (test_shared_pipeline.DataTests.test_colliding_names_fail_clearly) ... ok
+test_shared_split_and_timepoints (test_shared_pipeline.DataTests.test_shared_split_and_timepoints) ... ok
+test_source_aliases_and_string_paths (test_shared_pipeline.DataTests.test_source_aliases_and_string_paths) ... ok
+test_reordered_and_extra_columns_and_empty_file (test_shared_pipeline.LoggingTests.test_reordered_and_extra_columns_and_empty_file) ... ok
+test_mi_uses_discrete_mask (test_shared_pipeline.PreprocessingTests.test_mi_uses_discrete_mask) ... ok
+test_selection_fit_and_feature_names (test_shared_pipeline.PreprocessingTests.test_selection_fit_and_feature_names) ... ok
+test_zero_denominator_and_invalid_timepoint (test_shared_pipeline.PreprocessingTests.test_zero_denominator_and_invalid_timepoint) ... ok
+test_blocked_preflight_never_scores_holdout (test_sv1_final_evaluation.FinalEvaluationTests.test_blocked_preflight_never_scores_holdout) ... ok
+test_native_and_invalid_rules (test_sv1_final_evaluation.FinalEvaluationTests.test_native_and_invalid_rules) ... ok
+test_paths_cannot_escape_project (test_sv1_final_evaluation.FinalEvaluationTests.test_paths_cannot_escape_project) ... ok
+test_rename_cannot_bypass_identity_ledger (test_sv1_final_evaluation.FinalEvaluationTests.test_rename_cannot_bypass_identity_ledger) ... ok
+test_threshold_uses_labels_and_non_dropout_fallback (test_sv1_final_evaluation.FinalEvaluationTests.test_threshold_uses_labels_and_non_dropout_fallback) ... ok
+
+----------------------------------------------------------------------
+Ran 14 tests in 2.369s
+
+OK

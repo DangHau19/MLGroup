@@ -1,0 +1,85 @@
+{
+  "gb": {
+    "model": "Gradient Boosting",
+    "threshold": 0.45,
+    "argmax": {
+      "f1_macro": 0.7144622726609201,
+      "recall_Dropout": 0.7827616534740546,
+      "precision_Dropout": 0.8157653528872594,
+      "f1_Dropout": 0.7989228007181328,
+      "f1_Enrolled": 0.48419150858175247,
+      "precision_Enrolled": 0.5677966101694916,
+      "recall_Enrolled": 0.4220472440944882
+    },
+    "chosen": {
+      "f1_macro": 0.717293088718848,
+      "recall_Dropout": 0.7827616534740546,
+      "precision_Dropout": 0.82483781278962,
+      "f1_Dropout": 0.8032490974729242,
+      "f1_Enrolled": 0.4891304347826087,
+      "precision_Enrolled": 0.5756929637526652,
+      "recall_Enrolled": 0.4251968503937008
+    },
+    "n_pred_dropout_argmax": 1091,
+    "n_pred_dropout_chosen": 1079,
+    "n_true_dropout": 1137,
+    "nested_f1_macro_thr_mean": 0.713850657975447,
+    "nested_f1_macro_thr_std": 0.010816607657549108,
+    "nested_f1_macro_argmax_mean": 0.7138501234632467,
+    "nested_recall_dropout_thr_mean": 0.7853543550506221,
+    "nested_recall_dropout_argmax_mean": 0.7827150475307211,
+    "nested_thresholds": [
+      0.45,
+      0.41,
+      0.42,
+      0.45,
+      0.45
+    ],
+    "nested_folds_thr_better": 1,
+    "log_loss": 0.5469056044035698,
+    "brier_dropout": 0.09076933560031415,
+    "ece_dropout": 0.018072049745305078
+  },
+  "svm": {
+    "model": "SVM RBF (probability=True)",
+    "threshold": 0.44,
+    "argmax": {
+      "f1_macro": 0.7098232464588072,
+      "recall_Dropout": 0.7801231310466139,
+      "precision_Dropout": 0.8122710622710623,
+      "f1_Dropout": 0.7958725886047555,
+      "f1_Enrolled": 0.47645429362880887,
+      "precision_Enrolled": 0.5758928571428571,
+      "recall_Enrolled": 0.4062992125984252
+    },
+    "chosen": {
+      "f1_macro": 0.7088532979067513,
+      "recall_Dropout": 0.7827616534740546,
+      "precision_Dropout": 0.8202764976958525,
+      "f1_Dropout": 0.8010801080108011,
+      "f1_Enrolled": 0.4669767441860465,
+      "precision_Enrolled": 0.5704545454545454,
+      "recall_Enrolled": 0.3952755905511811
+    },
+    "n_pred_dropout_argmax": 1092,
+    "n_pred_dropout_chosen": 1085,
+    "n_true_dropout": 1137,
+    "nested_f1_macro_thr_mean": 0.7072244701089131,
+    "nested_f1_macro_thr_std": 0.022286560161399346,
+    "nested_f1_macro_argmax_mean": 0.7093154408662061,
+    "nested_recall_dropout_thr_mean": 0.7791985470283639,
+    "nested_recall_dropout_argmax_mean": 0.7800911971558853,
+    "nested_thresholds": [
+      0.44,
+      0.44,
+      0.44,
+      0.44,
+      0.45
+    ],
+    "nested_folds_thr_better": 2,
+    "log_loss": 0.5517432850714418,
+    "brier_dropout": 0.09183035599872742,
+    "ece_dropout": 0.012636866344170623,
+    "svm_predict_vs_argmax_proba_disagree": 0.12319864368465669
+  }
+}
