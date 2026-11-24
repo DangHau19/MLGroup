@@ -1,0 +1,2 @@
+model,feature_set,f1_macro_mean,f1_macro_std,balanced_accuracy_mean,balanced_accuracy_std,accuracy_mean,accuracy_std,recall_dropout_mean,recall_dropout_std,f1_enrolled_mean,f1_enrolled_std,train_f1_macro_mean,fit_time_mean
+DecisionTree,C,0.6823146628865764,0.013905587952781483,0.674655424644748,0.018357148930816154,0.7482291691638897,0.00968724898759918,0.6587410155344309,0.013463466164878595,0.4532736764046102,0.04148676937017696,0.695173489430249,0.06459131240844726

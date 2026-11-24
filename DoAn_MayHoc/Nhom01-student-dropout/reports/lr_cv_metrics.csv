@@ -1,0 +1,2 @@
+model,feature_set,f1_macro_mean,f1_macro_std,balanced_accuracy_mean,balanced_accuracy_std,accuracy_mean,accuracy_std,recall_dropout_mean,recall_dropout_std,f1_enrolled_mean,f1_enrolled_std,train_f1_macro_mean,fit_time_mean
+LogisticRegression,C,0.7170247361360833,0.019075170730089224,0.7245651000805223,0.019818163506234863,0.7578364858277595,0.01616918518184574,0.7361117551588221,0.0228347944195843,0.5304924926823421,0.04174845379801003,0.7543539735212857,0.5245062828063964

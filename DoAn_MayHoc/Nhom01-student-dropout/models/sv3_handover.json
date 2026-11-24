@@ -1,0 +1,42 @@
+{
+  "python": "3.13.7",
+  "versions": {
+    "numpy": "2.4.2",
+    "pandas": "3.0.2",
+    "scipy": "1.17.1",
+    "scikit-learn": "1.8.0",
+    "joblib": "1.5.3"
+  },
+  "data_sha256": "fea68bc73a834be427096884b08debb3afa33e8f8efd4fdb2e89f2ac395d6903",
+  "models": [
+    {
+      "name": "LR",
+      "path": "models/lr_best.joblib",
+      "feature_set": "C",
+      "sha256": "7bd547746e4adcbfb3da463599a148ca07c8738b4126a39cf10ca5c6969b8620",
+      "trained_rows": 3539,
+      "training_data_sha256": "fea68bc73a834be427096884b08debb3afa33e8f8efd4fdb2e89f2ac395d6903",
+      "cv_evidence": "reports/lr_cv_metrics.csv",
+      "cv_evidence_sha256": "6491f7b41f230c7a73b6483f0a4b7179f5b6c9d58ea7169b80b276fbc12a3600",
+      "decision": {
+        "kind": "native_predict"
+      },
+      "loads_without_warning": true
+    },
+    {
+      "name": "DT",
+      "path": "models/dt_best.joblib",
+      "feature_set": "C",
+      "sha256": "cee5329d4ff4eff966d72ca90668e423705fdac73f395656cf83c66720f84c4c",
+      "trained_rows": 3539,
+      "training_data_sha256": "fea68bc73a834be427096884b08debb3afa33e8f8efd4fdb2e89f2ac395d6903",
+      "cv_evidence": "reports/dt_cv_metrics.csv",
+      "cv_evidence_sha256": "45eb2510f1dd0244ee91809ca3641c0f9c353e73aa19fce94150cef9f3d02d4f",
+      "decision": {
+        "kind": "native_predict"
+      },
+      "loads_without_warning": true
+    }
+  ],
+  "note": "Chỉ dùng train/CV; không dùng test."
+}

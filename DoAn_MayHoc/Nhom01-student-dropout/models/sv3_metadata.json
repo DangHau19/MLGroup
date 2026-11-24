@@ -9,10 +9,10 @@
     "Graduate"
   ],
   "libs": {
-    "python": "3.13.7",
-    "scikit-learn": "1.8.0",
-    "pandas": "3.0.2",
-    "numpy": "2.4.2"
+    "python": "3.14.6",
+    "scikit-learn": "1.9.0",
+    "pandas": "3.0.3",
+    "numpy": "2.4.6"
   },
   "models": {
     "lr": {
