@@ -10,7 +10,7 @@ from src import config
 
 
 def main():
-    file=ROOT/'docs/SV1_Quoc/final_manifest.json'
+    file=ROOT/'docs/evaluation/final_manifest.json'
     manifest=json.loads(file.read_text(encoding='utf-8-sig'))
     if manifest.get('ready_for_final_test') is True:
         raise SystemExit('Refusing to modify a ready/frozen manifest. Review the handover first.')

@@ -1,6 +1,6 @@
 """SV1 final hold-out evaluation. Preflight is read-only; --run requires a committed manifest.
 
-Run from the project root: python -m src.sv1_final_evaluation --manifest docs/SV1_Quoc/final_manifest.json
+Run from the project root: python -m src.final_evaluation --manifest docs/evaluation/final_manifest.json
 Add --run only after every handover is complete and the manifest is committed.
 """
 import argparse
@@ -69,14 +69,24 @@ def evaluation_key(entry, data_hash):
 
 
 def committed(root, paths):
-    """A source/config/model must exist byte-for-byte in HEAD before test use."""
+    """Require each input to match its committed Git object after clean filters."""
     errors = []
+    prefix = subprocess.check_output(
+        ['git', 'rev-parse', '--show-prefix'], cwd=root, text=True
+    ).strip().replace('\\', '/')
     for path in paths:
         try:
-            rel = subprocess.check_output(['git', 'rev-parse', '--show-prefix'], cwd=root).decode().strip()
-            blob = subprocess.check_output(['git', 'show', 'HEAD:' + rel + path.relative_to(root).as_posix()],
-                                           cwd=root, stderr=subprocess.DEVNULL)
-            if blob != path.read_bytes():
+            relative = path.resolve().relative_to(root.resolve()).as_posix()
+            git_path = prefix + relative
+            head_oid = subprocess.check_output(
+                ['git', 'rev-parse', 'HEAD:' + git_path], cwd=root,
+                stderr=subprocess.DEVNULL, text=True
+            ).strip()
+            working_oid = subprocess.check_output(
+                ['git', 'hash-object', '--path=' + git_path, str(path)], cwd=root,
+                stderr=subprocess.DEVNULL, text=True
+            ).strip()
+            if working_oid != head_oid:
                 errors.append('Uncommitted change: ' + str(path))
         except (subprocess.CalledProcessError, FileNotFoundError):
             errors.append('Not committed in HEAD: ' + str(path))
@@ -112,7 +122,7 @@ def preflight(manifest, root, manifest_path=None, check_git=True):
         if required not in manifest.get('versions', {}):
             errors.append('Missing frozen package version: ' + required)
     required_sources = ['src/config.py', 'src/data.py', 'src/evaluate.py', 'src/preprocessing.py',
-                        'src/features.py', 'src/sv1_final_evaluation.py', 'requirements.txt']
+                        'src/features.py', 'src/final_evaluation.py', 'requirements.txt']
     for rel in required_sources:
         f = local_path(root, rel)
         expected = manifest.get('source_sha256', {}).get(rel)
@@ -175,8 +185,8 @@ def run(manifest_path, execute=False):
     if not execute:
         print('Preflight passed. No hold-out scored. Commit verified; use --run only for the final evaluation.')
         return 0
-    out = root / 'reports/sv1/final_test'
-    ledger = root / 'reports/sv1/test_ledger'
+    out = root / 'reports/evaluation/holdout'
+    ledger = root / 'reports/evaluation/holdout_ledger'
     keys = [(entry, model, evaluation_key(entry, data_hash)) for entry, model in models]
     if out.exists() or any((ledger / (key + '.json')).exists() for _, _, key in keys):
         raise RuntimeError('Final results/ledger already exist. Reuse saved predictions; do not re-score test.')
@@ -215,7 +225,7 @@ def run(manifest_path, execute=False):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--manifest', default='docs/SV1_Quoc/final_manifest.json')
+    parser.add_argument('--manifest', default='docs/evaluation/final_manifest.json')
     parser.add_argument('--run', action='store_true')
     args = parser.parse_args()
     raise SystemExit(run(args.manifest, args.run))

@@ -1,6 +1,6 @@
-"""Audit Quốc's existing RF handover on TRAIN/CV only; never overwrite shared model/results.
+"""Audit the existing Random Forest handover on TRAIN/CV only; preserve shared model/results.
 
-python scripts/sv1_audit.py --output <new external directory> --source-commit <sha>
+python scripts/audit_random_forest.py --output <new external directory> --source-commit <sha>
 """
 import argparse
 import hashlib

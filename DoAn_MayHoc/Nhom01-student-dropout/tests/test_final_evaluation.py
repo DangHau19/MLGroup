@@ -1,10 +1,11 @@
 """Decision-rule and holdout-gate tests use synthetic samples, never the real test set."""
 import tempfile
+import subprocess
 import unittest
 from pathlib import Path
 from unittest.mock import patch
 import numpy as np
-from src.sv1_final_evaluation import decide, evaluation_key, local_path, run
+from src.final_evaluation import committed, decide, evaluation_key, local_path, run
 
 
 class FakeModel:
@@ -39,12 +40,30 @@ class FinalEvaluationTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 local_path(root, '../outside')
 
+    def test_committed_respects_clean_filters_and_nested_repo_path(self):
+        with tempfile.TemporaryDirectory() as temp:
+            repo = Path(temp).resolve()
+            root = repo / 'DoAn_MayHoc' / 'Nhom01-student-dropout'
+            source = root / 'src' / 'example.py'
+            source.parent.mkdir(parents=True)
+            subprocess.run(['git', 'init', '-q', str(repo)], check=True)
+            subprocess.run(['git', 'config', 'core.autocrlf', 'true'], cwd=repo, check=True)
+            subprocess.run(['git', 'config', 'user.name', 'Test'], cwd=repo, check=True)
+            subprocess.run(['git', 'config', 'user.email', 'test@example.invalid'], cwd=repo, check=True)
+            source.write_bytes(b'first\r\nsecond\r\n')
+            subprocess.run(['git', 'add', 'DoAn_MayHoc/Nhom01-student-dropout/src/example.py'],
+                           cwd=repo, check=True)
+            subprocess.run(['git', 'commit', '-qm', 'add source'], cwd=repo, check=True)
+            self.assertEqual(committed(root, [source]), [])
+            source.write_bytes(b'first\r\nchanged\r\n')
+            self.assertIn('Uncommitted change: ' + str(source), committed(root, [source]))
+
     def test_blocked_preflight_never_scores_holdout(self):
         with tempfile.TemporaryDirectory() as temp:
             manifest = Path(temp) / 'manifest.json'
             manifest.write_text('{}', encoding='utf-8')
-            with patch('src.sv1_final_evaluation.preflight', return_value=(['Missing LR/DT'], [], 'data')):
-                with patch('src.sv1_final_evaluation.evaluate_on_test') as evaluate:
+            with patch('src.final_evaluation.preflight', return_value=(['Missing LR/DT'], [], 'data')):
+                with patch('src.final_evaluation.evaluate_on_test') as evaluate:
                     self.assertEqual(run(manifest, execute=True), 2)
                     evaluate.assert_not_called()
 
