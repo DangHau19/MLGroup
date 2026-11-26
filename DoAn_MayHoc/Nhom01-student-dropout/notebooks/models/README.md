@@ -1,13 +1,11 @@
-# Model notebooks
+# Notebook mô hình
 
-Mỗi notebook chạy riêng một model. Tất cả chỉ dùng tập train với Stratified 5-fold CV, seed 42; không chấm hold-out. Cấu hình được chọn trên C rồi giữ cố định khi so sánh A/B/C.
+Mỗi notebook tái lập một mô hình trên phần train bằng Stratified 5-fold CV, seed 42. Hold-out không được nạp vào các notebook này.
 
-## Thứ tự đề xuất
+- `Logistic_Regression/logistic_regression.ipynb`
+- `Decision_Tree/decision_tree.ipynb`
+- `Random_Forest/random_forest.ipynb`
+- `Gradient_Boosting/gradient_boosting.ipynb`
+- `Support_Vector_Machine/support_vector_machine.ipynb`
 
-1. `logistic_regression.ipynb`
-2. `decision_tree.ipynb`
-3. `random_forest.ipynb`
-4. `gradient_boosting.ipynb`
-5. `support_vector_machine.ipynb`
-
-Mở kernel `.venv` của repo. Mỗi notebook in chỉ số CV, dự đoán một dòng train để kiểm tra giao diện và nhận xét được tính từ kết quả thực thi.
+Cấu hình được chọn trên C; kết quả so sánh A/B/C nằm trong `notebooks/Experiments/timepoint_abc.ipynb`. Chạy notebook từ repo hoặc từ thư mục notebook; phần khởi tạo tự tìm `src/config.py` để xác định thư mục gốc.

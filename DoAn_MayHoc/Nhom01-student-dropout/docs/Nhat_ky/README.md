@@ -12,7 +12,7 @@ Nhóm ghi nhật kí tập trung trên [Google Sheets chung](https://docs.google
 
 - Code, notebook và cấu hình lưu trên GitHub. Đầu việc theo issue #31–35 và tab `Cong_viec`.
 - Ảnh, log, CSV, mô hình và video của lượt chạy lưu trong Google Drive chung; link thư mục được quản lý tại tab `Huong_dan`. Kết quả đã có trong repo được dẫn bằng đường dẫn và commit, không cần sao chép lại.
-- Dùng mã lượt dạng `YYYYMMDD_SVx_MODEL_01`, ví dụ `20261113_SV4_SVM_01`. Đặt các tệp của lượt chạy cùng thư mục trên Drive, dùng cùng mã trong `Thi_nghiem` và chú thích hình.
+- Dùng mã lượt dạng `YYYYMMDD_SVx_MODEL_01`, ví dụ `20261113__SVM_01`. Đặt các tệp của lượt chạy cùng thư mục trên Drive, dùng cùng mã trong `Thi_nghiem` và chú thích hình.
 - Ảnh cần ghi rõ nội dung, lượt chạy hoặc commit và kết quả minh họa. Video cá nhân thể hiện chạy code phần mình và giải thích đầu ra.
 - Báo cáo viết trong Google Docs, slide làm trên [Google Slides chung](https://docs.google.com/presentation/d/1cl5fDXchnwuYkKTwQ0eF3hR4T2LlM7AazoaL7rWcetM/edit); dẫn link vào `Ban_giao`.
 

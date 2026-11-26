@@ -1,6 +1,6 @@
-# Schema đầu vào và tiền xử lý (SV3)
+# Schema đầu vào và tiền xử lý
 
-Nguồn: `src/config.py`, `src/preprocessing.py`, `src/features.py`, `src/predict.py` và `models/sv3_metadata.json`. Demo hỗ trợ các tập đặc trưng **A (24 cột), B (30 cột), C (36 cột)**. Miền giá trị tham chiếu metadata của **tập train**.
+Nguồn: `src/config.py`, `src/preprocessing.py`, `src/features.py`, `src/predict.py` và `models/model_metadata.json`. Demo hỗ trợ các tập đặc trưng **A (24 cột), B (30 cột), C (36 cột)**. Miền giá trị tham chiếu metadata của **tập train**.
 
 ## 1. Bảng cột đầu vào
 
@@ -97,5 +97,6 @@ Kiểm tra tay: Pass rate 1st = 6.0/6.0 = 1.0000 (thô) rồi được chuẩn h
 | Giá trị số ngoài miền train | cảnh báo, vẫn dự đoán | `test_out_of_range_numeric_warns` |
 | Ngưỡng Dropout 0 và 1,01 | luôn Dropout / không bao giờ Dropout | `test_dropout_threshold` |
 
-Chạy: `.\.venv\Scripts\python.exe -X utf8 -m unittest discover -s tests -v` (24 test).
-Artifact C được quản lý theo metadata của từng mô hình; LR/DT được tái fit trong môi trường Python 3.12.10 và scikit-learn 1.9.1. Chạy `scripts/sv3_handover.py --write` để dựng lại LR/DT và `scripts/build_demo_models.py` để dựng artifact A/B.
+Chạy: `.\.venv\Scripts\python.exe -X utf8 -m unittest discover -s tests -v` (59 test).
+Artifact C được quản lý theo metadata của từng mô hình; LR/DT được tái fit trong môi trường Python 3.12.10 và scikit-learn 1.9.1. Chạy `scripts/build_lr_dt_models.py --write` để dựng lại LR/DT và `scripts/build_demo_models.py` để dựng artifact A/B.
+

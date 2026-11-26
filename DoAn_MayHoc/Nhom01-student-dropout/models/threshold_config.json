@@ -38,5 +38,5 @@
     "numpy": "2.5.4",
     "pandas": "3.1.1"
   },
-  "note": "Ngưỡng gắn với mô hình tương ứng; nếu Quốc đổi mô hình/feature set phải chạy lại scripts/sv4_threshold.py."
+  "note": "Ngưỡng phụ thuộc mô hình và tập biến; chạy lại scripts/select_dropout_thresholds.py khi cấu hình thay đổi."
 }

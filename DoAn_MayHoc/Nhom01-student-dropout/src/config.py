@@ -4,11 +4,20 @@ from pathlib import Path
 # ----- Đường dẫn -----
 ROOT = Path(__file__).resolve().parents[1]
 DATA_RAW = ROOT / "data" / "raw"
-DATA_PROCESSED = ROOT / "data" / "processed"
 DATA_FILE = DATA_RAW / "data.csv"
 MODELS_DIR = ROOT / "models"
 FIGURES_DIR = ROOT / "reports" / "figures"
 RESULTS_DIR = ROOT / "reports"
+EXPERIMENT_LOGS_DIR = ROOT / "notebooks" / "Experiments" / "Logs"
+EDA_LOG_DIR = ROOT / "notebooks" / "02_EDA" / "Experiments" / "Logs" / "Experiment_01_EDA"
+BASELINE_LOG_DIR = ROOT / "notebooks" / "03_Baseline" / "Experiments" / "Logs" / "Experiment_02_Baseline"
+LR_DT_LOG_DIR = EXPERIMENT_LOGS_DIR / "Experiment_03_LR_DT_Tuning"
+TIMEPOINT_LOG_DIR = EXPERIMENT_LOGS_DIR / "Experiment_04_Timepoint_ABC"
+IMBALANCE_LOG_DIR = EXPERIMENT_LOGS_DIR / "Experiment_05_Imbalance"
+RF_LOG_DIR = EXPERIMENT_LOGS_DIR / "Experiment_06_Random_Forest"
+ERROR_LOG_DIR = EXPERIMENT_LOGS_DIR / "Experiment_07_Error_Analysis"
+GB_SVM_LOG_DIR = EXPERIMENT_LOGS_DIR / "Experiment_08_GB_SVM"
+THRESHOLD_LOG_DIR = EXPERIMENT_LOGS_DIR / "Experiment_09_Threshold"
 CV_RESULTS_FILE = RESULTS_DIR / "cv_results.csv"
 TEST_RESULTS_FILE = RESULTS_DIR / "test_results.csv"
 

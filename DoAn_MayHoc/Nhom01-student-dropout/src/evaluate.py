@@ -5,6 +5,7 @@
 - log_result: ghi kết quả vào reports/cv_results.csv để gom bảng so sánh.
 """
 import warnings
+from pathlib import Path
 
 import numpy as np
 import pandas as pd
@@ -94,8 +95,9 @@ def confusion(y_true, y_pred) -> pd.DataFrame:
     )
 
 
-def plot_confusion(y_true, y_pred, title="Confusion Matrix", normalize=True, save_as=None):
-    """Vẽ confusion matrix; save_as là tên file trong reports/figures/."""
+def plot_confusion(y_true, y_pred, title="Confusion Matrix", normalize=True, save_as=None,
+                  output_dir=None):
+    """Vẽ confusion matrix; output_dir cho phép lưu hình cạnh log của thí nghiệm."""
     import matplotlib.pyplot as plt
     from sklearn.metrics import ConfusionMatrixDisplay
 
@@ -108,8 +110,9 @@ def plot_confusion(y_true, y_pred, title="Confusion Matrix", normalize=True, sav
     ax.set_title(title)
     fig.tight_layout()
     if save_as:
-        config.FIGURES_DIR.mkdir(parents=True, exist_ok=True)
-        fig.savefig(config.FIGURES_DIR / save_as, dpi=200)
+        destination = Path(output_dir) if output_dir is not None else config.FIGURES_DIR
+        destination.mkdir(parents=True, exist_ok=True)
+        fig.savefig(destination / save_as, dpi=200)
     return fig
 
 

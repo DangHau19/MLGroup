@@ -25,6 +25,20 @@ class DemoAppTests(unittest.TestCase):
                 self.assertEqual(len(app.metric), 1)
                 self.assertEqual(len(app.error), 0)
 
+    def test_explanation_matches_model_capabilities(self):
+        app_path = Path(__file__).resolve().parents[1] / "app" / "streamlit_app.py"
+        app = AppTest.from_file(str(app_path), default_timeout=90).run()
+        for model_key in ("lr", "dt", "rf", "gb", "svm"):
+            with self.subTest(model=model_key):
+                app.selectbox[1].set_value(model_key)
+                app.run()
+                app.form_submit_button[0].click().run()
+                self.assertEqual(len(app.exception), 0)
+                if model_key == "svm":
+                    self.assertTrue(any("không có hệ số/importance" in item.value for item in app.info))
+                else:
+                    self.assertGreater(len(app.subheader), 0)
+
 
 if __name__ == "__main__":
     unittest.main()

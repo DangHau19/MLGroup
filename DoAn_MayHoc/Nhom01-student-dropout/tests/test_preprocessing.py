@@ -1,4 +1,4 @@
-"""Kiểm thử tiền xử lý và đặc trưng (SV3). Chạy: python -X utf8 -m unittest discover -s tests -v"""
+"""Kiểm thử tiền xử lý và đặc trưng. Chạy: python -X utf8 -m unittest discover -s tests -v"""
 import unittest
 
 import numpy as np

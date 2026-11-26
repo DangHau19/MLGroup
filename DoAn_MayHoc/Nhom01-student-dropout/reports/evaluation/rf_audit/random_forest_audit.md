@@ -18,7 +18,7 @@ Kết quả RF-C CV: Macro-F1 0,7256 ± 0,0143; Balanced Accuracy 0,7311; Accura
 
 Ở mức lớn nhất của learning curve, Macro-F1 train khoảng 0,9045 và validation 0,7216, khoảng cách khoảng 0,1829. Validation nhìn chung cải thiện khi tăng dữ liệu, nhưng khoảng cách train–validation còn lớn, cho thấy dấu hiệu overfit. Điểm cuối learning curve có thể khác nhẹ CV tuning vì kích thước mẫu train tuyệt đối được giữ bằng nhau qua các fold.
 
-Lượt kiểm chứng 20261115_SV1_RF_AUDIT_151441 đã fit clone train, tính lại CV và learning curve. Kết quả khớp bản bàn giao trong sai số 1e-10; mô hình nạp và trả xác suất đúng ba lớp. Bộ kiểm tra đạt 14/14, gồm 9 kiểm thử có sẵn và 5 kiểm thử công cụ đánh giá cuối. Dữ liệu và mô hình gốc không đổi. Môi trường kiểm chứng dùng pandas 3.1.1, khác pandas 3.0.6 ghi trong lượt RF gốc; các độ đo vẫn khớp và khác biệt được giữ rõ trong metadata.
+Lượt kiểm chứng 20261115__RF_AUDIT_151441 đã fit clone train, tính lại CV và learning curve. Kết quả khớp bản bàn giao trong sai số 1e-10; mô hình nạp và trả xác suất đúng ba lớp. Bộ kiểm tra đạt 14/14, gồm 9 kiểm thử có sẵn và 5 kiểm thử công cụ đánh giá cuối. Dữ liệu và mô hình gốc không đổi. Môi trường kiểm chứng dùng pandas 3.1.1, khác pandas 3.0.6 ghi trong lượt RF gốc; các độ đo vẫn khớp và khác biệt được giữ rõ trong metadata.
 
 ## So sánh các mô hình trong phạm vi hiện có
 
@@ -43,4 +43,4 @@ Trước #18 cần nhận LR/DT từ Doanh, GB/SVM và ngưỡng từ Hậu tron
 
 ## Nguồn số liệu
 
-GitHub được rà tại 72a9545ff16bd5757e6254bef7286e299a93a410. RF: reports/rf_summary.json, rf_cv_metrics.csv, rf_learning_curve.csv. Tham chiếu đa mô hình: reports/timepoint_cv.csv, baseline_table.csv. Kiểm chứng mới: reports/evaluation/rf_audit/metadata.json, rf_cv_recheck.csv, rf_learning_curve_recheck.csv và tests.log. Không có điểm hold-out trong phần này.
+GitHub được rà tại 72a9545ff16bd5757e6254bef7286e299a93a410. RF: notebooks/Experiments/Logs/Experiment_06_Random_Forest/rf_summary.json, rf_cv_metrics.csv, rf_learning_curve.csv. Tham chiếu đa mô hình: notebooks/Experiments/Logs/Experiment_04_Timepoint_ABC/timepoint_cv.csv, baseline_table.csv. Kiểm chứng mới: reports/evaluation/rf_audit/metadata.json, rf_cv_recheck.csv, rf_learning_curve_recheck.csv và tests.log. Không có điểm hold-out trong phần này.

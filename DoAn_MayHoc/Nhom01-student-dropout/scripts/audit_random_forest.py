@@ -49,7 +49,7 @@ def main():
     X, holdout, y, _ = get_train_test('C')
     holdout_rows = len(holdout)
     del holdout
-    note = json.loads((ROOT/'reports/rf_summary.json').read_text(encoding='utf-8'))
+    note = json.loads((ROOT/'notebooks/Experiments/Logs/Experiment_06_Random_Forest/rf_summary.json').read_text(encoding='utf-8'))
     model = joblib.load(ROOT/'models/rf_best.joblib')
     checks = {'data_hash_matches_rf': sha(config.DATA_FILE) == note['data_sha256'],
               'shape_4424_37': df.shape == (4424,37),
@@ -97,15 +97,15 @@ def main():
     checks['cv_matches_handover']=all(v<1e-10 for v in differences.values())
     curve=compute_learning_curve(clone(model),X,y,n_jobs=2)
     curve.to_csv(out/'rf_learning_curve_recheck.csv',index=False)
-    old=pd.read_csv(ROOT/'reports/rf_learning_curve.csv')
+    old=pd.read_csv(ROOT/'notebooks/Experiments/Logs/Experiment_06_Random_Forest/rf_learning_curve.csv')
     checks['learning_curve_matches_handover']=bool(np.allclose(curve.to_numpy(),old.to_numpy(),atol=1e-10,rtol=0))
     plot_learning_curve(curve,out/'rf_learning_curve.png')
-    cv=pd.read_csv(ROOT/'reports/timepoint_cv.csv')
+    cv=pd.read_csv(ROOT/'notebooks/Experiments/Logs/Experiment_04_Timepoint_ABC/timepoint_cv.csv')
     summary=cv[cv.feature_set.eq('C')].groupby('model').agg(
         f1_macro_mean=('f1_macro','mean'),f1_macro_std=('f1_macro',lambda s:s.std(ddof=0)),
         balanced_accuracy_mean=('balanced_accuracy','mean'),recall_dropout_mean=('recall_Dropout','mean'),
         f1_enrolled_mean=('f1_Enrolled','mean')).reset_index()
-    summary['source']='reports/timepoint_cv.csv (SV5, fixed C-selected parameters)'
+    summary['source']='notebooks/Experiments/Logs/Experiment_04_Timepoint_ABC/timepoint_cv.csv (fixed C-selected parameters)'
     summary['evaluation']='post-selection train CV; not test'
     summary.to_csv(out/'cv_reference_C.csv',index=False)
     fig,ax=plt.subplots(figsize=(7.4,4))
@@ -121,9 +121,9 @@ def main():
     checks['pip_check_pass']=pip.returncode==0
     after={p.relative_to(ROOT).as_posix():sha(p) for p in watched}
     checks['existing_source_data_models_unchanged']=before==after
-    meta={'run_id':started.strftime('%Y%m%d_SV1_RF_AUDIT_%H%M%S'),'started_at':started.isoformat(),
+    meta={'run_id':started.strftime('%Y%m%d__RF_AUDIT_%H%M%S'),'started_at':started.isoformat(),
           'finished_at':datetime.now(ZoneInfo('Asia/Ho_Chi_Minh')).isoformat(),'source_commit':args.source_commit,
-          'scope':'Codex-assisted execution on Quốc workspace; TRAIN/CV only; not manual labor hours',
+          'scope':'Codex-assisted execution in the shared project workspace; TRAIN/CV only',
           'holdout_evaluated':False,'python':platform.python_version(),'versions':actual_versions,
           'original_rf_versions':note['versions'],'data_sha256':sha(config.DATA_FILE),
           'train_rows':len(X),'reserved_holdout_rows':holdout_rows,'checks':checks,

@@ -1,0 +1,21 @@
+{
+  "status": "complete",
+  "entry": {
+    "name": "SVM",
+    "path": "models/svm_best.joblib",
+    "feature_set": "C",
+    "sha256": "f499f35da12b60f4c01d9f6782d95a156745605727f9ce3cfe1f26a8c5584463",
+    "trained_rows": 3539,
+    "training_data_sha256": "edc197d1381f25414a3757ab9bbae5f1f6d21aa6a964dbe98a148c15f3d63036",
+    "cv_evidence": "reports/sv4_rebuild_cv.csv",
+    "cv_evidence_sha256": "7ce71d35167480cba58a7b6ce2e9f24565e35d8ce6f928fe84df01ec54e34993",
+    "decision": {
+      "kind": "native_predict",
+      "evidence": "docs/evaluation/decision_record.md",
+      "evidence_sha256": "96aca287b1ac7fb8f2f5a6f4c7358d15545ec580aebde4ff53dba8d555c0991e"
+    },
+    "handover_status": "Verified in shared Python 3.12.10 / scikit-learn 1.9.1 environment"
+  },
+  "output": "D:\\Documents\\Machine_Learning\\MLGroup\\DoAn_MayHoc\\Nhom01-student-dropout\\reports\\evaluation\\holdout",
+  "predictions_sha256": "3354ab28d77a5540efbff8a6228902330d6d1798cd448a750f1ec46c19f2fb28"
+}

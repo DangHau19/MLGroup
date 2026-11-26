@@ -30,7 +30,7 @@ MODEL_FILES = {
     "gb": "gb_best.joblib",
     "svm": "svm_best_proba.joblib",
 }
-META_FILE = config.MODELS_DIR / "sv3_metadata.json"
+META_FILE = config.MODELS_DIR / "model_metadata.json"
 _cache = {}
 
 

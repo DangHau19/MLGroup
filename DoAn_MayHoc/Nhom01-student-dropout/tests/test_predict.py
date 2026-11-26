@@ -1,4 +1,4 @@
-"""Kiểm thử hàm dự đoán dùng chung (SV3). Cần models/*.joblib và models/sv3_metadata.json."""
+"""Kiểm thử hàm dự đoán dùng chung. Cần models/*.joblib và models/model_metadata.json."""
 import unittest
 
 import numpy as np

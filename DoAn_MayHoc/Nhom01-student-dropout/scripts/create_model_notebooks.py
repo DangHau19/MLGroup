@@ -3,8 +3,14 @@ import json
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-OUT = ROOT / "notebooks" / "models"
-OUT.mkdir(parents=True, exist_ok=True)
+
+MODEL_FOLDERS = {
+    "logistic_regression": "Logistic_Regression",
+    "decision_tree": "Decision_Tree",
+    "random_forest": "Random_Forest",
+    "gradient_boosting": "Gradient_Boosting",
+    "support_vector_machine": "Support_Vector_Machine",
+}
 
 MODELS = {
     "logistic_regression": ("LR", "Logistic Regression", "lr_best.joblib"),
@@ -43,9 +49,16 @@ import joblib
 import pandas as pd
 from IPython.display import display
 
-ROOT = Path.cwd().parent if Path.cwd().name == "models" else Path.cwd()
-if ROOT.name == "notebooks":
-    ROOT = ROOT.parent
+ROOT = next(
+    (
+        path
+        for path in [Path.cwd().resolve(), *Path.cwd().resolve().parents]
+        if (path / "src" / "config.py").is_file()
+    ),
+    None,
+)
+if ROOT is None:
+    raise FileNotFoundError("Run this notebook inside the project checkout.")
 import os, sys
 os.chdir(ROOT)
 sys.path.insert(0, str(ROOT))
@@ -94,7 +107,7 @@ print("- CV sau lựa chọn cấu hình trên train có thể lạc quan; khôn
 """),
         cell("markdown", """## 4 Nguồn và phạm vi
 
-Giao thức và kết quả A/B/C nằm trong `reports/timepoint_cv.csv`. Kết quả train/CV cho cấu hình C được lưu ở bảng metrics riêng của từng model; GB/SVM có thêm `reports/sv4_rebuild_cv.csv`. Không điều chỉnh mô hình/ngưỡng theo hold-out. Kết quả cuối chỉ được thêm sau khi manifest được khóa và preflight đạt.
+Giao thức và kết quả A/B/C nằm trong `notebooks/Experiments/Logs/Experiment_04_Timepoint_ABC/timepoint_cv.csv`. Kết quả train/CV cho cấu hình C được lưu ở bảng metrics riêng của từng model; GB/SVM có thêm `reports/sv4_rebuild_cv.csv`. Không điều chỉnh mô hình/ngưỡng theo hold-out. Kết quả cuối chỉ được thêm sau khi manifest được khóa và preflight đạt.
 """),
     ]
     notebook = {
@@ -106,22 +119,20 @@ Giao thức và kết quả A/B/C nằm trong `reports/timepoint_cv.csv`. Kết 
     }
     for index, notebook_cell in enumerate(notebook["cells"]):
         notebook_cell["id"] = f"{slug[:4]}-{index:02d}"
-    (OUT / f"{slug}.ipynb").write_text(json.dumps(notebook, ensure_ascii=False, indent=1) + "\n",
-                                         encoding="utf-8")
+    out_dir = ROOT / "notebooks" / "models" / MODEL_FOLDERS[slug]
+    out_dir.mkdir(parents=True, exist_ok=True)
+    (out_dir / f"{slug}.ipynb").write_text(json.dumps(notebook, ensure_ascii=False, indent=1) + "\n",
+                                               encoding="utf-8")
 
 readme = """# Model notebooks
 
-Mỗi notebook chạy riêng một model. Tất cả chỉ dùng tập train với Stratified 5-fold CV, seed 42; không chấm hold-out. Cấu hình được chọn trên C rồi giữ cố định khi so sánh A/B/C.
+Mỗi notebook chạy riêng một mô hình trên tập train với Stratified 5-fold CV, seed 42; không chấm hold-out. Cấu hình được chọn trên C rồi giữ cố định khi so sánh A/B/C.
 
-## Thứ tự đề xuất
+Mỗi mô hình nằm trong thư mục riêng: `Logistic_Regression/`, `Decision_Tree/`, `Random_Forest/`, `Gradient_Boosting/`, `Support_Vector_Machine/`.
 
-1. `logistic_regression.ipynb`
-2. `decision_tree.ipynb`
-3. `random_forest.ipynb`
-4. `gradient_boosting.ipynb`
-5. `support_vector_machine.ipynb`
-
-Mở kernel `.venv` của repo. Mỗi notebook in chỉ số CV, dự đoán một dòng train để kiểm tra giao diện và nhận xét được tính từ kết quả thực thi.
+Mở kernel `.venv` của repo. Mỗi notebook in chỉ số CV và nhận xét từ kết quả thực thi.
 """
-(OUT / "README.md").write_text(readme, encoding="utf-8")
-print(f"Wrote {len(MODELS)} model notebooks to {OUT}")
+models_root = ROOT / "notebooks" / "models"
+models_root.mkdir(parents=True, exist_ok=True)
+(models_root / "README.md").write_text(readme, encoding="utf-8")
+print(f"Wrote {len(MODELS)} model notebooks to {models_root}")

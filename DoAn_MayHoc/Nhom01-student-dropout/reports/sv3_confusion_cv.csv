@@ -1,7 +1,0 @@
-model,true,pred_Dropout,pred_Enrolled,pred_Graduate
-lr,true_Dropout,837,209,91
-lr,true_Enrolled,95,390,150
-lr,true_Graduate,76,236,1455
-dt,true_Dropout,749,212,176
-dt,true_Enrolled,77,288,270
-dt,true_Graduate,32,124,1611

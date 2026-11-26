@@ -30,16 +30,16 @@ def sha(path):
 
 
 def params_for_models():
-    sv3 = json.loads((config.MODELS_DIR / "sv3_metadata.json").read_text(encoding="utf-8"))
-    rf = json.loads((config.RESULTS_DIR / "rf_summary.json").read_text(encoding="utf-8"))
+    metadata = json.loads((config.MODELS_DIR / "model_metadata.json").read_text(encoding="utf-8"))
+    rf = json.loads((config.RF_LOG_DIR / "rf_summary.json").read_text(encoding="utf-8"))
     gb = json.loads((config.MODELS_DIR / "gb_best.meta.json").read_text(encoding="utf-8"))
     svm = json.loads((config.MODELS_DIR / "svm_best_proba.meta.json").read_text(encoding="utf-8"))
     return {
         "lr": (LogisticRegression(solver="saga", max_iter=2000, tol=1e-3,
                                    random_state=config.RANDOM_STATE), True,
-               sv3["models"]["lr"]["best_params"]),
+               metadata["models"]["lr"]["best_params"]),
         "dt": (DecisionTreeClassifier(random_state=config.RANDOM_STATE), False,
-               sv3["models"]["dt"]["best_params"]),
+               metadata["models"]["dt"]["best_params"]),
         "rf": (RandomForestClassifier(random_state=config.RANDOM_STATE, n_jobs=1), False,
                rf["best_params"]),
         "gb": (GradientBoostingClassifier(random_state=config.RANDOM_STATE), False,
@@ -51,7 +51,7 @@ def params_for_models():
 
 def main():
     data_hash = sha(config.DATA_FILE)
-    cv = pd.read_csv(config.RESULTS_DIR / "timepoint_cv.csv")
+    cv = pd.read_csv(config.TIMEPOINT_LOG_DIR / "timepoint_cv.csv")
     expected = {"LR", "DT", "RF", "GB", "SVM"}
     if set(cv["model"].unique()) != expected:
         raise SystemExit("timepoint_cv.csv must contain the five locked models")
@@ -100,11 +100,11 @@ def main():
         model_path = config.MODELS_DIR / filename
         meta_path = config.MODELS_DIR / f"{model_name}_best.meta.json"
         if model_name == "lr" or model_name == "dt":
-            handover = json.loads((config.MODELS_DIR / "sv3_handover.json").read_text(encoding="utf-8"))
+            handover = json.loads((config.MODELS_DIR / "model_handover.json").read_text(encoding="utf-8"))
             entry = next(x for x in handover["models"] if x["name"].lower() == model_name)
-            params = json.loads((config.MODELS_DIR / "sv3_metadata.json").read_text(encoding="utf-8"))["models"][model_name]["best_params"]
+            params = json.loads((config.MODELS_DIR / "model_metadata.json").read_text(encoding="utf-8"))["models"][model_name]["best_params"]
         elif model_name == "rf":
-            meta = json.loads((config.RESULTS_DIR / "rf_summary.json").read_text(encoding="utf-8"))
+            meta = json.loads((config.RF_LOG_DIR / "rf_summary.json").read_text(encoding="utf-8"))
             entry = {"trained_rows": meta["train_rows"], "training_data_sha256": meta["data_sha256"]}
             params = meta["best_params"]
         else:

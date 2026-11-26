@@ -1,12 +1,12 @@
 """Xây GB/SVM từ tham số tốt nhất đã tuning, có xác suất (predict_proba) cho bước chỉnh ngưỡng.
 
-Vì sao có file này (SV4-PROBA, SV4-GBSVM):
+Vì sao có file này (Probability experiment, GB/SVM model build):
 - `SVC` mặc định `probability=False` nên KHÔNG có predict_proba; muốn dùng ngưỡng phải bật
   `probability=True` (Platt scaling nội bộ, học bằng CV 5 fold trong lúc fit, chỉ dùng dữ liệu train).
 - File .joblib phụ thuộc phiên bản scikit-learn đã lưu. `gb_best.joblib` lưu từ bản sklearn cũ
   không nạp được trên scikit-learn 1.9.1 (lỗi `No module named '_loss'`). Dựng lại pipeline từ
   tham số (file này) là cách tái lập chắc chắn; hằng số bên dưới được test đối chiếu với
-  `reports/*_search_results.csv` (xếp hạng 1).
+  `notebooks/Experiments/Logs/Experiment_08_GB_SVM/*_search_results.csv` (xếp hạng 1).
 """
 from sklearn.ensemble import GradientBoostingClassifier
 from sklearn.svm import SVC

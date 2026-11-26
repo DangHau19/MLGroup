@@ -1,0 +1,3 @@
+model,train_f1,val_f1,chenh_lech,val_std
+LogisticRegression,0.7544,0.717,0.0373,0.0191
+DecisionTree,0.6952,0.6823,0.0129,0.0139

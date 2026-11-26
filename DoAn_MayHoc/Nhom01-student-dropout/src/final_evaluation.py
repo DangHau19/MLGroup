@@ -1,4 +1,4 @@
-"""SV1 final hold-out evaluation. Preflight is read-only; --run requires a committed manifest.
+"""Final hold-out evaluation. Preflight is read-only; --run requires a committed manifest.
 
 Run from the project root: python -m src.final_evaluation --manifest docs/evaluation/final_manifest.json
 Add --run only after every handover is complete and the manifest is committed.

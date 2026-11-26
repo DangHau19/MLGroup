@@ -1,0 +1,9 @@
+              precision    recall  f1-score   support
+
+     Dropout      0.821     0.711     0.762       284
+    Enrolled      0.441     0.616     0.514       159
+    Graduate      0.866     0.817     0.841       442
+
+    accuracy                          0.747       885
+   macro avg      0.709     0.715     0.706       885
+weighted avg      0.775     0.747     0.757       885

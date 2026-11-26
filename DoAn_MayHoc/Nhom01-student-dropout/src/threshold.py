@@ -1,4 +1,4 @@
-"""Quy tắc ngưỡng Dropout dùng chung (SV4-THR).
+"""Quy tắc ngưỡng Dropout dùng chung (Threshold experiment).
 
 Quy tắc quyết định đa lớp (cố định, mô tả đầy đủ):
     1. p_D = P(Dropout). Nếu p_D >= t  ->  nhãn = "Dropout".

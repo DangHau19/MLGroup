@@ -1,4 +1,4 @@
-"""Issue #10 (SV1): python -m src.models.random_forest --n-iter 20 --n-jobs 4.
+"""Issue #10 (): python -m src.models.random_forest --n-iter 20 --n-jobs 4.
 
 Only training data is used. The held-out test remains reserved for issue #18.
 """
@@ -91,7 +91,7 @@ def plot_learning_curve(table, path):
 def write_report(summary, curve, path):
     metrics = summary["metrics"]
     lines = [
-        "# Random Forest — Issue #10, SV1 Quốc", "",
+        "# Random Forest — Issue #10, ", "",
         "## Phương pháp", "",
         f"Tập đặc trưng {summary['feature_set']}; {summary['train_rows']} mẫu train. "
         f"Chia train/test phân tầng theo cấu hình chung, seed {config.RANDOM_STATE}. "
@@ -153,17 +153,17 @@ def run_experiment(feature_set="C", n_iter=20, n_jobs=4):
         "python": platform.python_version(), "versions": {p: version(p) for p in packages},
         "evaluation_note": "Post-selection CV on train; hold-out test was not evaluated.",
     }
-    for directory in [config.MODELS_DIR, config.RESULTS_DIR, config.FIGURES_DIR]:
+    for directory in [config.MODELS_DIR, config.RESULTS_DIR, config.RF_LOG_DIR]:
         directory.mkdir(parents=True, exist_ok=True)
     joblib.dump(search.best_estimator_, config.MODELS_DIR / "rf_best.joblib")
     pd.DataFrame(search.cv_results_).sort_values("rank_test_score").to_csv(
-        config.RESULTS_DIR / "rf_search_results.csv", index=False)
+        config.RF_LOG_DIR / "rf_search_results.csv", index=False)
     pd.DataFrame([metrics]).to_csv(config.RESULTS_DIR / "rf_cv_metrics.csv", index=False)
-    curve.to_csv(config.RESULTS_DIR / "rf_learning_curve.csv", index=False)
-    plot_learning_curve(curve, config.FIGURES_DIR / "rf_learning_curve.png")
-    (config.RESULTS_DIR / "rf_summary.json").write_text(
+    curve.to_csv(config.RF_LOG_DIR / "rf_learning_curve.csv", index=False)
+    plot_learning_curve(curve, config.RF_LOG_DIR / "rf_learning_curve.png")
+    (config.RF_LOG_DIR / "rf_summary.json").write_text(
         json.dumps(summary, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
-    write_report(summary, curve, config.RESULTS_DIR / "03_random_forest.md")
+    write_report(summary, curve, config.RF_LOG_DIR / "03_random_forest.md")
     log_result(metrics, config.CV_RESULTS_FILE)
     print(json.dumps(summary, indent=2, ensure_ascii=False), flush=True)
     return search, curve

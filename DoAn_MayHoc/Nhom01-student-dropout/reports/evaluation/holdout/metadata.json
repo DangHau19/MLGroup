@@ -1,0 +1,110 @@
+{
+  "status": "complete",
+  "started_at": "2026-11-26T13:32:31.136504+00:00",
+  "commit": "8d1f72175775945e65dc48a17b9e0d1d324fd2d5",
+  "manifest_sha256": "e4665bb7af1dc5490a9bba24b4606a3b51e5cf2c9a458a0922f61d9d09a1780a",
+  "data_sha256": "edc197d1381f25414a3757ab9bbae5f1f6d21aa6a964dbe98a148c15f3d63036",
+  "models": [
+    {
+      "name": "LR",
+      "key": "51ec94ed4562d5f152d262ec5031954ab533963138b5256b2707f4d700070746",
+      "metrics": {
+        "f1_macro": 0.6816698133729204,
+        "balanced_accuracy": 0.6921549788786505,
+        "accuracy": 0.7220338983050848,
+        "precision_Dropout": 0.7950819672131147,
+        "recall_Dropout": 0.6830985915492958,
+        "f1_Dropout": 0.7348484848484849,
+        "precision_Enrolled": 0.4067796610169492,
+        "recall_Enrolled": 0.6037735849056604,
+        "f1_Enrolled": 0.4860759493670886,
+        "precision_Graduate": 0.8617283950617284,
+        "recall_Graduate": 0.7895927601809954,
+        "f1_Graduate": 0.8240850059031877,
+        "model": "LR",
+        "feature_set": "C"
+      }
+    },
+    {
+      "name": "DT",
+      "key": "6fceb863a41e59c999832794f296d0f238f60df2e1a573776e5ebd8c41a7b260",
+      "metrics": {
+        "f1_macro": 0.6409961531664526,
+        "balanced_accuracy": 0.6310735820865411,
+        "accuracy": 0.7299435028248588,
+        "precision_Dropout": 0.8356164383561644,
+        "recall_Dropout": 0.6443661971830986,
+        "f1_Dropout": 0.7276341948310139,
+        "precision_Enrolled": 0.423728813559322,
+        "recall_Enrolled": 0.31446540880503143,
+        "f1_Enrolled": 0.36101083032490977,
+        "precision_Graduate": 0.7536496350364964,
+        "recall_Graduate": 0.9343891402714932,
+        "f1_Graduate": 0.8343434343434344,
+        "model": "DT",
+        "feature_set": "C"
+      }
+    },
+    {
+      "name": "RF",
+      "key": "c5974c8cac8c6d37d073c06cc6e099f92c98f8614c0dee803643a3193591c422",
+      "metrics": {
+        "f1_macro": 0.7057373566657233,
+        "balanced_accuracy": 0.7147872961132095,
+        "accuracy": 0.7468926553672316,
+        "precision_Dropout": 0.8211382113821138,
+        "recall_Dropout": 0.7112676056338029,
+        "f1_Dropout": 0.7622641509433963,
+        "precision_Enrolled": 0.44144144144144143,
+        "recall_Enrolled": 0.6163522012578616,
+        "f1_Enrolled": 0.5144356955380578,
+        "precision_Graduate": 0.8657074340527577,
+        "recall_Graduate": 0.8167420814479638,
+        "f1_Graduate": 0.840512223515716,
+        "model": "RF",
+        "feature_set": "C"
+      }
+    },
+    {
+      "name": "GB",
+      "key": "295b952280cb3cac98351c5844e465f4da58a03dedac93b66bd9cf3e213c79c6",
+      "metrics": {
+        "f1_macro": 0.6925285789850869,
+        "balanced_accuracy": 0.6868413064306517,
+        "accuracy": 0.7604519774011299,
+        "precision_Dropout": 0.7830882352941176,
+        "recall_Dropout": 0.75,
+        "f1_Dropout": 0.7661870503597122,
+        "precision_Enrolled": 0.5037593984962406,
+        "recall_Enrolled": 0.42138364779874216,
+        "f1_Enrolled": 0.4589041095890411,
+        "precision_Graduate": 0.81875,
+        "recall_Graduate": 0.8891402714932126,
+        "f1_Graduate": 0.8524945770065075,
+        "model": "GB",
+        "feature_set": "C"
+      }
+    },
+    {
+      "name": "SVM",
+      "key": "de9da241db9397d6760eabdb1804eae2efb6417f0779c9ab3d320582e460c782",
+      "metrics": {
+        "f1_macro": 0.7055800393406525,
+        "balanced_accuracy": 0.7179788130492355,
+        "accuracy": 0.7412429378531074,
+        "precision_Dropout": 0.8539823008849557,
+        "recall_Dropout": 0.6795774647887324,
+        "f1_Dropout": 0.7568627450980392,
+        "precision_Enrolled": 0.4380165289256198,
+        "recall_Enrolled": 0.6666666666666666,
+        "f1_Enrolled": 0.5286783042394015,
+        "precision_Graduate": 0.8561151079136691,
+        "recall_Graduate": 0.8076923076923077,
+        "f1_Graduate": 0.8311990686845169,
+        "model": "SVM",
+        "feature_set": "C"
+      }
+    }
+  ],
+  "finished_at": "2026-11-26T13:32:32.182336+00:00"
+}

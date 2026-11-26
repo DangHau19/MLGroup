@@ -17,7 +17,7 @@
   },
   "random_state": 42,
   "search": "RandomizedSearchCV n_iter=12",
-  "search_source": "reports/gb_search_results.csv",
+  "search_source": "notebooks/Experiments/Logs/Experiment_08_GB_SVM/gb_search_results.csv",
   "cv": "StratifiedKFold(5, shuffle=True, seed=42) trên train (src.evaluate.get_cv)",
   "scoring": "f1_macro",
   "cv_result": {
@@ -48,6 +48,6 @@
     "joblib": "1.6.0"
   },
   "created": "2026-11-15",
-  "command": ".\\.venv\\Scripts\\python.exe -X utf8 scripts/sv4_rebuild_models.py",
+  "command": ".\\.venv\\Scripts\\python.exe -X utf8 scripts/build_gb_svm_models.py",
   "load": "joblib.load('models/gb_best.joblib')  # cần cùng phiên bản scikit-learn; nếu lỗi, dựng lại bằng src.models.proba"
 }

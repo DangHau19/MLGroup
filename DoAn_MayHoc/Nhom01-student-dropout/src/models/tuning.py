@@ -39,7 +39,8 @@ def _save(search, name, label, X_train, y_train, feature_set="C"):
     res = pd.DataFrame(search.cv_results_).sort_values("rank_test_score")
     cols = ["rank_test_score", "mean_test_score", "std_test_score", "mean_train_score",
             "mean_fit_time"] + [c for c in res.columns if c.startswith("param_")]
-    res[cols].to_csv(config.RESULTS_DIR / f"{name}_search_results.csv", index=False)
+    config.GB_SVM_LOG_DIR.mkdir(parents=True, exist_ok=True)
+    res[cols].to_csv(config.GB_SVM_LOG_DIR / f"{name}_search_results.csv", index=False)
     config.MODELS_DIR.mkdir(exist_ok=True)
     joblib.dump(search.best_estimator_, config.MODELS_DIR / f"{name}_best.joblib")
     # Đánh giá lại mô hình tốt nhất bằng cùng hàm chung (CV trên train) để vào bảng so sánh
