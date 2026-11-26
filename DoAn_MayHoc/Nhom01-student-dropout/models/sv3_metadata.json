@@ -9,10 +9,10 @@
     "Graduate"
   ],
   "libs": {
-    "python": "3.14.6",
-    "scikit-learn": "1.9.0",
-    "pandas": "3.0.3",
-    "numpy": "2.4.6"
+    "python": "3.12.10",
+    "scikit-learn": "1.9.1",
+    "pandas": "3.1.1",
+    "numpy": "2.5.4"
   },
   "models": {
     "lr": {
@@ -20,7 +20,7 @@
       "best_params": {
         "clf__C": 0.3,
         "clf__class_weight": "balanced",
-        "clf__penalty": "l2"
+        "clf__l1_ratio": 0.0
       },
       "cv_f1_macro": 0.717,
       "cv_std": 0.0191
@@ -97,34 +97,6 @@
     "Father's occupation"
   ],
   "numeric_ranges": {
-    "Displaced": [
-      0.0,
-      1.0
-    ],
-    "Educational special needs": [
-      0.0,
-      1.0
-    ],
-    "Debtor": [
-      0.0,
-      1.0
-    ],
-    "Tuition fees up to date": [
-      0.0,
-      1.0
-    ],
-    "Gender": [
-      0.0,
-      1.0
-    ],
-    "Scholarship holder": [
-      0.0,
-      1.0
-    ],
-    "International": [
-      0.0,
-      1.0
-    ],
     "Application order": [
       0.0,
       9.0
@@ -435,5 +407,6 @@
       195
     ]
   },
-  "note": "Tuning chỉ dùng train + CV 5-fold; tập test không dùng."
+  "note": "Model C fit trên toàn bộ train; metadata đầu vào dùng tập train; không dùng hold-out.",
+  "data_sha256": "edc197d1381f25414a3757ab9bbae5f1f6d21aa6a964dbe98a148c15f3d63036"
 }

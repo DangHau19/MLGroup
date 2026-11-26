@@ -1,6 +1,6 @@
 {
-  "ready_for_final_test": false,
-  "note": "DRAFT. Chỉ bật readiness sau khi đủ bàn giao và commit bản chốt. Không dùng kết quả test để thay lựa chọn.",
+  "ready_for_final_test": true,
+  "note": "Frozen before hold-out evaluation. Run once after commit; do not tune from hold-out.",
   "scope": [
     "LR",
     "DT",
@@ -20,9 +20,9 @@
     "joblib": "1.6.0"
   },
   "confirmations": {
-    "model_handover_complete": false,
-    "threshold_handover_complete": false,
-    "abc_scope_confirmed": false
+    "model_handover_complete": true,
+    "threshold_handover_complete": true,
+    "abc_scope_confirmed": true
   },
   "source_sha256": {
     "src/config.py": "46c4bc6cf6dbaf484eb7e40bb182dd544bdcc24f55c24cd47e373689c1de402b",
@@ -30,7 +30,7 @@
     "src/evaluate.py": "4a3b97113972dfa4e43400737a09199214ec75d40195039fd11ac009480331f2",
     "src/preprocessing.py": "718b22188b11890cdf31dfe757a688e383b5ed7dc48c3f8348d22cfdb86c5630",
     "src/features.py": "02f428c167a785c68cc6161e9b67076ae793ab5f314fb804a0ff4446d0d67ba7",
-    "src/final_evaluation.py": "4cf23a3ac6ff4e055057b6c1212e3d7e079f7daa14a6114c53777182eebde205",
+    "src/final_evaluation.py": "143b79841e228d2ae8377dc75dbbc0a7a8be98d359cd20b88fea1b9b6ca13b79",
     "requirements.txt": "8bd969015c822fa2be3aee649b4adba84d40526bf291a6ecce6d2d4cf5215293"
   },
   "models": [
@@ -38,33 +38,33 @@
       "name": "LR",
       "path": "models/lr_best.joblib",
       "feature_set": "C",
-      "sha256": null,
-      "trained_rows": null,
-      "training_data_sha256": null,
+      "sha256": "d45351289d070d6548d185de84e855c661b415d3974cf6caaded6b6419cd63e6",
+      "trained_rows": 3539,
+      "training_data_sha256": "edc197d1381f25414a3757ab9bbae5f1f6d21aa6a964dbe98a148c15f3d63036",
       "cv_evidence": "reports/lr_cv_metrics.csv",
-      "cv_evidence_sha256": null,
+      "cv_evidence_sha256": "5c782c15fdb692423d2ef69fcae12f8ff7e305e6a12a75eb75ffbcbda0af10f2",
       "decision": {
         "kind": "native_predict",
         "evidence": "docs/evaluation/decision_record.md",
-        "evidence_sha256": "fd38ba33ba4a3b07c8f7d2e3e4321fbb759c0b5eab949c95eac1aa7221813674"
+        "evidence_sha256": "96aca287b1ac7fb8f2f5a6f4c7358d15545ec580aebde4ff53dba8d555c0991e"
       },
-      "handover_status": "WAITING FOR OWNER; native_predict is provisional"
+      "handover_status": "Verified in shared Python 3.12.10 / scikit-learn 1.9.1 environment"
     },
     {
       "name": "DT",
       "path": "models/dt_best.joblib",
       "feature_set": "C",
-      "sha256": null,
-      "trained_rows": null,
-      "training_data_sha256": null,
+      "sha256": "6f1527d6720cba90ff587c098a99b0b73ead53e831d1c443690b71363c6a805d",
+      "trained_rows": 3539,
+      "training_data_sha256": "edc197d1381f25414a3757ab9bbae5f1f6d21aa6a964dbe98a148c15f3d63036",
       "cv_evidence": "reports/dt_cv_metrics.csv",
-      "cv_evidence_sha256": null,
+      "cv_evidence_sha256": "08cf04241f0f919bac56ed5d114e5e771278824de333bcd2c25e8d38738588cb",
       "decision": {
         "kind": "native_predict",
         "evidence": "docs/evaluation/decision_record.md",
-        "evidence_sha256": "fd38ba33ba4a3b07c8f7d2e3e4321fbb759c0b5eab949c95eac1aa7221813674"
+        "evidence_sha256": "96aca287b1ac7fb8f2f5a6f4c7358d15545ec580aebde4ff53dba8d555c0991e"
       },
-      "handover_status": "WAITING FOR OWNER; native_predict is provisional"
+      "handover_status": "Verified in shared Python 3.12.10 / scikit-learn 1.9.1 environment"
     },
     {
       "name": "RF",
@@ -78,41 +78,42 @@
       "decision": {
         "kind": "native_predict",
         "evidence": "docs/evaluation/decision_record.md",
-        "evidence_sha256": "fd38ba33ba4a3b07c8f7d2e3e4321fbb759c0b5eab949c95eac1aa7221813674"
+        "evidence_sha256": "96aca287b1ac7fb8f2f5a6f4c7358d15545ec580aebde4ff53dba8d555c0991e"
       },
-      "handover_status": "RF checked on train/CV"
+      "handover_status": "Verified in shared Python 3.12.10 / scikit-learn 1.9.1 environment"
     },
     {
       "name": "GB",
       "path": "models/gb_best.joblib",
       "feature_set": "C",
-      "sha256": "7f94011a1050a1684acfc0b27e4e7923b25abb3ca4298da6da6aeb70cddca518",
-      "trained_rows": null,
-      "training_data_sha256": null,
+      "sha256": "9cfca85530667983fe112fa0f7f710e46a2b173aa7975d7ed10b17aca41d3add",
+      "trained_rows": 3539,
+      "training_data_sha256": "edc197d1381f25414a3757ab9bbae5f1f6d21aa6a964dbe98a148c15f3d63036",
       "cv_evidence": "reports/sv4_rebuild_cv.csv",
-      "cv_evidence_sha256": "d4a7840514d9af8e5e750c7857aa9dee1331e1198187a578ebaac41498244f5b",
+      "cv_evidence_sha256": "7ce71d35167480cba58a7b6ce2e9f24565e35d8ce6f928fe84df01ec54e34993",
       "decision": {
         "kind": "native_predict",
         "evidence": "docs/evaluation/decision_record.md",
-        "evidence_sha256": "fd38ba33ba4a3b07c8f7d2e3e4321fbb759c0b5eab949c95eac1aa7221813674"
+        "evidence_sha256": "96aca287b1ac7fb8f2f5a6f4c7358d15545ec580aebde4ff53dba8d555c0991e"
       },
-      "handover_status": "WAITING FOR OWNER; native_predict is provisional"
+      "handover_status": "Verified in shared Python 3.12.10 / scikit-learn 1.9.1 environment"
     },
     {
       "name": "SVM",
-      "path": "models/svm_best_proba.joblib",
+      "path": "models/svm_best.joblib",
       "feature_set": "C",
-      "sha256": "44277628e41836c547281693684241c04690dfe1afaebb4024a2c80c125eb391",
-      "trained_rows": null,
-      "training_data_sha256": null,
+      "sha256": "f499f35da12b60f4c01d9f6782d95a156745605727f9ce3cfe1f26a8c5584463",
+      "trained_rows": 3539,
+      "training_data_sha256": "edc197d1381f25414a3757ab9bbae5f1f6d21aa6a964dbe98a148c15f3d63036",
       "cv_evidence": "reports/sv4_rebuild_cv.csv",
-      "cv_evidence_sha256": "d4a7840514d9af8e5e750c7857aa9dee1331e1198187a578ebaac41498244f5b",
+      "cv_evidence_sha256": "7ce71d35167480cba58a7b6ce2e9f24565e35d8ce6f928fe84df01ec54e34993",
       "decision": {
         "kind": "native_predict",
         "evidence": "docs/evaluation/decision_record.md",
-        "evidence_sha256": "fd38ba33ba4a3b07c8f7d2e3e4321fbb759c0b5eab949c95eac1aa7221813674"
+        "evidence_sha256": "96aca287b1ac7fb8f2f5a6f4c7358d15545ec580aebde4ff53dba8d555c0991e"
       },
-      "handover_status": "WAITING FOR OWNER; native_predict is provisional"
+      "handover_status": "Verified in shared Python 3.12.10 / scikit-learn 1.9.1 environment"
     }
-  ]
+  ],
+  "feature_set": "C"
 }

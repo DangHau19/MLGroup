@@ -5,7 +5,7 @@ import unittest
 from pathlib import Path
 from unittest.mock import patch
 import numpy as np
-from src.final_evaluation import committed, decide, evaluation_key, local_path, run
+from src.final_evaluation import committed, decide, evaluation_key, has_previous_results, local_path, run
 
 
 class FakeModel:
@@ -33,6 +33,20 @@ class FinalEvaluationTests(unittest.TestCase):
         entry = {'name': 'RF', 'sha256': 'modelhash', 'feature_set': 'C', 'decision': {'kind': 'native_predict'}}
         self.assertEqual(evaluation_key(entry, 'data'), evaluation_key(dict(entry, name='RF_renamed'), 'data'))
         self.assertNotEqual(evaluation_key(entry, 'data'), evaluation_key(entry, 'other_data'))
+
+    def test_empty_result_directories_do_not_count_as_a_previous_run(self):
+        with tempfile.TemporaryDirectory() as temp:
+            out, ledger = Path(temp) / 'holdout', Path(temp) / 'ledger'
+            out.mkdir(); ledger.mkdir()
+            self.assertFalse(has_previous_results(out, ledger, ['key']))
+            (ledger / 'key.json').write_text('{"status":"reserved"}', encoding='utf-8')
+            self.assertTrue(has_previous_results(out, ledger, ['key']))
+
+    def test_nonempty_holdout_output_blocks_a_second_run(self):
+        with tempfile.TemporaryDirectory() as temp:
+            out, ledger = Path(temp) / 'holdout', Path(temp) / 'ledger'
+            out.mkdir(); (out / 'metrics.csv').write_text('x', encoding='utf-8')
+            self.assertTrue(has_previous_results(out, ledger, ['key']))
 
     def test_paths_cannot_escape_project(self):
         with tempfile.TemporaryDirectory() as temp:

@@ -85,11 +85,16 @@ và cài theo các lệnh trên. Trong Jupyter/VS Code, chọn kernel của `.ve
 Không dùng `pip freeze` từ môi trường cá nhân để tự ghi đè file chung.
 Khi cập nhật thư viện, cả nhóm cập nhật cùng file và kiểm tra lại trên môi trường sạch.
 
-**Mô hình cũ:** `gb_best.joblib` và `svm_best.joblib` được lưu bằng sklearn 1.8.0;
-cần huấn luyện và xuất lại trong môi trường chung trước khi bàn giao demo.
-`rf_best.joblib` dùng sklearn 1.9.1 nhưng metadata lượt chạy cũ ghi pandas 3.0.6;
-cần kiểm tra nạp/dự đoán trong môi trường mới. Đổi requirements không chuyển đổi
-mô hình hay chạy lại các notebook. Không sửa metadata notebook để giả định đã chạy lại.
+**Mô hình hiện tại:** LR/DT được fit lại trong `.venv` chung; RF đã kiểm chứng lại
+trên train/CV; metadata GB/SVM ghi scikit-learn 1.9.1. Môi trường và SHA dữ liệu
+của từng artifact nằm trong `models/sv3_handover.json`, `models/*.meta.json` và
+`reports/evaluation/rf_audit/metadata.json`. Không sửa metadata cũ để giả định đã
+chạy lại. Trước đánh giá cuối, phải dùng preflight của manifest để xác nhận mọi
+hash, phiên bản và nguồn CV khớp.
+
+Các pipeline demo A/B được dựng bằng cấu hình đã chọn trên C, không tuning riêng
+trên hold-out. Chạy `scripts/build_demo_models.py` để tạo lại; registry và hash nằm
+trong `models/demo/model_registry.json`.
 Khi gặp lỗi khác máy, gửi kèm phiên bản Python, `python.exe -m pip freeze`
 trong `.venv` và đầy đủ traceback.
 
@@ -181,19 +186,24 @@ bằng module theo hướng dẫn issue #10 bên dưới.
 
 ```text
 data/           dữ liệu gốc raw/data.csv và thư mục processed/
-notebooks/      EDA và tiền xử lý
-src/            config.py, data.py, preprocessing.py, features.py, evaluate.py, models/
-models/         nơi lưu mô hình huấn luyện (.joblib)
+notebooks/      EDA, tiền xử lý, phân tích và notebooks/models/ riêng từng mô hình
+src/            data, feature engineering, preprocessing, prediction, evaluation
+app/            Streamlit demo cho năm mô hình và tập A/B/C
+models/         model C, artifact demo A/B và metadata/hash
 reports/        nơi lưu bảng kết quả và figures/
 docs/           hướng dẫn cộng tác, mẫu kiểm thử, checklist và tài liệu lịch sử
-scripts/        download_data.py, create_issues.sh
+scripts/        huấn luyện, dựng demo, tái lập, đánh giá và kiểm tra
 requirements.txt
 README.md
 ```
 
-Các phần dự kiến bổ sung: notebook `03_models`, `04_timepoint`, `05_error_analysis` và
-`app/streamlit_app.py`. Demo Streamlit sẽ có hướng dẫn chạy khi ứng dụng và
-mô hình đã được bàn giao.
+Năm notebook riêng cho từng mô hình nằm trong `notebooks/models/`. Chạy demo:
+
+```powershell
+.\.venv\Scripts\python.exe -m streamlit run app/streamlit_app.py
+```
+
+Demo nhận các tập A/B/C và năm mô hình; kết quả minh họa chỉ dùng dữ liệu train.
 
 ## Dùng chung trong code
 

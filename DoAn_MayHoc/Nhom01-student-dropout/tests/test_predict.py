@@ -87,7 +87,7 @@ class TestPredict(unittest.TestCase):
 
     def test_unknown_model_name(self):
         with self.assertRaises(KeyError):
-            predict_one(self.row, model="svm")
+            predict_one(self.row, model="unknown-model")
 
 
 if __name__ == "__main__":

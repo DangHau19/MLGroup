@@ -68,6 +68,14 @@ def evaluation_key(entry, data_hash):
     return hashlib.sha256(json.dumps(obj, sort_keys=True).encode()).hexdigest()
 
 
+def has_previous_results(out, ledger, keys):
+    """Treat only actual result files or matching ledger entries as a prior run."""
+    out, ledger = Path(out), Path(ledger)
+    output_exists = out.exists() and any(out.iterdir())
+    reserved = any((ledger / (key + '.json')).exists() for key in keys)
+    return output_exists or reserved
+
+
 def committed(root, paths):
     """Require each input to match its committed Git object after clean filters."""
     errors = []
@@ -188,9 +196,9 @@ def run(manifest_path, execute=False):
     out = root / 'reports/evaluation/holdout'
     ledger = root / 'reports/evaluation/holdout_ledger'
     keys = [(entry, model, evaluation_key(entry, data_hash)) for entry, model in models]
-    if out.exists() or any((ledger / (key + '.json')).exists() for _, _, key in keys):
+    if has_previous_results(out, ledger, [key for _, _, key in keys]):
         raise RuntimeError('Final results/ledger already exist. Reuse saved predictions; do not re-score test.')
-    out.mkdir(parents=True, exist_ok=False)
+    out.mkdir(parents=True, exist_ok=True)
     ledger.mkdir(parents=True, exist_ok=True)
     state = {'status': 'started', 'started_at': datetime.now(timezone.utc).isoformat(),
              'commit': subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=root).decode().strip(),

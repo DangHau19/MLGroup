@@ -41,7 +41,14 @@ def sha(path):
 
 def make_pipeline(name, params):
     if name == "lr":
-        est, scale = LogisticRegression(solver="saga", max_iter=2000, tol=1e-3, random_state=config.RANDOM_STATE), True
+        params = dict(params)
+        # sklearn 1.9 deprecates explicitly passing penalty; l1_ratio=0 preserves L2.
+        penalty = params.pop("clf__penalty", "l2")
+        if penalty not in ("l1", "l2"):
+            raise ValueError(f"Unsupported LR penalty: {penalty}")
+        params["clf__l1_ratio"] = 1.0 if penalty == "l1" else 0.0
+        est, scale = LogisticRegression(solver="saga", max_iter=2000, tol=1e-3,
+                                        random_state=config.RANDOM_STATE), True
     else:
         est, scale = DecisionTreeClassifier(random_state=config.RANDOM_STATE), False
     return build_pipeline(est, "C", scale=scale).set_params(**params)
@@ -51,7 +58,8 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--write", action="store_true", help="fit lại trên toàn train và ghi models/*.joblib")
     args = ap.parse_args()
-    meta = json.load(open(config.MODELS_DIR / "sv3_metadata.json", encoding="utf-8"))
+    metadata_path = config.MODELS_DIR / "sv3_metadata.json"
+    meta = json.loads(metadata_path.read_text(encoding="utf-8"))
     fs = meta["feature_set"]
     X_train, _, y_train, _ = get_train_test(fs)
     data_hash = sha(config.DATA_FILE)
@@ -60,7 +68,11 @@ def main():
 
     entries = []
     for key, info in meta["models"].items():
+        info["best_params"] = dict(info["best_params"])
         pipe = make_pipeline(key, info["best_params"])
+        if key == "lr":
+            penalty = info["best_params"].pop("clf__penalty", "l2")
+            info["best_params"]["clf__l1_ratio"] = 1.0 if penalty == "l1" else 0.0
         res = cross_validate_model(pipe, X_train, y_train, name=NAMES[key], feature_set=fs, log=False)
         evidence = config.RESULTS_DIR / f"{key}_cv_metrics.csv"
         pd.DataFrame([res]).to_csv(evidence, index=False)
@@ -85,6 +97,23 @@ def main():
     out = {"python": platform.python_version(), "versions": libs, "data_sha256": data_hash,
            "models": entries, "note": "Chỉ dùng train/CV; không dùng test."}
     (config.MODELS_DIR / "sv3_handover.json").write_text(json.dumps(out, ensure_ascii=False, indent=2), encoding="utf-8")
+    meta["libs"] = {"python": platform.python_version(), "scikit-learn": libs["scikit-learn"],
+                    "pandas": libs["pandas"], "numpy": libs["numpy"]}
+    meta["data_sha256"] = data_hash
+    meta["input_columns"] = list(config.FEATURE_SETS["C"])
+    meta["binary_cols"] = list(config.BINARY_COLS)
+    meta["categorical_cols"] = list(config.CATEGORICAL_COLS)
+    meta["known_categories"] = {
+        col: sorted(int(v) for v in X_train[col].dropna().unique())
+        for col in config.CATEGORICAL_COLS
+    }
+    meta["numeric_ranges"] = {
+        col: [float(X_train[col].min()), float(X_train[col].max())]
+        for col in config.FEATURE_SETS["C"]
+        if col not in config.CATEGORICAL_COLS and col not in config.BINARY_COLS
+    }
+    meta["note"] = "Model C fit trên toàn bộ train; metadata đầu vào dùng tập train; không dùng hold-out."
+    metadata_path.write_text(json.dumps(meta, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print("Đã ghi models/sv3_handover.json")
     if not all(e["loads_without_warning"] for e in entries):
         print("CẢNH BÁO: chạy lại với --write trong môi trường khóa (Python 3.12.10, requirements.txt).")

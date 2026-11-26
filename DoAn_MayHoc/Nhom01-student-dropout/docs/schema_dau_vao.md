@@ -1,6 +1,6 @@
 # Schema đầu vào và tiền xử lý (SV3)
 
-Nguồn: `src/config.py` (nhóm), `src/preprocessing.py`, `src/features.py`, `models/sv3_metadata.json`. Mô hình dự đoán dùng tập đặc trưng **C (36 cột)**. Miền giá trị lấy từ **tập train**.
+Nguồn: `src/config.py`, `src/preprocessing.py`, `src/features.py`, `src/predict.py` và `models/sv3_metadata.json`. Demo hỗ trợ các tập đặc trưng **A (24 cột), B (30 cột), C (36 cột)**. Miền giá trị tham chiếu metadata của **tập train**.
 
 ## 1. Bảng cột đầu vào
 
@@ -48,11 +48,13 @@ Nguồn: `src/config.py` (nhóm), `src/preprocessing.py`, `src/features.py`, `mo
 
 ## 2. Hợp đồng hàm `predict_one`
 
-- **Vào:** dict hoặc DataFrame 1 dòng có đủ 36 cột trên (đúng tên). Cột thừa bị bỏ qua + cảnh báo.
-- **Lỗi (`InputError`):** thiếu cột; không phải số hoặc NaN; nhị phân khác 0/1; phân loại không phải số nguyên; DataFrame khác 1 dòng.
-- **Cảnh báo (vẫn dự đoán):** mã phân loại chưa thấy khi train (xử lý như nhóm Other); giá trị số ngoài khoảng train.
+- **Vào:** dict hoặc DataFrame 1 dòng có đủ cột của tập A/B/C được chọn (đúng tên). Cột thừa bị bỏ qua + cảnh báo.
+- **Mô hình:** `lr`, `dt`, `rf`, `gb`, `svm`; model C dùng artifact chuẩn, A/B dùng artifact trong `models/demo/`.
+- **Lỗi (`InputError`):** thiếu cột; không phải số hoặc NaN; nhị phân khác 0/1; phân loại không phải số nguyên; điểm tuyển sinh/điểm đầu vào ngoài 0–200; DataFrame khác 1 dòng.
+- **Cảnh báo (vẫn dự đoán):** mã phân loại chưa thấy khi train (OneHotEncoder bỏ qua mã chưa biết); giá trị số ngoài khoảng train.
 - **Ra:** `label`, `probabilities` (đủ Dropout, Enrolled, Graduate theo `classes_`), `model`, `threshold`, `warnings`.
-- **Ngưỡng Dropout:** `dropout_threshold=None` (argmax) hoặc `t`: nhãn Dropout nếu P(Dropout) >= t. Chưa chốt giá trị với Hậu.
+- **Quy tắc mặc định:** `native_predict`, dùng `pipeline.predict()`; xác suất được trả riêng theo thứ tự lớp `Dropout`, `Enrolled`, `Graduate`.
+- **Ngưỡng tùy chọn:** khi truyền `dropout_threshold=t`, nhãn là Dropout nếu P(Dropout) >= t; nếu không, chọn xác suất cao nhất giữa Enrolled và Graduate. Ngưỡng GB/SVM trong `models/threshold_config.json` là kết quả CV/OOF, không tự động áp dụng trong demo.
 
 ## 3. Ví dụ trước/sau xử lý (một mẫu train, scale=True như LR)
 
@@ -89,11 +91,11 @@ Kiểm tra tay: Pass rate 1st = 6.0/6.0 = 1.0000 (thô) rồi được chuẩn h
 | Ca | Kết quả mong đợi | Test |
 |---|---|---|
 | enrolled = 0 (chia 0) | tỷ lệ = 0, không NaN/inf | `test_safe_ratio_zero_division`, `test_division_by_zero_row_is_finite` |
-| Mã phân loại chưa thấy | không lỗi, vào nhóm Other; hàm dự đoán cảnh báo | `test_unseen_category_does_not_fail`, `test_new_category_warns_but_predicts` |
+| Mã phân loại chưa thấy | không lỗi; OneHotEncoder bỏ qua mã chưa biết và hàm dự đoán cảnh báo | `test_unseen_category_does_not_fail`, `test_new_category_warns_but_predicts` |
 | Scaler chỉ fit trên train | mean của scaler = mean của train | `test_scaler_fitted_on_train_only` |
 | Thiếu cột / sai kiểu / NaN / nhị phân sai / phân loại lẻ | `InputError` | các test `test_predict` |
 | Giá trị số ngoài miền train | cảnh báo, vẫn dự đoán | `test_out_of_range_numeric_warns` |
 | Ngưỡng Dropout 0 và 1,01 | luôn Dropout / không bao giờ Dropout | `test_dropout_threshold` |
 
 Chạy: `.\.venv\Scripts\python.exe -X utf8 -m unittest discover -s tests -v` (24 test).
-Lưu ý: mô hình `.joblib` lưu bằng scikit-learn 1.8.0; nạp bằng bản khác sẽ có cảnh báo `InconsistentVersionWarning`. Sau khi Hậu khóa phiên bản, chạy lại `python scripts/reproduce_sv3.py --write`.
+Artifact C được quản lý theo metadata của từng mô hình; LR/DT được tái fit trong môi trường Python 3.12.10 và scikit-learn 1.9.1. Chạy `scripts/sv3_handover.py --write` để dựng lại LR/DT và `scripts/build_demo_models.py` để dựng artifact A/B.
