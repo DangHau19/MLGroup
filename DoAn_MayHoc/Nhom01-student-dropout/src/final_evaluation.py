@@ -91,7 +91,7 @@ def committed(root, paths):
                 stderr=subprocess.DEVNULL
             )
             result = subprocess.run(
-                ['git', 'diff', '--quiet', 'HEAD', '--', git_path], cwd=root,
+                ['git', 'diff', '--quiet', 'HEAD', '--', relative], cwd=root,
                 stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL
             )
             if result.returncode != 0:
