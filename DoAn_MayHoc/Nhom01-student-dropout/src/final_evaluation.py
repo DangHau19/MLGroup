@@ -86,15 +86,15 @@ def committed(root, paths):
         try:
             relative = path.resolve().relative_to(root.resolve()).as_posix()
             git_path = prefix + relative
-            head_oid = subprocess.check_output(
-                ['git', 'rev-parse', 'HEAD:' + git_path], cwd=root,
-                stderr=subprocess.DEVNULL, text=True
-            ).strip()
-            working_oid = subprocess.check_output(
-                ['git', 'hash-object', '--path=' + git_path, str(path)], cwd=root,
-                stderr=subprocess.DEVNULL, text=True
-            ).strip()
-            if working_oid != head_oid:
+            subprocess.check_output(
+                ['git', 'cat-file', '-e', 'HEAD:' + git_path], cwd=root,
+                stderr=subprocess.DEVNULL
+            )
+            result = subprocess.run(
+                ['git', 'diff', '--quiet', 'HEAD', '--', git_path], cwd=root,
+                stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL
+            )
+            if result.returncode != 0:
                 errors.append('Uncommitted change: ' + str(path))
         except (subprocess.CalledProcessError, FileNotFoundError):
             errors.append('Not committed in HEAD: ' + str(path))
