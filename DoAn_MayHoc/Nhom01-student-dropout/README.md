@@ -101,5 +101,5 @@ Chọn kernel `.venv` để chạy notebook. Notebook tổng quan chỉ đọc d
 |---|---|
 | Mã nguồn, cấu hình, dataset, hướng dẫn chạy | Có |
 | Notebook, artifact mô hình, log, biểu đồ, kết quả đánh giá | Có |
-| Báo cáo hoàn chỉnh, slide, poster, video demo | Chưa có trong repo; bổ sung hoặc dẫn link Docs/Slides/Drive trước khi nộp |
-| MSSV và tỷ lệ đóng góp thành viên | Chưa xác nhận; điền ở bảng trên |
+| Báo cáo hoàn chỉnh, slide, poster, video demo | https://drive.google.com/drive/folders/1F00prGzAU0GQNGtFpW3L5WmEMxfNLVll?usp=sharing |
+
