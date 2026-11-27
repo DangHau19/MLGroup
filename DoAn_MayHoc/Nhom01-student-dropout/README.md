@@ -90,10 +90,10 @@ Chọn kernel `.venv` để chạy notebook. Notebook tổng quan chỉ đọc d
 | Họ và tên | Mã số sinh viên | Vai trò/nhiệm vụ | Phần công việc theo phân công | Tỷ lệ đóng góp (%) |
 |---|---|---|---|---:|
 | Trần Đình Bảo Quốc ([#31](https://github.com/DangHau19/MLGroup/issues/31)) | 3124411252 | Random Forest, tổng hợp kết quả và nghiệm thu | Random Forest; tổng hợp kết quả đánh giá; phối hợp hoàn thiện báo cáo cuối | 20% |
-| Phan Lê Minh Huy ([#32](https://github.com/DangHau19/MLGroup/issues/32)) | Cần bổ sung | Dữ liệu, EDA, demo và poster | Tải/kiểm tra dữ liệu; EDA; giao diện demo; poster | 20% |
-| Trần Văn Võ Doanh ([#33](https://github.com/DangHau19/MLGroup/issues/33)) | Cần bổ sung | Tiền xử lý, LR/DT và tích hợp dự đoán | Tiền xử lý; tạo đặc trưng; Logistic Regression; Decision Tree; tích hợp dự đoán | 20% |
-| Hoàng Đăng Hậu ([#34](https://github.com/DangHau19/MLGroup/issues/34)) | Cần bổ sung | Mất cân bằng lớp, GB/SVM, ngưỡng và môi trường | Thí nghiệm mất cân bằng; Gradient Boosting; SVM; ngưỡng Dropout; kiểm tra môi trường | 20% |
-| Nguyễn Minh Triết ([#35](https://github.com/DangHau19/MLGroup/issues/35)) | Cần bổ sung | A/B/C, phân tích lỗi, diễn giải và video demo | So sánh A/B/C; phân tích lỗi và importance; nội dung/video demo | 20% |
+| Phan Lê Minh Huy ([#32](https://github.com/DangHau19/MLGroup/issues/32)) | 3124411111 | Dữ liệu, EDA, demo và poster | Tải/kiểm tra dữ liệu; EDA; giao diện demo; poster | 20% |
+| Trần Văn Võ Doanh ([#33](https://github.com/DangHau19/MLGroup/issues/33)) | 3124411052 | Tiền xử lý, LR/DT và tích hợp dự đoán | Tiền xử lý; tạo đặc trưng; Logistic Regression; Decision Tree; tích hợp dự đoán | 20% |
+| Hoàng Đăng Hậu ([#34](https://github.com/DangHau19/MLGroup/issues/34)) | 3124411085 | Mất cân bằng lớp, GB/SVM, ngưỡng và môi trường | Thí nghiệm mất cân bằng; Gradient Boosting; SVM; ngưỡng Dropout; kiểm tra môi trường | 20% |
+| Nguyễn Minh Triết ([#35](https://github.com/DangHau19/MLGroup/issues/35)) | 3124411320 | A/B/C, phân tích lỗi, diễn giải và video demo | So sánh A/B/C; phân tích lỗi và importance; nội dung/video demo | 20% |
 
 ## Sản phẩm bàn giao
 
